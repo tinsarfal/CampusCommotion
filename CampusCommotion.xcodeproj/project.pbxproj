@@ -1,0 +1,681 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07522B232B4EE6FB00E65E44 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B222B4EE6FB00E65E44 /* CoursesView.swift */; };
+		07522B252B4F247700E65E44 /* HomeworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B242B4F247700E65E44 /* HomeworkView.swift */; };
+		07E28C722B47510500E67F0F /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E28C712B47510500E67F0F /* MembersView.swift */; };
+		07F3AC1D2C9B713C004444AE /* Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3AC1C2C9B7114004444AE /* Acknowledgements.swift */; };
+		5946356F2786397F00FB49DD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5946356E2786397F00FB49DD /* ProfileView.swift */; };
+		5951AD532785161D00E11C1D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951AD522785161D00E11C1D /* WebViewController.swift */; };
+		5951AD55278546CF00E11C1D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951AD54278546CF00E11C1D /* Preferences.swift */; };
+		597D5D5A26D729BA00468ED0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597D5D5926D729BA00468ED0 /* WidgetKit.framework */; };
+		597D5D5C26D729BA00468ED0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597D5D5B26D729BA00468ED0 /* SwiftUI.framework */; };
+		597D5D5F26D729BA00468ED0 /* CampusCommotionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597D5D5E26D729BA00468ED0 /* CampusCommotionWidget.swift */; };
+		597D5D6126D729C400468ED0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597D5D6026D729C400468ED0 /* Assets.xcassets */; };
+		597D5D6B26D72A7000468ED0 /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D984F226CDC9830063E7E5 /* Connector.swift */; };
+		598DC3AD2780F65E00DBC055 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598DC3AC2780F65E00DBC055 /* WebView.swift */; };
+		59925CA926D5CF6200B474CD /* BlockCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59925CA826D5CF6200B474CD /* BlockCollection.swift */; };
+		599B609E26CD9C710056108A /* CampusCommotionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599B609D26CD9C710056108A /* CampusCommotionApp.swift */; };
+		599B60A026CD9C710056108A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599B609F26CD9C710056108A /* ContentView.swift */; };
+		599B60A226CD9C750056108A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599B60A126CD9C750056108A /* Assets.xcassets */; };
+		599B60A526CD9C750056108A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599B60A426CD9C750056108A /* Preview Assets.xcassets */; };
+		59B8FB6626CEDFE6008903BB /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B8FB6526CEDFE6008903BB /* BlockView.swift */; };
+		59D984F326CDC9840063E7E5 /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D984F226CDC9830063E7E5 /* Connector.swift */; };
+		B6870167DA97DA5492278068 /* Pods_CampusCommotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0C90A64C5F6B1B29DA423CD /* Pods_CampusCommotion.framework */; };
+		E593A130143932009D742678 /* Pods_CampusCommotionWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F39DC01820A88ABD130FDA1 /* Pods_CampusCommotionWidgetExtension.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		597D5D6326D729C400468ED0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 599B609226CD9C710056108A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 597D5D5726D729BA00468ED0;
+			remoteInfo = CampusCommotionWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		597D5D6626D729C400468ED0 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		07522B222B4EE6FB00E65E44 /* CoursesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
+		07522B242B4F247700E65E44 /* HomeworkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeworkView.swift; sourceTree = "<group>"; };
+		07E28C712B47510500E67F0F /* MembersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
+		07F3AC1C2C9B7114004444AE /* Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgements.swift; sourceTree = "<group>"; };
+		5946356E2786397F00FB49DD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5951AD522785161D00E11C1D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		5951AD54278546CF00E11C1D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		597B966E26DC45B700A9D6EB /* CampusCommotion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CampusCommotion.entitlements; sourceTree = "<group>"; };
+		597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CampusCommotionWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		597D5D5926D729BA00468ED0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		597D5D5B26D729BA00468ED0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		597D5D5E26D729BA00468ED0 /* CampusCommotionWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCommotionWidget.swift; sourceTree = "<group>"; };
+		597D5D6026D729C400468ED0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		598DC3AC2780F65E00DBC055 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		59925CA826D5CF6200B474CD /* BlockCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCollection.swift; sourceTree = "<group>"; };
+		599B609A26CD9C710056108A /* CampusCommotion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusCommotion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		599B609D26CD9C710056108A /* CampusCommotionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusCommotionApp.swift; sourceTree = "<group>"; };
+		599B609F26CD9C710056108A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		599B60A126CD9C750056108A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		599B60A426CD9C750056108A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		599B60A626CD9C750056108A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59A7BE7326E8CE8E00E05CD1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		59AF3FB62757F7FE00D873F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59B8FB6526CEDFE6008903BB /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		59D984F226CDC9830063E7E5 /* Connector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
+		59E1B10E26DAF6FC00B42681 /* CampusCommotionWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CampusCommotionWidgetExtension.entitlements; sourceTree = "<group>"; };
+		5A8BEF07AA61C2402D2FE5F0 /* Pods-CampusCommotion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusCommotion.release.xcconfig"; path = "Target Support Files/Pods-CampusCommotion/Pods-CampusCommotion.release.xcconfig"; sourceTree = "<group>"; };
+		6F39DC01820A88ABD130FDA1 /* Pods_CampusCommotionWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusCommotionWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BB6D483CAED3724599538FD /* Pods-CampusCommotionWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusCommotionWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CampusCommotionWidgetExtension/Pods-CampusCommotionWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		86ACBBF97D7313B297CAC37B /* Pods-CampusCommotionWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusCommotionWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CampusCommotionWidgetExtension/Pods-CampusCommotionWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		B0C90A64C5F6B1B29DA423CD /* Pods_CampusCommotion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusCommotion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FACCEEC6CAA09363FF739923 /* Pods-CampusCommotion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusCommotion.debug.xcconfig"; path = "Target Support Files/Pods-CampusCommotion/Pods-CampusCommotion.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		597D5D5526D729BA00468ED0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				597D5D5C26D729BA00468ED0 /* SwiftUI.framework in Frameworks */,
+				597D5D5A26D729BA00468ED0 /* WidgetKit.framework in Frameworks */,
+				E593A130143932009D742678 /* Pods_CampusCommotionWidgetExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		599B609726CD9C710056108A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6870167DA97DA5492278068 /* Pods_CampusCommotion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2DB5A205682397E300E9AA01 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				597D5D5926D729BA00468ED0 /* WidgetKit.framework */,
+				597D5D5B26D729BA00468ED0 /* SwiftUI.framework */,
+				B0C90A64C5F6B1B29DA423CD /* Pods_CampusCommotion.framework */,
+				6F39DC01820A88ABD130FDA1 /* Pods_CampusCommotionWidgetExtension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		597D5D5D26D729BA00468ED0 /* CampusCommotionWidget */ = {
+			isa = PBXGroup;
+			children = (
+				597D5D5E26D729BA00468ED0 /* CampusCommotionWidget.swift */,
+				597D5D6026D729C400468ED0 /* Assets.xcassets */,
+				59AF3FB62757F7FE00D873F4 /* Info.plist */,
+			);
+			path = CampusCommotionWidget;
+			sourceTree = "<group>";
+		};
+		597D5D6A26D72A5500468ED0 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				59D984F226CDC9830063E7E5 /* Connector.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		599B609126CD9C710056108A = {
+			isa = PBXGroup;
+			children = (
+				59A7BE7326E8CE8E00E05CD1 /* Launch Screen.storyboard */,
+				59E1B10E26DAF6FC00B42681 /* CampusCommotionWidgetExtension.entitlements */,
+				597D5D6A26D72A5500468ED0 /* Shared */,
+				599B609C26CD9C710056108A /* CampusCommotion */,
+				597D5D5D26D729BA00468ED0 /* CampusCommotionWidget */,
+				599B609B26CD9C710056108A /* Products */,
+				5F1664986BA1871F67723D5E /* Pods */,
+				2DB5A205682397E300E9AA01 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		599B609B26CD9C710056108A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				599B609A26CD9C710056108A /* CampusCommotion.app */,
+				597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		599B609C26CD9C710056108A /* CampusCommotion */ = {
+			isa = PBXGroup;
+			children = (
+				597B966E26DC45B700A9D6EB /* CampusCommotion.entitlements */,
+				599B609D26CD9C710056108A /* CampusCommotionApp.swift */,
+				599B609F26CD9C710056108A /* ContentView.swift */,
+				598DC3AC2780F65E00DBC055 /* WebView.swift */,
+				599B60A126CD9C750056108A /* Assets.xcassets */,
+				599B60A626CD9C750056108A /* Info.plist */,
+				599B60A326CD9C750056108A /* Preview Content */,
+				59B8FB6526CEDFE6008903BB /* BlockView.swift */,
+				59925CA826D5CF6200B474CD /* BlockCollection.swift */,
+				5951AD522785161D00E11C1D /* WebViewController.swift */,
+				07522B242B4F247700E65E44 /* HomeworkView.swift */,
+				07E28C712B47510500E67F0F /* MembersView.swift */,
+				07522B222B4EE6FB00E65E44 /* CoursesView.swift */,
+				07F3AC1C2C9B7114004444AE /* Acknowledgements.swift */,
+				5951AD54278546CF00E11C1D /* Preferences.swift */,
+				5946356E2786397F00FB49DD /* ProfileView.swift */,
+			);
+			path = CampusCommotion;
+			sourceTree = "<group>";
+		};
+		599B60A326CD9C750056108A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				599B60A426CD9C750056108A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5F1664986BA1871F67723D5E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FACCEEC6CAA09363FF739923 /* Pods-CampusCommotion.debug.xcconfig */,
+				5A8BEF07AA61C2402D2FE5F0 /* Pods-CampusCommotion.release.xcconfig */,
+				86ACBBF97D7313B297CAC37B /* Pods-CampusCommotionWidgetExtension.debug.xcconfig */,
+				7BB6D483CAED3724599538FD /* Pods-CampusCommotionWidgetExtension.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		597D5D5726D729BA00468ED0 /* CampusCommotionWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 597D5D6926D729C400468ED0 /* Build configuration list for PBXNativeTarget "CampusCommotionWidgetExtension" */;
+			buildPhases = (
+				C3AF9D5A8A15EF6AA936D43C /* [CP] Check Pods Manifest.lock */,
+				597D5D5426D729BA00468ED0 /* Sources */,
+				597D5D5526D729BA00468ED0 /* Frameworks */,
+				597D5D5626D729BA00468ED0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CampusCommotionWidgetExtension;
+			productName = CampusCommotionWidgetExtension;
+			productReference = 597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		599B609926CD9C710056108A /* CampusCommotion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 599B60A926CD9C750056108A /* Build configuration list for PBXNativeTarget "CampusCommotion" */;
+			buildPhases = (
+				7F3696A7239543DDE57811FD /* [CP] Check Pods Manifest.lock */,
+				599B609626CD9C710056108A /* Sources */,
+				599B609726CD9C710056108A /* Frameworks */,
+				599B609826CD9C710056108A /* Resources */,
+				597D5D6626D729C400468ED0 /* Embed App Extensions */,
+				03B98D85A1513B337AEB7AF8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				597D5D6426D729C400468ED0 /* PBXTargetDependency */,
+			);
+			name = CampusCommotion;
+			productName = CampusCommotion;
+			productReference = 599B609A26CD9C710056108A /* CampusCommotion.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		599B609226CD9C710056108A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					597D5D5726D729BA00468ED0 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					599B609926CD9C710056108A = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = 599B609526CD9C710056108A /* Build configuration list for PBXProject "CampusCommotion" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 599B609126CD9C710056108A;
+			productRefGroup = 599B609B26CD9C710056108A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				599B609926CD9C710056108A /* CampusCommotion */,
+				597D5D5726D729BA00468ED0 /* CampusCommotionWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		597D5D5626D729BA00468ED0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				597D5D6126D729C400468ED0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		599B609826CD9C710056108A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				599B60A526CD9C750056108A /* Preview Assets.xcassets in Resources */,
+				599B60A226CD9C750056108A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03B98D85A1513B337AEB7AF8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CampusCommotion/Pods-CampusCommotion-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CampusCommotion/Pods-CampusCommotion-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CampusCommotion/Pods-CampusCommotion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F3696A7239543DDE57811FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CampusCommotion-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3AF9D5A8A15EF6AA936D43C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CampusCommotionWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		597D5D5426D729BA00468ED0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				597D5D5F26D729BA00468ED0 /* CampusCommotionWidget.swift in Sources */,
+				597D5D6B26D72A7000468ED0 /* Connector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		599B609626CD9C710056108A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5951AD55278546CF00E11C1D /* Preferences.swift in Sources */,
+				5946356F2786397F00FB49DD /* ProfileView.swift in Sources */,
+				07E28C722B47510500E67F0F /* MembersView.swift in Sources */,
+				07522B232B4EE6FB00E65E44 /* CoursesView.swift in Sources */,
+				59925CA926D5CF6200B474CD /* BlockCollection.swift in Sources */,
+				07F3AC1D2C9B713C004444AE /* Acknowledgements.swift in Sources */,
+				59B8FB6626CEDFE6008903BB /* BlockView.swift in Sources */,
+				59D984F326CDC9840063E7E5 /* Connector.swift in Sources */,
+				598DC3AD2780F65E00DBC055 /* WebView.swift in Sources */,
+				5951AD532785161D00E11C1D /* WebViewController.swift in Sources */,
+				599B60A026CD9C710056108A /* ContentView.swift in Sources */,
+				07522B252B4F247700E65E44 /* HomeworkView.swift in Sources */,
+				599B609E26CD9C710056108A /* CampusCommotionApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		597D5D6426D729C400468ED0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 597D5D5726D729BA00468ED0 /* CampusCommotionWidgetExtension */;
+			targetProxy = 597D5D6326D729C400468ED0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		597D5D6726D729C400468ED0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86ACBBF97D7313B297CAC37B /* Pods-CampusCommotionWidgetExtension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CampusCommotionWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = CampusCommotionWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = CampusCommotionWidget.CampusCommotionWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		597D5D6826D729C400468ED0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BB6D483CAED3724599538FD /* Pods-CampusCommotionWidgetExtension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CampusCommotionWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = CampusCommotionWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = CampusCommotionWidget.CampusCommotionWidgetExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		599B60A726CD9C750056108A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		599B60A826CD9C750056108A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		599B60AA26CD9C750056108A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FACCEEC6CAA09363FF739923 /* Pods-CampusCommotion.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CampusCommotion/CampusCommotion.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_ASSET_PATHS = "\"CampusCommotion/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CampusCommotion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CampusCommotion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		599B60AB26CD9C750056108A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A8BEF07AA61C2402D2FE5F0 /* Pods-CampusCommotion.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CampusCommotion/CampusCommotion.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_ASSET_PATHS = "\"CampusCommotion/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = CampusCommotion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CampusCommotion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		597D5D6926D729C400468ED0 /* Build configuration list for PBXNativeTarget "CampusCommotionWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				597D5D6726D729C400468ED0 /* Debug */,
+				597D5D6826D729C400468ED0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		599B609526CD9C710056108A /* Build configuration list for PBXProject "CampusCommotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				599B60A726CD9C750056108A /* Debug */,
+				599B60A826CD9C750056108A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		599B60A926CD9C750056108A /* Build configuration list for PBXNativeTarget "CampusCommotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				599B60AA26CD9C750056108A /* Debug */,
+				599B60AB26CD9C750056108A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 599B609226CD9C710056108A /* Project object */;
+}
