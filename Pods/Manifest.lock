@@ -1,0 +1,54 @@
+PODS:
+  - ActivityIndicatorView (1.0.1)
+  - Alamofire (5.4.3)
+  - hpple (0.2.0)
+  - KeychainSwift (21.0.0)
+  - SwiftyJSON (5.0.1)
+  - URLImage (2.2.5):
+    - URLImage/Common (= 2.2.5)
+    - URLImage/DownloadManager (= 2.2.5)
+    - URLImage/FileIndex (= 2.2.5)
+    - URLImage/ImageDecoder (= 2.2.5)
+    - URLImage/Log (= 2.2.5)
+    - URLImage/PlainDatabase (= 2.2.5)
+    - URLImage/RemoteContentView (= 2.2.5)
+  - URLImage/Common (2.2.5)
+  - URLImage/DownloadManager (2.2.5):
+    - URLImage/Log
+  - URLImage/FileIndex (2.2.5):
+    - URLImage/Common
+    - URLImage/Log
+    - URLImage/PlainDatabase
+  - URLImage/ImageDecoder (2.2.5)
+  - URLImage/Log (2.2.5)
+  - URLImage/PlainDatabase (2.2.5)
+  - URLImage/RemoteContentView (2.2.5)
+
+DEPENDENCIES:
+  - ActivityIndicatorView
+  - Alamofire
+  - hpple
+  - KeychainSwift
+  - SwiftyJSON
+  - URLImage
+
+SPEC REPOS:
+  trunk:
+    - ActivityIndicatorView
+    - Alamofire
+    - hpple
+    - KeychainSwift
+    - SwiftyJSON
+    - URLImage
+
+SPEC CHECKSUMS:
+  ActivityIndicatorView: 425e6db935766a4a87d65cd2ce021a023bfa0603
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
+  KeychainSwift: 4a71a45c802fd9e73906457c2dcbdbdc06c9419d
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  URLImage: 36a66c03ba2a9ccbbf06bc83431f2cef171008e8
+
+PODFILE CHECKSUM: 0ef72f8548943826d2e321942f54f5b34a8d3623
+
+COCOAPODS: 1.15.0
