@@ -1,0 +1,654 @@
+//
+//  Connector.swift
+//  CampusCommotion
+
+import Foundation
+import Alamofire
+import SwiftyJSON
+
+func rgbToHex(red: Int, green: Int, blue: Int) -> String {
+    let hexString = String(format: "#%02X%02X%02X", red, green, blue)
+    return hexString
+}
+func applyStyling(letter: String) -> String {
+    let backgroundColor: String
+    
+    // Check if the letter contains any of the special cases first
+    if letter.contains("PEG") || letter.contains("PEB") || letter.contains("PEM") || letter.contains("DAN") {
+        return "#E1E2E2" // Special case color
+    }
+    
+    // Define the color mapping for base letters
+    switch letter {
+    case "A", "T":
+        backgroundColor = "#f25c5a" // Red
+    case "B", "U":
+        backgroundColor = "#f7a877" // Orange
+    case "C", "V":
+        backgroundColor = "#3cb371" // Green
+    case "D", "W":
+        backgroundColor = "#6495ed" // Blue
+    case "E", "X":
+        backgroundColor = "#fff44f" // Yellow
+    case "F", "Y":
+        backgroundColor = "#9370db" // Purple
+    case "G", "Z":
+        backgroundColor = "#ff69b4" // Pink
+    case "Q", "H":
+        backgroundColor = "#07ABD7" // Aqua
+    case "A Short", "A Long":
+        backgroundColor = "#f25c5a" // Red
+    case "B Long", "B Short":
+        backgroundColor = "#f7a877" // Orange
+    case "C Long", "C Short":
+        backgroundColor = "#3cb371" // Green
+    case "D Long", "D Short":
+        backgroundColor = "#6495ed" // Blue
+    case "E Long", "E Short":
+        backgroundColor = "#fff44f" // Yellow
+    case "F Long", "F Short":
+        backgroundColor = "#9370db" // Purple
+    case "G Long", "G Short":
+        backgroundColor = "#ff69b4" // Pink
+    case "H Long", "H Short":
+        backgroundColor = "#07ABD7" // Aqua
+    case "ME":
+        backgroundColor = "#90EE90" // Light Green
+    case "PE1", "PE2", "PE3", "PE4", "PE5":
+        backgroundColor = "#c0c0c0" // Gray
+    case "Advising", "Assembly":
+        backgroundColor = "#ffffff"
+    default:
+        // Extract the base letter from the input if it contains a number
+        let baseLetter = String(letter.prefix(while: { $0.isLetter }))
+        switch baseLetter {
+        case "A", "T", "AT":
+            backgroundColor = "#f25c5a" // Red
+        case "B", "U", "BU":
+            backgroundColor = "#f7a877" // Orange
+        case "C", "V", "CV":
+            backgroundColor = "#3cb371" // Green
+        case "D", "W", "DW":
+            backgroundColor = "#6495ed" // Blue
+        case "E", "X", "EX":
+            backgroundColor = "#fff44f" // Yellow
+        case "F", "Y", "FY":
+            backgroundColor = "#9370db" // Purple
+        case "G", "Z", "GZ":
+            backgroundColor = "#ff69b4" // Pink
+        case "Q", "H", "HQ":
+            backgroundColor = "#07ABD7" // Aqua
+        default:
+            backgroundColor = "#ffffff" // White
+        }
+    }
+    
+    return backgroundColor
+}
+struct ScheduleLink: Codable {
+    let username: String
+    let url: String
+}
+
+struct studentimage: Codable {
+    var studentname: String
+    var image: String
+    var studentID: Int
+}
+
+struct CourseData: Codable {
+    var coursecode: String
+    var students: [studentimage]
+    var courseid: Int
+    var sectionid: Int
+}
+
+
+
+func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any]]]], [String]) {
+    var weekschedules: [[[[String: Any]]]] = []
+    var dayschedules: [[[String: Any]]] = []
+    var blockschedules: [[String: Any]] = []
+    var currentEvent: [String: Any] = [:]
+    var uniqueClubs: [String] = []
+    var inEvent = false
+    var currentDate: String? = nil
+    var firstDate: Date?
+    var lastDate: Date?
+    var onlyDate: Date?
+    
+    // Helper functions (no changes needed)
+    func extractDateFromLine(from input: String) -> Date? {
+        let trimmedInput = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Split on colon to find the actual date-time string
+        guard let dateTimeRange = trimmedInput.range(of: ":") else {
+            print("Error: Date-time separator ':' not found in the input string.")
+            return nil
+        }
+        
+        let dateTimeString = String(trimmedInput[dateTimeRange.upperBound...])
+        
+        // Default time zone if not found
+        var timeZoneIdentifier = "EST"
+        
+        // Check for TZID= in the input
+        if let timeZoneRange = trimmedInput.range(of: "TZID=") {
+            let timeZoneEndIndex = trimmedInput.range(of: ":", range: timeZoneRange.upperBound..<trimmedInput.endIndex)?.lowerBound ?? trimmedInput.endIndex
+            timeZoneIdentifier = String(trimmedInput[timeZoneRange.upperBound..<timeZoneEndIndex])
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss"
+        
+        // Try setting the correct time zone
+        if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
+            dateFormatter.timeZone = timeZone
+        } else {
+            print("Error: Invalid time zone identifier '\(timeZoneIdentifier)'. Using default time zone: EST")
+            dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+        }
+        
+        // Parse the date
+        guard let date = dateFormatter.date(from: dateTimeString) else {
+            print("Error: Failed to parse date-time string '\(dateTimeString)' with format '\(dateFormatter.dateFormat)'.")
+            return nil
+        }
+        
+        return date
+    }
+    
+    func extractDayFromLine(from input: String) -> Date? {
+        let trimmedInput = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Split on colon to find the actual date-time string
+        guard let dateTimeRange = trimmedInput.range(of: ":") else {
+            print("Error: Date-time separator ':' not found in the input string.")
+            return nil
+        }
+        
+        let dateTimeString = String(trimmedInput[dateTimeRange.upperBound...])
+        
+        // Default time zone if not found
+        var timeZoneIdentifier = "EST"
+        
+        // Check for TZID= in the input
+        if let timeZoneRange = trimmedInput.range(of: "TZID=") {
+            let timeZoneEndIndex = trimmedInput.range(of: ":", range: timeZoneRange.upperBound..<trimmedInput.endIndex)?.lowerBound ?? trimmedInput.endIndex
+            timeZoneIdentifier = String(trimmedInput[timeZoneRange.upperBound..<timeZoneEndIndex])
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        
+        // Try setting the correct time zone
+        if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
+            dateFormatter.timeZone = timeZone
+        } else {
+            print("Error: Invalid time zone identifier '\(timeZoneIdentifier)'. Using default time zone: EST")
+            dateFormatter.timeZone = TimeZone(abbreviation: "EST")
+        }
+        
+        // Parse the date
+        guard let date = dateFormatter.date(from: dateTimeString) else {
+            print("Error: Failed to parse date-time string '\(dateTimeString)' with format '\(dateFormatter.dateFormat)'.")
+            return nil
+        }
+        
+        return date
+    }
+    
+    func extractTime(from date: Date) -> String {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm"
+        return timeFormatter.string(from: date)
+    }
+    
+    func extractStringFromLine(_ line: String) -> String {
+        return line.split(separator: ":").dropFirst().joined(separator: ":")
+    }
+    
+    //func extractBlockLetter(from summary: String) -> String {
+    //    let components = summary.split(separator: " ").map(String.init)
+     //   if components.first != "Advising" {
+     //       if components.count >= 2 {
+     //           let blockLetter = components[components.count - 2]
+     //           return blockLetter
+     //       }
+     //   } else {
+     //       return "Advising"
+      //  }
+     //   return ""
+   // }
+    func extractBlockLetter(from summary: String) -> String {
+        if let startIndex = summary.lastIndex(of: "("), let endIndex = summary.lastIndex(of: ")") {
+            let blockLetter = summary[summary.index(after: startIndex)..<endIndex]
+            var cleanedBlockLetter = blockLetter.replacingOccurrences(of: "/", with: "")
+            if cleanedBlockLetter == "Phillips Exeter Academy" {
+                if let range = summary.range(of: " - ") {
+                        let textBeforeDash = summary[..<range.lowerBound]
+                    return String(textBeforeDash)
+                    }
+                else {
+                    if summary.starts(with: "First Day") {
+                       return("First Day")
+                    }
+                }
+            }
+            return String(cleanedBlockLetter)
+        }
+        return ""
+    }
+    
+    // Process each line from the iCal string
+    for line in icalString.components(separatedBy: "\n") {
+        if String(line).contains("BEGIN:VEVENT") {
+            inEvent = true
+            currentEvent = [:]
+            
+        } else if String(line).contains("END:VEVENT") {
+            inEvent = false
+            let blockDictionary: [String: Any] = [
+                "date": currentEvent["date"] ?? "",
+                "blockid": currentEvent["blockLetter"] ?? "",
+                "color": currentEvent["color"] ?? "",
+                "starttime": currentEvent["starttime"] ?? "",
+                "endtime": currentEvent["endtime"] ?? "",
+                "classname": currentEvent["classname"] ?? "",
+                "teacher": currentEvent["teacher"] ?? "",
+                "teacherusername": (currentEvent["teacherusername"] as? String)?.dropFirst(7) ?? "",
+                "location": currentEvent["location"] ?? ""
+            ]
+            blockschedules.append(blockDictionary)
+            currentEvent.removeAll()
+        } else if inEvent {
+            if line.starts(with: "DTSTART") {
+                if let startTime = extractDateFromLine(from: line) {
+                    currentEvent["starttime"] = extractTime(from: startTime)
+                    if firstDate == nil || startTime < firstDate! {
+                        firstDate = startTime
+                    }
+                    if lastDate == nil || startTime > lastDate! {
+                        lastDate = startTime
+                    }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "EEEE M/d"
+                    let formattedDate = dateFormatter.string(from: startTime)
+                    currentEvent["date"] = formattedDate
+                    currentDate = formattedDate
+
+                } else if let startTime = extractDayFromLine(from: line) {
+                    currentEvent["starttime"] = "All Day"
+                    if firstDate == nil || startTime < firstDate! {
+                        firstDate = startTime
+                    }
+                    if lastDate == nil || startTime > lastDate! {
+                        lastDate = startTime
+                    }
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "EEEE M/d"
+                    let formattedDate = dateFormatter.string(from: startTime)
+                    currentEvent["date"] = formattedDate
+                    currentDate = formattedDate
+
+                }
+            } else if line.starts(with: "DTEND") {
+                if let endTime = extractDateFromLine(from: line) {
+                    currentEvent["endtime"] = extractTime(from: endTime)
+                }
+            } else if line.starts(with: "SUMMARY") {
+                let className = extractStringFromLine(String(line))
+                currentEvent["classname"] = className
+                currentEvent["blockLetter"] = extractBlockLetter(from: className)
+                if let blockLetter = currentEvent["blockLetter"] as? String {
+                    currentEvent["color"] = applyStyling(letter: blockLetter)
+                }
+            } else if line.starts(with: "LOCATION") {
+                currentEvent["location"] = extractStringFromLine(String(line))
+            } else if line.starts(with: "DESCRIPTION") {
+                currentEvent["description"] = extractStringFromLine(String(line))
+            } else if line.starts(with: "UID") {
+                currentEvent["blockid"] = extractStringFromLine(String(line))
+            } else if line.starts(with: "TEACHER") {
+                currentEvent["teacher"] = extractStringFromLine(String(line))
+            } else if line.starts(with: "TEACHERUSERNAME") {
+                let teacherUsername = extractStringFromLine(String(line))
+                currentEvent["teacherusername"] = teacherUsername
+            }
+        }
+    }
+    if clubsString != "" {
+        inEvent = false
+        for line in clubsString.components(separatedBy: "\n") {
+            if String(line).contains("BEGIN:VEVENT") {
+                inEvent = true
+                currentEvent = [:]
+                
+            } else if String(line).contains("END:VEVENT") {
+                inEvent = false
+                let clubName = currentEvent["classname"] as? String ?? ""
+                
+                // Append the club to uniqueClubs array if it's not already there
+                if !uniqueClubs.contains(clubName) {
+                    uniqueClubs.append(clubName)
+                }
+                
+                // Set the block ID to "Clubs" for club events
+                let blockDictionary: [String: Any] = [
+                    "date": currentEvent["date"] ?? "",
+                    "blockid": "Clubs",  // All club events will have blockid as "Clubs"
+                    "color": "#6A5ACD",
+                    "starttime": currentEvent["starttime"] ?? "",
+                    "endtime": currentEvent["endtime"] ?? "",
+                    "classname": clubName,
+                    "teacher": currentEvent["teacher"] ?? "",
+                    "teacherusername": (currentEvent["teacherusername"] as? String)?.dropFirst(7) ?? "",
+                    "location": currentEvent["location"] ?? ""
+                ]
+                blockschedules.append(blockDictionary)
+                currentEvent.removeAll()
+            } else if inEvent {
+                if line.starts(with: "DTSTART") {
+                    if let startTime = extractDateFromLine(from: line) {
+                        currentEvent["starttime"] = extractTime(from: startTime)
+                        if firstDate == nil || startTime < firstDate! {
+                            firstDate = startTime
+                        }
+                        if lastDate == nil || startTime > lastDate! {
+                            lastDate = startTime
+                        }
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "EEEE M/d"
+                        let formattedDate = dateFormatter.string(from: startTime)
+                        currentEvent["date"] = formattedDate
+                        currentDate = formattedDate
+                        
+                    } else if let startTime = extractDayFromLine(from: line) {
+                        currentEvent["starttime"] = "All Day"
+                        if firstDate == nil || startTime < firstDate! {
+                            firstDate = startTime
+                        }
+                        if lastDate == nil || startTime > lastDate! {
+                            lastDate = startTime
+                        }
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "EEEE M/d"
+                        let formattedDate = dateFormatter.string(from: startTime)
+                        currentEvent["date"] = formattedDate
+                        currentDate = formattedDate
+                        
+                    }
+                } else if line.starts(with: "DTEND") {
+                    if let endTime = extractDateFromLine(from: line) {
+                        currentEvent["endtime"] = extractTime(from: endTime)
+                    }
+                } else if line.starts(with: "SUMMARY") {
+                    let className = extractStringFromLine(String(line))
+                    print(className)
+                    if className == "First Day of School\r" {
+                        currentEvent.removeAll()
+                        continue
+                    }
+                    currentEvent["classname"] = className
+                    currentEvent["blockLetter"] = extractBlockLetter(from: className)
+                    if let blockLetter = currentEvent["blockLetter"] as? String {
+                        currentEvent["color"] = applyStyling(letter: blockLetter)
+                    }
+                } else if line.starts(with: "LOCATION") {
+                    currentEvent["location"] = extractStringFromLine(String(line))
+                } else if line.starts(with: "DESCRIPTION") {
+                    currentEvent["description"] = extractStringFromLine(String(line))
+                } else if line.starts(with: "UID") {
+                    currentEvent["blockid"] = extractStringFromLine(String(line))
+                } else if line.starts(with: "TEACHER") {
+                    currentEvent["teacher"] = extractStringFromLine(String(line))
+                } else if line.starts(with: "TEACHERUSERNAME") {
+                    let teacherUsername = extractStringFromLine(String(line))
+                    currentEvent["teacherusername"] = teacherUsername
+                }
+            }
+        }
+    }
+    // Create dayschedules from blockschedules
+    var dayMap: [String: [[String: Any]]] = [:]
+    func cleanDateString(_ dateString: String) -> String {
+        return dateString.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE M/d"
+    
+    // Dictionary to hold blocks organized by date
+    //var dayMap: [String: [[String: Any]]] = [:]
+    
+    // Organize blocks by date
+    
+    // Convert dayMap to dayschedules
+    
+    // Determine the range of weeks based on the available dates
+    for block in blockschedules {
+        if let dateStr = block["date"] as? String {
+            if dayMap[dateStr] == nil {
+                dayMap[dateStr] = []
+            }
+            dayMap[dateStr]?.append(block)
+        }
+    }
+    
+    
+    
+    var calendar = Calendar.current
+    calendar.firstWeekday = 1
+    if firstDate != nil {
+        let weekStartDate = calendar.startOfWeek(for: firstDate!)
+        print(firstDate!)
+        print(calendar.startOfWeek(for: firstDate!))
+        let weekEndDate = calendar.endOfWeek(for: lastDate!)
+        var currentWeekDate = weekStartDate
+        print(currentWeekDate)
+        print(weekEndDate)
+        while currentWeekDate <= weekEndDate {
+            print(currentWeekDate)
+            let weekEndDate = calendar.date(byAdding: .day, value: 6, to: currentWeekDate)!
+            let weekDays = calendar.generateDates(for: currentWeekDate, to: weekEndDate)
+            // Filter out days with no events
+            let weekBlocks = weekDays.compactMap { day in
+                dateFormatter.dateFormat = "EEEE M/d"
+                let dateKey = dateFormatter.string(from: day)
+                print(dateKey)
+                print(dayMap)
+                let eventsForDay = dayMap[dateKey] ?? []
+                print(eventsForDay)
+                return eventsForDay.isEmpty ? nil : eventsForDay
+            }
+            
+            if !weekBlocks.isEmpty { // Add week to schedules only if it contains events
+                weekschedules.append(weekBlocks)
+            }
+            
+            currentWeekDate = calendar.date(byAdding: .weekOfYear, value: 1, to: currentWeekDate)!
+            print(currentWeekDate)
+        }
+        
+        return (weekschedules, uniqueClubs)
+    }
+    else {
+        return ([], [])
+    }
+}
+    // Calendar extension
+extension Calendar {
+    func startOfWeek(for date: Date) -> Date {
+            // Force the first weekday to Sunday
+            var calendar = self
+            calendar.firstWeekday = 1 // 1 means Sunday
+            
+            var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+            components.weekday = calendar.firstWeekday // Set to Sunday (firstWeekday = 1)
+            
+            return calendar.date(from: components)!
+        }
+
+    func endOfWeek(for date: Date) -> Date {
+        let startOfWeek = startOfWeek(for: date)
+        return self.date(byAdding: .day, value: 6, to: startOfWeek)!
+    }
+
+    func generateDates(for startDate: Date, to endDate: Date) -> [Date] {
+        var dates: [Date] = []
+        var currentDate = startDate
+        while currentDate <= endDate {
+            dates.append(currentDate)
+            currentDate = self.date(byAdding: .day, value: 1, to: currentDate)!
+        }
+        return dates
+    }
+}
+class ConnectorClass{
+    public init() {}
+
+    func makeRequest(calurl: String, cluburl: String, token: String, completionHandler: @escaping ()->Void){
+        var weekschedules: [[[[String: Any]]]] = []
+        var uniqueClubs: [String] = []
+        var isloaded = false
+                AF.request(calurl, method: .get).responseString{ (response) in
+                    //print(response.value)
+                    switch response.result{
+                    case .success(let value):
+                        if cluburl != "" {
+                            print("I am here")
+                            AF.request(cluburl, method: .get).responseString{ (response) in
+                                //print(response.value)
+                                switch response.result{
+                                case .success(let value2):
+                                    print("I am not here")
+                                    let (weekschedules, uniqueClubs) = parseICalendar(icalString: value, clubsString: value2)
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "yyyy/MM/dd, HH:mm:ss.SSS"
+                                    let timestamp = dateFormatter.string(from: Date())
+                                    dateFormatter.dateFormat = "dd"
+                                    let retrievedDay = dateFormatter.string(from: Date())
+
+                                    let requestData: [String: Any] = [
+                                        "success": true,
+                                        "all_weeks_blocks": weekschedules,
+                                        "timestamp": timestamp,
+                                        "day_retrieved": retrievedDay
+                                    ]
+
+                                    if let theJSONData = try? JSONSerialization.data(withJSONObject: requestData, options: .prettyPrinted),
+                                       let jsontext = String(data: theJSONData, encoding: .utf8) {
+                                        let sharedDefaults = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!
+                                        sharedDefaults.set(jsontext, forKey: "request_data")
+                                    }
+
+                                    isloaded = true
+                                case .failure(let error):
+                                    print("Request failed with error: \(error)")
+                                }
+                            }
+                        }
+                        else {
+                            let weekschedules = parseICalendar(icalString: value, clubsString: "").0
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy/MM/dd, HH:mm:ss.SSS"
+                            let timestamp = dateFormatter.string(from: Date())
+                            dateFormatter.dateFormat = "dd"
+                            let retrievedDay = dateFormatter.string(from: Date())
+
+                            let requestData: [String: Any] = [
+                                "success": true,
+                                "all_weeks_blocks": weekschedules,
+                                "timestamp": timestamp,
+                                "day_retrieved": retrievedDay
+                            ]
+
+                            if let theJSONData = try? JSONSerialization.data(withJSONObject: requestData, options: .prettyPrinted),
+                               let jsontext = String(data: theJSONData, encoding: .utf8) {
+                                let sharedDefaults = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!
+                                sharedDefaults.set(jsontext, forKey: "request_data")
+                            }
+
+                            isloaded = true
+                                }
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+                
+        
+        if isloaded {
+            let simpleCompletionHandler:()->Void =  {
+                completionHandler()
+            }
+        }
+        if token != "" {
+            AF.request("https://canvas.exeter.edu/api/v1/users/self/enrollments?access_token=\(token)&per_page=100").responseString { response in
+                switch response.result {
+                case .success(let value):
+                    var classStudentsDictionary = [String: CourseData]()
+                    let enrollments = JSON(parseJSON: value)
+                    let group = DispatchGroup()
+                    
+                    for (_, enrollment) in enrollments {
+                        group.enter()
+                        print(enrollment)
+                        print(enrollment["course_id"])
+                        let courseId = enrollment["course_id"].intValue
+                        let sectionID = enrollment["course_section_id"].intValue
+                        AF.request("https://canvas.exeter.edu/api/v1/courses/\(courseId)?access_token=\(token)&per_page=100").responseString { response in
+                            switch response.result {
+                            case .success(let value):
+                                let classname = enrollment["course_id"].stringValue
+                                let coursedata = JSON(parseJSON: value)
+                                let coursecode = (coursedata["course_code"].stringValue).replacingOccurrences(of: "-", with: "*")
+                                // Initialize an empty array for the classname if it doesn't exist
+                                if classStudentsDictionary[classname] == nil {
+                                    classStudentsDictionary[classname] = CourseData(coursecode: coursecode, students: [], courseid: courseId, sectionid: sectionID)
+                                }
+                                
+                                AF.request("https://canvas.exeter.edu/api/v1/sections/\(enrollment["course_section_id"])/enrollments?access_token=\(token)&include=avatar_url&per_page=100&type=StudentEnrollment").responseString { response in
+                                    switch response.result {
+                                    case .success(let value):
+                                        let students = JSON(parseJSON: value)
+                                        for (_, student) in students {
+                                            classStudentsDictionary[classname]?.students.append(studentimage(studentname: student["user"]["name"].stringValue, image: student["user"]["avatar_url"].stringValue, studentID: student["user"]["id"].intValue))
+                                            //print(student["user"]["name"])
+                                        }
+                                        
+                                    case .failure(let error):
+                                        print("Section enrollments request failed with error: \(error)")
+                                    }
+                                    group.leave()
+                                }
+                            case .failure(let error):
+                                print("Course request failed with error: \(error)")
+                                group.leave()
+                            }
+                        }
+                    }
+                    
+                    // Wait for all requests to finish
+                    group.notify(queue: .main) {
+                        print("All requests completed successfully")
+                        //print(classStudentsDictionary)
+                        do {
+                            completionHandler()
+                            let encodedcourses = try JSONEncoder().encode(classStudentsDictionary)
+                            UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!.set(encodedcourses, forKey: "canvascourses")
+                        } catch {
+                            print("Error encoding data: \(error)")
+                            completionHandler()
+                        }
+
+                        
+                    }
+                    
+                case .failure(let error):
+                    print("Enrollments request failed with error: \(error)")
+                }
+            }
+        }
+        }
+    }
