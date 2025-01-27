@@ -52,8 +52,8 @@ struct Provider: TimelineProvider {
         let requestData = sharedDefaults.string(forKey: "request_data") ?? ""
         let parsedData = JSON(parseJSON: requestData)
         let now = Date()
+        var lastBlockEnd: Date? = nil
         var blocks: [Block] = []
-        var lastBlockEnd: Date?
 
         // Finds today's blocks
         let dateFormatter = DateFormatter()
@@ -94,9 +94,7 @@ struct Provider: TimelineProvider {
                                 blocks.append(betweenBlock)
                             }
                             
-                            let isUpcoming = now < start
-                            let allDone = now >= end 
-                            let block = Block(id: blockId, start: start, end: end, isUpcoming: isUpcoming, allDone: allDone, name: name, color: color, time: time)
+                            let block = Block(id: blockId, start: start, end: end, isUpcoming: false, allDone: false, name: name, color: color, time: time)
                             blocks.append(block)
                             
                             previousEnd = end
@@ -104,10 +102,11 @@ struct Provider: TimelineProvider {
                         }
                     }
                     if let lastBlockEnd = lastBlockEnd {
-                        if !allDone {
-                            let afterBlock = Block(id: "allDone", start: lastBlockEnd, end: lastBlockEnd.addingTimeInterval(1), isUpcoming: false, allDone: true, name: "All Done", color: "#000000", time: "")
-                            blocks.append(afterBlock)
-                        }
+                        let afterBlock = Block(id: "allDone", start: lastBlockEnd, end: Calendar.current.startOfDay(for: Date()).addingTimeInterval(86399), isUpcoming: false, allDone: true, name: "All Done", color: "#000000", time: "")
+                        blocks.append(afterBlock)
+                    } else {
+                        let afterBlock = Block(id: "allDone", start: Calendar.current.startOfDay(for: Date()), end: Calendar.current.startOfDay(for: Date()).addingTimeInterval(86399), isUpcoming: false, allDone: true, name: "All Done", color: "#000000", time: "")
+                        blocks.append(afterBlock)
                     }
                 }
             }
@@ -185,29 +184,40 @@ struct ScheduleWidgetEntryView: View {
                         .foregroundColor(.white)
                 }
             case .accessoryRectangular:
-                VStack {
-                    if entry.isUpcoming {
-                        Text("Upcoming Block")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            .bold()
-                    } else {
-                        Text("Current Block")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                            .bold()
+                if !entry.allDone {
+                    VStack {
+                        if entry.isUpcoming {
+                            Text("Upcoming Block")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .bold()
+                        } else {
+                            Text("Current Block")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .bold()
+                        }
+                        Text(entry.currentBlock)
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        Text(entry.time)
+                            .font(.headline)
+                            .foregroundColor(.white)
                     }
-                    Text(entry.currentBlock)
+                } else {
+                    Text("All Done!")
                         .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
-                    Text(entry.time)
-                        .font(.headline)
                         .foregroundColor(.white)
                 }
             case .accessoryInline:
-                Text(entry.currentBlock + ": " + entry.time)
-                    .font(.headline)
-                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                if !entry.allDone {
+                    Text(entry.currentBlock + ": " + entry.time)
+                        .font(.headline)
+                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                } else {
+                    Text("All Done!")
+                        .foregroundColor(.white)
+                }
             default:
                 if !entry.allDone {
                     HStack {
