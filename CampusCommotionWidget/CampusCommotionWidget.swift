@@ -53,6 +53,7 @@ struct Provider: TimelineProvider {
         let parsedData = JSON(parseJSON: requestData)
         let now = Date()
         var blocks: [Block] = []
+        var lastBlockEnd: Date?
 
         // Finds today's blocks
         let dateFormatter = DateFormatter()
@@ -94,11 +95,18 @@ struct Provider: TimelineProvider {
                             }
                             
                             let isUpcoming = now < start
-                            let allDone = now >= end
+                            let allDone = now >= end 
                             let block = Block(id: blockId, start: start, end: end, isUpcoming: isUpcoming, allDone: allDone, name: name, color: color, time: time)
                             blocks.append(block)
                             
                             previousEnd = end
+                            lastBlockEnd = end
+                        }
+                    }
+                    if let lastBlockEnd = lastBlockEnd {
+                        if !allDone {
+                            let afterBlock = Block(id: "allDone", start: lastBlockEnd, end: lastBlockEnd.addingTimeInterval(1), isUpcoming: false, allDone: true, name: "All Done", color: "#000000", time: "")
+                            blocks.append(afterBlock)
                         }
                     }
                 }
