@@ -277,17 +277,13 @@ extension WidgetConfiguration {
 extension View {
     @ViewBuilder
     func applyContainerBackgroundIfAvailable() -> some View {
-        #if os(macOS)
-        if #available(macCatalystApplicationExtension 17.0, *) {
+        if #available(macOS 14.0, iOS 17.0, *) {
             self.containerBackground(for: .widget) {
                 Color.black
             }
         } else {
             self
         }
-        #else
-        self
-        #endif
     }
 }
 
