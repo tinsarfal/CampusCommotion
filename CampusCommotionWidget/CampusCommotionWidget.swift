@@ -37,11 +37,11 @@ struct Provider: TimelineProvider {
         fetchCurrentBlock { currentBlock, isUpcoming, allDone, selectedclass, name, color, time, changetime in
             print("fetchCurrentBlock completed with block: \(currentBlock)")
             print("will hopefully refresh at \(changetime)")
-                let entry = ScheduleEntry(date: changetime, currentBlock: currentBlock, isUpcoming: isUpcoming, allDone: allDone, name: name, color: color, time: time)
-                entries.append(entry)
+            let entry = ScheduleEntry(date: changetime, currentBlock: currentBlock, isUpcoming: isUpcoming, allDone: allDone, name: name, color: color, time: time)
+            entries.append(entry)
                 
             let timeline = Timeline(entries: entries, policy: .after(changetime))
-                completion(timeline)
+            completion(timeline)
         }
     }
     
@@ -116,43 +116,42 @@ struct Provider: TimelineProvider {
         if let nextBlock = nextBlock {
             if let nextblockstart = nextblockstart {
                 print("Next block: \(nextBlock)")
-                    completion(nextBlock, true, false, nextblockclass, nextblockname, nextblockcolor, nextblocktime, nextblockstart)
-        }
+                completion(nextBlock, true, false, nextblockclass, nextblockname, nextblockcolor, nextblocktime, nextblockstart)
+            }
         } else {
             print("No current or upcoming block found")
             completion("Loading...", false, allDone, "", "", "#000000", "", Date())
         }
     }
     
-}
     // Example helper for converting "h:mm" string to Date. 
     // Similar to [Shared/Connector.extractTime](Shared/Connector.swift).
-private func parseTime(_ timeString: String, isAfternoon: Bool) -> Date? {
-    guard !timeString.isEmpty, timeString != "All Day" else { return nil }
-    let formatter = DateFormatter()
-    formatter.dateFormat = "h:mm a"
-    formatter.timeZone = TimeZone(identifier: "America/New_York") // Adjust to your time zone
+    private func parseTime(_ timeString: String, isAfternoon: Bool) -> Date? {
+        guard !timeString.isEmpty, timeString != "All Day" else { return nil }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        formatter.timeZone = TimeZone(identifier: "America/New_York") // Adjust to your time zone
 
-    // Append AM/PM based on the isAfternoon flag
-    let timeWithPeriod = isAfternoon ? "\(timeString) PM" : "\(timeString) AM"
-    let today = Date()
-    let dateString = DateFormatter.localizedString(from: today, dateStyle: .short, timeStyle: .none)
-    let combinedString = "\(dateString) \(timeWithPeriod)"
-    let combinedFormatter = DateFormatter()
-    combinedFormatter.dateFormat = "M/d/yy h:mm a"
-    combinedFormatter.timeZone = formatter.timeZone
-    let parsedDate = combinedFormatter.date(from: combinedString)
-    print("Parsed time string: \(timeString) with period: \(timeWithPeriod) to date: \(String(describing: parsedDate))")
-    return parsedDate
+        // Append AM/PM based on the isAfternoon flag
+        let timeWithPeriod = isAfternoon ? "\(timeString) PM" : "\(timeString) AM"
+        let today = Date()
+        let dateString = DateFormatter.localizedString(from: today, dateStyle: .short, timeStyle: .none)
+        let combinedString = "\(dateString) \(timeWithPeriod)"
+        let combinedFormatter = DateFormatter()
+        combinedFormatter.dateFormat = "M/d/yy h:mm a"
+        combinedFormatter.timeZone = formatter.timeZone
+        let parsedDate = combinedFormatter.date(from: combinedString)
+        print("Parsed time string: \(timeString) with period: \(timeWithPeriod) to date: \(String(describing: parsedDate))")
+        return parsedDate
     }
+}
 
 struct ScheduleWidgetEntryView: View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var family
     var body: some View {
         ZStack {
-            Color.black
-                .ignoresSafeArea()
+            Color.clear
             switch family {
             case .systemSmall:
                 if !entry.allDone {
@@ -173,77 +172,80 @@ struct ScheduleWidgetEntryView: View {
                             .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
                             .lineLimit(3)
                             .minimumScaleFactor(0.5)
-                        //if entry.color != "#6A5ACD" {
-                         //   Text("\(entry.assignmentsDue)")
-                         //       .font(.system(size: 40, weight: .bold))
-                        //        .foregroundColor(.white)
-                        //}
                         Text(entry.time)
                             .font(.headline)
                             .foregroundColor(.white)
                     }
                     .padding()
-                }
-                else {
+                } else {
                     Text("All Done!")
                         .font(.system(size: 40, weight: .bold))
                         .foregroundColor(.white)
                 }
+            case .accessoryRectangular:
+                VStack {
+                    if entry.isUpcoming {
+                        Text("Upcoming Block")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                            .bold()
+                    } else {
+                        Text("Current Block")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                            .bold()
+                    }
+                    Text(entry.currentBlock)
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                    Text(entry.time)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+            case .accessoryInline:
+                Text(entry.currentBlock + ": " + entry.time)
+                    .font(.headline)
+                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
             default:
                 if !entry.allDone {
-                HStack {
-                    VStack(alignment: .center, spacing: 0) {
-                        if entry.isUpcoming {
-                            Text("Upcoming Block")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                                .bold()
-                        } else {
-                            Text("Current Block")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                                .bold()
+                    HStack {
+                        VStack(alignment: .center, spacing: 0) {
+                            if entry.isUpcoming {
+                                Text("Upcoming Block")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .bold()
+                            } else {
+                                Text("Current Block")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .bold()
+                            }
+                            Text(entry.currentBlock)
+                                .font(.system(size: 80, weight: .bold))
+                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
                         }
-                        Text(entry.currentBlock)
-                            .font(.system(size: 80, weight: .bold))
-                            .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        Spacer()
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text(entry.name.components(separatedBy: " - ").count > 1 ? entry.name.components(separatedBy: " - ").dropLast().joined(separator: " - ").trimmingCharacters(in: .whitespacesAndNewlines) : entry.name.trimmingCharacters(in: .whitespacesAndNewlines))
+                                .font(.headline)
+                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                .minimumScaleFactor(0.5)
+                                .padding(.bottom, 0)
+                                .fixedSize(horizontal: false, vertical: true)
+                            Text(entry.time)
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(.top, 0)
+                                .edgesIgnoringSafeArea(.top)
+                        }
                     }
-                    Spacer()
-                    //VStack {
-                      //  Text(entry.name.components(separatedBy: " - ").count > 1 ? entry.name.components(separatedBy: " - //").dropLast().joined(separator: " - ") : entry.name)
-                      //      .font(.title3)
-                      //      .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
-                      //      .minimumScaleFactor(0.5)
-                      //  if entry.color != "#6A5ACD" {
-                      //      Text("\(entry.assignmentsDue)")
-                      //          .font(.system(size: 50, weight: .bold)) // Big, bold red number
-                      //          .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
-                      //      Text("Assignment Due")
-                      //          .font(.caption)
-                       //         .foregroundColor(.gray)
-                     //   }
-                   // }
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(entry.name.components(separatedBy: " - ").count > 1 ? entry.name.components(separatedBy: " - ").dropLast().joined(separator: " - ").trimmingCharacters(in: .whitespacesAndNewlines) : entry.name.trimmingCharacters(in: .whitespacesAndNewlines))
-                            .font(.headline)
-                            .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
-                            .minimumScaleFactor(0.5)
-                            .padding(.bottom, 0)
-                            .fixedSize(horizontal: false, vertical: true)
-                        Text(entry.time)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding(.top, 0)
-                            .edgesIgnoringSafeArea(.top)
-                    }
+                    .padding(.horizontal)
+                } else {
+                    Text("All Done!")
+                        .font(.system(size: 40, weight: .bold))
+                        .foregroundColor(.white)
                 }
-                .padding(.horizontal)
-            }
-            else {
-                Text("All Done!")
-                    .font(.system(size: 40, weight: .bold)) // Large, bold number
-                    .foregroundColor(.white)
-            }
             }
         }
         .applyContainerBackgroundIfAvailable()
@@ -255,15 +257,25 @@ struct CampusCommotionWidget: Widget {
     let kind: String = "CampusCommotionWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            ScheduleWidgetEntryView(entry: entry)
-        }
-        .configurationDisplayName("Campus Commotion Widget")
-        .description("Displays the current block and the number of assignments due.")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
-        .disableContentMarginsIfNeeded()
+        if #available(iOSApplicationExtension 16.0, *) {
+            StaticConfiguration(kind: kind, provider: Provider()) { entry in
+                ScheduleWidgetEntryView(entry: entry)
+            }
+            .configurationDisplayName("Campus Commotion Widget")
+            .description("Displays the current block and the number of assignments due.")
+            .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline])
+            .disableContentMarginsIfNeeded()
+        } else {
+            StaticConfiguration(kind: kind, provider: Provider()) { entry in
+                ScheduleWidgetEntryView(entry: entry)
+            }
+            .configurationDisplayName("Campus Commotion Widget")
+            .description("Displays the current block and the number of assignments due.")
+            .supportedFamilies([.systemSmall, .systemMedium])
+            .disableContentMarginsIfNeeded()        }
     }
 }
+
 extension WidgetConfiguration {
     func disableContentMarginsIfNeeded() -> some WidgetConfiguration {
         if #available(iOSApplicationExtension 17.0, *) {
