@@ -16,6 +16,7 @@ class ProfileViewModel: ObservableObject {
     private let keychain = KeychainSwift()
     
     init() {
+        keychain.accessGroup = "group.com.sscheffler.CampusCommotion"
         self.email = keychain.get("email") ?? ""
         self.calurl = keychain.get("calurl") ?? ""
         self.cluburl = keychain.get("cluburl") ?? ""
@@ -32,10 +33,15 @@ class ProfileViewModel: ObservableObject {
 
 
 struct ProfileView: View {
-    @State var email: String = (KeychainSwift().get("email") ?? "")
-    @State var calurl: String = (KeychainSwift().get("calurl") ?? "")
-    @State var cluburl: String = (KeychainSwift().get("cluburl") ?? "")
-    @State var token: String = (KeychainSwift().get("token") ?? "")
+    private let keychain: KeychainSwift = {
+        let keychain = KeychainSwift()
+        keychain.accessGroup = "group.com.sscheffler.CampusCommotion"
+        return keychain
+    }()
+    @State var email: String
+    @State var calurl: String
+    @State var cluburl: String
+    @State var token: String
     @State private var textFieldIdEmail: String = UUID().uuidString
     @State private var textFieldIdCalurl: String = UUID().uuidString
     @State private var textFieldIdCluburl: String = UUID().uuidString
@@ -47,6 +53,10 @@ struct ProfileView: View {
     
     init (some_context: ContentView) {
         context_ContentView = some_context
+        email = (keychain.get("email") ?? "")
+        calurl = (keychain.get("calurl") ?? "")
+        cluburl = (keychain.get("cluburl") ?? "")
+        token = (keychain.get("token") ?? "")
     }
     
     var body: some View {
@@ -110,10 +120,10 @@ struct ProfileView: View {
         }
         }
     private func saveInformation() {
-            KeychainSwift().set(email.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "email")
-            KeychainSwift().set(calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "calurl")
-            KeychainSwift().set(cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "cluburl")
-            KeychainSwift().set(token.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "token")
+            keychain.set(email.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "email")
+            keychain.set(calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "calurl")
+            keychain.set(cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "cluburl")
+            keychain.set(token.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "token")
             
             context_ContentView.email = self.email
             context_ContentView.calurl = self.calurl

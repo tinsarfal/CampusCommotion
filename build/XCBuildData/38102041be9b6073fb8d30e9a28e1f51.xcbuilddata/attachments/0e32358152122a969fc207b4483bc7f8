@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Debug-maccatalyst/Alamofire/Alamofire.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Debug-maccatalyst/Alamofire/Alamofire.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "Alamofire-Swift.h",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/unextended-interface-header.h",
+    }]
+    }]
+}

@@ -19,8 +19,8 @@ struct CoursesView: View {
     @State private var classkey: String?
     @State private var courseid: Int?
     @State private var type: String?
-    @State private var token: String = KeychainSwift().get("token") ?? ""
-    
+    @State private var token: String
+    var keychain = KeychainSwift()
     var selectedclass: String
     var teacherusername: String
     var isclass: Bool
@@ -31,7 +31,8 @@ struct CoursesView: View {
         self.selectedclass = selectedclass
         self.teacherusername = teacherusername
         self.isclass = isclass
-        self.token = KeychainSwift().get("token") ?? ""
+        keychain.accessGroup = "group.com.sscheffler.CampusCommotion"
+        self.token = keychain.get("token") ?? ""
         self.enccoursedata = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")?.data(forKey: "canvascourses")
     }
     
@@ -208,7 +209,9 @@ struct CoursesView: View {
         .onAppear {
             loadData()
             loadTodos()
-            token = KeychainSwift().get("token") ?? ""
+            let keychain = KeychainSwift()
+            keychain.accessGroup = "group.com.sscheffler.CampusCommotion"
+            token = keychain.get("token") ?? ""
         }
         .navigationBarTitle("Homework")
         .listStyle(GroupedListStyle())

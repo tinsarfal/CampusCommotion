@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/Download/DownloadTypes.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/DownloadTypes.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/DownloadTypes.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/DownloadTypes.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/DownloadTypes.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/DownloadTypes.d"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/FileIndex/File.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/File.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/File.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/File.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/File.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/File.o"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/FileIndex/FileIndex.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileIndex.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileIndex.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileIndex.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileIndex.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileIndex.d"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/Common/FileManager+Extensions.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileManager+Extensions.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileManager+Extensions.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileManager+Extensions.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileManager+Extensions.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/FileManager+Extensions.o"

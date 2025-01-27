@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Debug-iphonesimulator/ActivityIndicatorView/ActivityIndicatorView.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/ActivityIndicatorView.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Debug-iphonesimulator/ActivityIndicatorView/ActivityIndicatorView.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "ActivityIndicatorView-Swift.h",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/ActivityIndicatorView.build/unextended-interface-header.h",
+    }]
+    }]
+}

@@ -204,6 +204,13 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
         return timeFormatter.string(from: date)
     }
     
+    func isAfternoon(from date: Date) -> Bool {
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "a"
+        let amPmString = timeFormatter.string(from: date)
+        return amPmString != "AM"
+    }
+    
     func extractStringFromLine(_ line: String) -> String {
         return line.split(separator: ":").dropFirst().joined(separator: ":")
     }
@@ -253,7 +260,9 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                 "blockid": currentEvent["blockLetter"] ?? "",
                 "color": currentEvent["color"] ?? "",
                 "starttime": currentEvent["starttime"] ?? "",
+                "pmstart": currentEvent["isStartAfternoon"] ?? false,
                 "endtime": currentEvent["endtime"] ?? "",
+                "pmend": currentEvent["isEndAfternoon"] ?? false,
                 "classname": currentEvent["classname"] ?? "",
                 "teacher": currentEvent["teacher"] ?? "",
                 "teacherusername": (currentEvent["teacherusername"] as? String)?.dropFirst(7) ?? "",
@@ -276,6 +285,7 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                     let formattedDate = dateFormatter.string(from: startTime)
                     currentEvent["date"] = formattedDate
                     currentDate = formattedDate
+                    currentEvent["isStartAfternoon"] = isAfternoon(from: startTime)
 
                 } else if let startTime = extractDayFromLine(from: line) {
                     currentEvent["starttime"] = "All Day"
@@ -295,6 +305,7 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
             } else if line.starts(with: "DTEND") {
                 if let endTime = extractDateFromLine(from: line) {
                     currentEvent["endtime"] = extractTime(from: endTime)
+                    currentEvent["isEndAfternoon"] = isAfternoon(from: endTime)
                 }
             } else if line.starts(with: "SUMMARY") {
                 let className = extractStringFromLine(String(line))
@@ -339,7 +350,9 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                     "blockid": "Clubs",  // All club events will have blockid as "Clubs"
                     "color": "#6A5ACD",
                     "starttime": currentEvent["starttime"] ?? "",
+                    "pmstart": currentEvent["isStartAfternoon"] ?? false,
                     "endtime": currentEvent["endtime"] ?? "",
+                    "pmend": currentEvent["isEndAfternoon"] ?? false,
                     "classname": clubName,
                     "teacher": currentEvent["teacher"] ?? "",
                     "teacherusername": (currentEvent["teacherusername"] as? String)?.dropFirst(7) ?? "",
@@ -351,6 +364,7 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                 if line.starts(with: "DTSTART") {
                     if let startTime = extractDateFromLine(from: line) {
                         currentEvent["starttime"] = extractTime(from: startTime)
+                        currentEvent["isStartAfternoon"] = isAfternoon(from: startTime)
                         if firstDate == nil || startTime < firstDate! {
                             firstDate = startTime
                         }
@@ -381,6 +395,7 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                 } else if line.starts(with: "DTEND") {
                     if let endTime = extractDateFromLine(from: line) {
                         currentEvent["endtime"] = extractTime(from: endTime)
+                        currentEvent["isEndAfternoon"] = isAfternoon(from: endTime)
                     }
                 } else if line.starts(with: "SUMMARY") {
                     let className = extractStringFromLine(String(line))
