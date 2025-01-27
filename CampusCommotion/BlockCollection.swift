@@ -46,27 +46,31 @@ struct BlockCollection: View {
             let blockid = ""
             let blockidsub = ""
             let starttime = "oh"
+            let pmstart = false
             let endtime = "no"
+            let pmend = false
             let location = "check your profile info"
             let classname = "Unable to Retrieve Data"
             let teacher = ""
             let teacherusername = ""
             let endstop = true
             let my_color = Color(red: 0.6353, green: 0.1412, blue: 0.1333)
-            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, endtime: endtime, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
+            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, pmstart: pmstart, endtime: endtime, pmend: pmend, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
         } else if parsed_data["success"] == false{
             //something is wrong with the data payload, display it
             let blockid = ""
             let blockidsub = ""
             let starttime = "oh"
+            let pmstart = false
             let endtime = "no"
+            let pmend = false
             let location = parsed_data["all_days_blocks"].rawValue as! String
             let classname = "Server Error"
             let teacher = ""
             let teacherusername = ""
             let endstop = true
             let my_color = Color(red: 0.6353, green: 0.1412, blue: 0.1333)
-            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, endtime: endtime, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
+            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, pmstart: pmstart, endtime: endtime, pmend: pmend, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
         } else {
             for (key, allDaysJson) in parsed_data["all_weeks_blocks"][Information.indexnumber] {
                     //debugPrint(key)
@@ -78,7 +82,9 @@ struct BlockCollection: View {
                             var blockid = subJson["blockid"].rawValue as? String
                             var blockidsub = ""
                             let starttime = subJson["starttime"].rawValue as? String
+                            let pmstart = subJson["pmstart"].rawValue as? Bool
                             let endtime = subJson["endtime"].rawValue as? String
+                            let pmend = subJson["pmend"].rawValue as? Bool
                             let location = subJson["location"].rawValue as? String
                             let classname = subJson["classname"].rawValue as? String
                             let teacher = subJson["teacher"].rawValue as? String
@@ -101,7 +107,7 @@ struct BlockCollection: View {
                             if Int(key) != parsed_data["todays_blocks"].count-1 {
                                 endstop = true
                             }
-                            block_list.append(BlockView(blockid: blockid ?? "", blockidsub: blockidsub, starttime: starttime ?? "", endtime: endtime ?? "", classname: classname ?? "", teacher: teacher ?? "", teacherusername: teacherusername ?? "", location: location ?? "", use_color: my_color, endstop: endstop))
+                            block_list.append(BlockView(blockid: blockid ?? "", blockidsub: blockidsub, starttime: starttime ?? "", pmstart: pmstart ?? false, endtime: endtime ?? "", pmend: pmend ?? false, classname: classname ?? "", teacher: teacher ?? "", teacherusername: teacherusername ?? "", location: location ?? "", use_color: my_color, endstop: endstop))
                         }
                 }
             }
@@ -112,14 +118,16 @@ struct BlockCollection: View {
             let blockid = ""
             let blockidsub = ""
             let starttime = "☺"
+            let pmstart = false
             let endtime = ""
+            let pmend = false
             let location = "have fun"
             let classname = "No School"
             let teacher = ""
             let teacherusername = ""
             let endstop = true
             let my_color = Color(red: 156/255, green: 227/255, blue: 125/255)
-            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, endtime: endtime, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
+            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, pmstart: pmstart, endtime: endtime, pmend: pmend, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
         }
     }
     

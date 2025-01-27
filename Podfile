@@ -16,4 +16,5 @@ target 'CampusCommotionWidgetExtension' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'hpple'
+  pod 'KeychainSwift'
 end

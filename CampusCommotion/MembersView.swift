@@ -37,11 +37,12 @@ struct MembersView: View {
     @State private var selectedImage: IdentifiableImage? = nil
     
 //    var token: String = (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).string(forKey: "token")  ?? ""
-    var token: String = (KeychainSwift().get("token") ?? "")
+    let keychain = KeychainSwift()
     var selectedclass: String
     var classkey: String?
     var numofstudents = 0
     var teacherusername: String
+    var token: String
     var parsedSchedules: [ClassInfo] = []
     let coursedata = try? JSONDecoder().decode([String: CourseData].self, from: (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.data(forKey: "canvascourses")!)!)
     @State private var fetchedSchedules: [ClassInfo] = [] // New state variable for fetched data
@@ -52,6 +53,8 @@ struct MembersView: View {
         self.selectedclass = selectedclass
         self.teacherusername = teacherusername
         self.classkey = classkey
+        keychain.accessGroup = "group.com.example.CampusCommotion"
+        token = keychain.get("token") ?? ""
         
         // Perform data loading and parsing in the initializer
         loadData()
