@@ -78,15 +78,15 @@ struct ContentView: View {
     @State var request_data: String = (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).string(forKey: "request_data")  ?? ""
     @State var menu_data: String = (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).string(forKey: "menu_data")  ?? ""
     @State var showingAlert = false
-    @State var email: String = (KeychainSwift().get("email") ?? "")
-    @State var calurl: String = (KeychainSwift().get("calurl") ?? "")
-    @State var cluburl: String = (KeychainSwift().get("cluburl") ?? "")
-    @State var token: String = (KeychainSwift().get("token") ?? "")
     @State var showLoadingIndicator = false
     @State var date_selected = "n/a"
     @State var day_selected = "n/a"
     @State var warning_opacity = 0.8
     @State var all_keys: [ScheduleDate] = []
+    @State var email: String
+    @State var calurl: String
+    @State var cluburl: String
+    @State var token: String
     @State private var shouldRefresh = true
     @State public var menuLoading = true
     //@State private var oldMenu: Bool = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.bool(forKey: "oldMenu") ?? false)
@@ -98,6 +98,12 @@ struct ContentView: View {
     @State private var textFieldIdPasscode: String = UUID().uuidString
 
     init() {
+        let keychain = KeychainSwift()
+        keychain.accessGroup = "group.com.example.CampusCommotion"
+        email = (keychain.get("email") ?? "")
+        calurl = (keychain.get("calurl") ?? "")
+        cluburl = (keychain.get("cluburl") ?? "")
+        token = (keychain.get("token") ?? "")
     }
     
     func updateScheduleView() {
