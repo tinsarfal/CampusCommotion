@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/ParameterEncoder.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ParameterEncoder.swiftdeps"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ParameterEncoder.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ParameterEncoder.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ParameterEncoder.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ParameterEncoder.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/OperationQueue+Alamofire.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.o"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/NetworkReachabilityManager.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.swiftdeps"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.o"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/Notifications.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Notifications.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Notifications.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Notifications.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Notifications.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Notifications.swiftdeps"

@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Debug-iphonesimulator/URLImage/URLImage.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Debug-iphonesimulator/URLImage/URLImage.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "URLImage-Swift.h",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/unextended-interface-header.h",
+    }]
+    }]
+}

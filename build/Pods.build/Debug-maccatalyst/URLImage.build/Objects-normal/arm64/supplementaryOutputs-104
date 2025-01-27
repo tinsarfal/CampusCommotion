@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/PlainDatabase/CoreDataModel/ManagedObjectCodable.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.swiftdeps"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/RemoteContentView/RemoteContent/RemoteContent.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/RemoteContent.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/RemoteContent.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/RemoteContent.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/RemoteContent.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/RemoteContent.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/PlainDatabase/PlainDatabase.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/PlainDatabase.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/PlainDatabase.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/PlainDatabase.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/PlainDatabase.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/PlainDatabase.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/Log/Log.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/Log.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/Log.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/Log.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/Log.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/Log.swiftconstvalues"

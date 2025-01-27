@@ -1,0 +1,18 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/ServerTrustEvaluation.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.swiftdeps"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/SessionDelegate.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/SessionDelegate.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/SessionDelegate.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/SessionDelegate.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/SessionDelegate.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/SessionDelegate.d"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/Session.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Session.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Session.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Session.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Session.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Session.swiftconstvalues"

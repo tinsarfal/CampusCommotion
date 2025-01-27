@@ -1,0 +1,11 @@
+framework module ActivityIndicatorView {
+  umbrella header "ActivityIndicatorView-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module ActivityIndicatorView.Swift {
+  header "ActivityIndicatorView-Swift.h"
+  requires objc
+}

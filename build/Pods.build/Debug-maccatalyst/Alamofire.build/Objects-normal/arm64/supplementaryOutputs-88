@@ -1,0 +1,18 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/ServerTrustEvaluation.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/ServerTrustEvaluation.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/Session.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/Session.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/Session.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/Session.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/Session.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/Session.swiftdeps"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/SessionDelegate.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/SessionDelegate.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/SessionDelegate.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/SessionDelegate.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/SessionDelegate.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/Alamofire.build/Objects-normal/arm64/SessionDelegate.swiftconstvalues"

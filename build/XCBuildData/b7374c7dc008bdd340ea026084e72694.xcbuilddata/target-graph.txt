@@ -1,0 +1,34 @@
+Target dependency graph (10 targets)
+Target 'CampusCommotion' in project 'CampusCommotion'
+➜ Explicit dependency on target 'CampusCommotionWidgetExtension' in project 'CampusCommotion'
+➜ Implicit dependency on target 'Pods-CampusCommotion' in project 'Pods' via file 'Pods_CampusCommotion.framework' in build phase 'Link Binary'
+➜ Implicit dependency on target 'ActivityIndicatorView' in project 'Pods' via options '-framework ActivityIndicatorView' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'Alamofire' in project 'Pods' via options '-framework Alamofire' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'KeychainSwift' in project 'Pods' via options '-framework KeychainSwift' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'SwiftyJSON' in project 'Pods' via options '-framework SwiftyJSON' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'URLImage' in project 'Pods' via options '-framework URLImage' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'hpple' in project 'Pods' via options '-framework hpple' in build setting 'OTHER_LDFLAGS'
+Target 'Pods-CampusCommotion' in project 'Pods'
+➜ Explicit dependency on target 'ActivityIndicatorView' in project 'Pods'
+➜ Explicit dependency on target 'Alamofire' in project 'Pods'
+➜ Explicit dependency on target 'KeychainSwift' in project 'Pods'
+➜ Explicit dependency on target 'SwiftyJSON' in project 'Pods'
+➜ Explicit dependency on target 'URLImage' in project 'Pods'
+➜ Explicit dependency on target 'hpple' in project 'Pods'
+Target 'URLImage' in project 'Pods' (no dependencies)
+Target 'ActivityIndicatorView' in project 'Pods' (no dependencies)
+Target 'CampusCommotionWidgetExtension' in project 'CampusCommotion'
+➜ Implicit dependency on target 'Pods-CampusCommotionWidgetExtension' in project 'Pods' via file 'Pods_CampusCommotionWidgetExtension.framework' in build phase 'Link Binary'
+➜ Implicit dependency on target 'Alamofire' in project 'Pods' via options '-framework Alamofire' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'KeychainSwift' in project 'Pods' via options '-framework KeychainSwift' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'SwiftyJSON' in project 'Pods' via options '-framework SwiftyJSON' in build setting 'OTHER_LDFLAGS'
+➜ Implicit dependency on target 'hpple' in project 'Pods' via options '-framework hpple' in build setting 'OTHER_LDFLAGS'
+Target 'Pods-CampusCommotionWidgetExtension' in project 'Pods'
+➜ Explicit dependency on target 'Alamofire' in project 'Pods'
+➜ Explicit dependency on target 'KeychainSwift' in project 'Pods'
+➜ Explicit dependency on target 'SwiftyJSON' in project 'Pods'
+➜ Explicit dependency on target 'hpple' in project 'Pods'
+Target 'hpple' in project 'Pods' (no dependencies)
+Target 'SwiftyJSON' in project 'Pods' (no dependencies)
+Target 'KeychainSwift' in project 'Pods' (no dependencies)
+Target 'Alamofire' in project 'Pods' (no dependencies)

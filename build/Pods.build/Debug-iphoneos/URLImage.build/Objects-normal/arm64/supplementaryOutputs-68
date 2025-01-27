@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/Common/URLImageError.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageError.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageError.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageError.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageError.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageError.d"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/URLImage.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImage.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImage.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImage.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImage.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImage.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/Model/TransientImage.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/TransientImage.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/TransientImage.swiftdeps"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/TransientImage.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/TransientImage.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/TransientImage.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/URLImageOptions.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageOptions.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageOptions.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageOptions.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageOptions.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageOptions.swiftconstvalues"
