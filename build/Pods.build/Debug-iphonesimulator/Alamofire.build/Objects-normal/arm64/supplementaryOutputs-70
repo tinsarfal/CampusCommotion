@@ -1,0 +1,18 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/URLSessionConfiguration+Alamofire.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLSessionConfiguration+Alamofire.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLSessionConfiguration+Alamofire.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLSessionConfiguration+Alamofire.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLSessionConfiguration+Alamofire.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLSessionConfiguration+Alamofire.d"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/Validation.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Validation.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Validation.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Validation.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Validation.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/Validation.swiftdeps"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/Alamofire/Source/URLRequest+Alamofire.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLRequest+Alamofire.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLRequest+Alamofire.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLRequest+Alamofire.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLRequest+Alamofire.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/Alamofire.build/Objects-normal/arm64/URLRequest+Alamofire.swiftdeps"

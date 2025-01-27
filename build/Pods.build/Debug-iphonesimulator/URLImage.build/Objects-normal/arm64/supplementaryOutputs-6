@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/PlainDatabase/CoreDataModel/ManagedObjectCodable.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.o"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/Log/Log.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Log.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Log.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Log.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Log.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Log.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/PlainDatabase/PlainDatabase.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/PlainDatabase.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/PlainDatabase.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/PlainDatabase.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/PlainDatabase.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/PlainDatabase.swiftdeps"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/RemoteContentView/RemoteContent/RemoteContent.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/RemoteContent.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/RemoteContent.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/RemoteContent.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/RemoteContent.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/RemoteContent.o"

@@ -1,0 +1,11 @@
+framework module URLImage {
+  umbrella header "URLImage-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module URLImage.Swift {
+  header "URLImage-Swift.h"
+  requires objc
+}

@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/Common/Image_Orientation+CGImagePropertyOrientation.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Image_Orientation+CGImagePropertyOrientation.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Image_Orientation+CGImagePropertyOrientation.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Image_Orientation+CGImagePropertyOrientation.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Image_Orientation+CGImagePropertyOrientation.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Image_Orientation+CGImagePropertyOrientation.d"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/ImageDecoder/ImageDecoder.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageDecoder.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageDecoder.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageDecoder.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageDecoder.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageDecoder.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/Cache/InMemoryCache.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/InMemoryCache.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/InMemoryCache.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/InMemoryCache.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/InMemoryCache.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/InMemoryCache.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/Model/ImageInfo.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageInfo.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageInfo.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageInfo.swiftdeps"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageInfo.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ImageInfo.dia"

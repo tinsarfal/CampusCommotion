@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Sources/URLImage/Model/TransientImage.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/TransientImage.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/TransientImage.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/TransientImage.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/TransientImage.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/TransientImage.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Sources/URLImage/URLImageOptions.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageOptions.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageOptions.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageOptions.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageOptions.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageOptions.o"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Sources/URLImage/URLImage.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImage.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImage.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImage.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImage.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImage.o"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Sources/URLImage/Common/URLImageError.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageError.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageError.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageError.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageError.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-maccatalyst/URLImage.build/Objects-normal/arm64/URLImageError.d"

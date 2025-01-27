@@ -1,0 +1,38 @@
+{
+  "" : {
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidgetExtension-master.dia",
+    "emit-module-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidgetExtension-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidgetExtension-master-emit-module.dia",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidgetExtension-master.swiftdeps"
+  },
+  "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/CampusCommotionWidget/CampusCommotionWidget.swift" : {
+    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget.swiftconstvalues",
+    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget.d",
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget.dia",
+    "index-unit-output-path" : "/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget.o",
+    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget.bc",
+    "object" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget.o",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget.swiftdeps",
+    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/CampusCommotionWidget~partial.swiftmodule"
+  },
+  "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Shared/Connector.swift" : {
+    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector.swiftconstvalues",
+    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector.d",
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector.dia",
+    "index-unit-output-path" : "/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector.o",
+    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector.bc",
+    "object" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector.o",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector.swiftdeps",
+    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/Connector~partial.swiftmodule"
+  },
+  "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/CampusCommotion.build/Debug-maccatalyst/CampusCommotionWidgetExtension.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

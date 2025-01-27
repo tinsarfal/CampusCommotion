@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/PlainDatabase/CoreDataModel/ManagedObjectCodable.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/ManagedObjectCodable.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/Log/Log.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Log.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Log.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Log.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Log.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Log.swiftdeps"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/PlainDatabase/PlainDatabase.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/PlainDatabase.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/PlainDatabase.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/PlainDatabase.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/PlainDatabase.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/PlainDatabase.d"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/RemoteContentView/RemoteContent/RemoteContent.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/RemoteContent.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/RemoteContent.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/RemoteContent.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/RemoteContent.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/RemoteContent.o"

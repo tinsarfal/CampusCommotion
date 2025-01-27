@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/Common/DownloadProgress.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadProgress.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadProgress.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadProgress.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadProgress.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadProgress.o"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/DownloadManager.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadManager.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadManager.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadManager.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadManager.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadManager.d"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/Download/DownloadPublisher.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadPublisher.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadPublisher.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadPublisher.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadPublisher.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadPublisher.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/Download/DownloadTask.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadTask.swiftconstvalues"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadTask.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadTask.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadTask.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/DownloadTask.dia"

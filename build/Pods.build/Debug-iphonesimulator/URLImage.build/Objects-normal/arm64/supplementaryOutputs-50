@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/URLSession/URLSessionDelegate.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionDelegate.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionDelegate.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionDelegate.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionDelegate.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionDelegate.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/Common/Utils.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Utils.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Utils.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Utils.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Utils.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/Utils.d"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/URLSession/URLSessionCoordinator.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.o"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.d"
+"/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/URLImage/Sources/URLImage/URLImageService+RemoteImage.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.dia"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.o"
