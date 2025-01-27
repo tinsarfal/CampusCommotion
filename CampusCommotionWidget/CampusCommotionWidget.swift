@@ -34,34 +34,25 @@ struct Provider: TimelineProvider {
         var entries: [ScheduleEntry] = []
         print("getTimeline called")
         
-        fetchCurrentBlock { currentBlock, isUpcoming, allDone, selectedclass, name, color, time, changetime in
-            print("fetchCurrentBlock completed with block: \(currentBlock)")
-            print("will hopefully refresh at \(changetime)")
-            let entry = ScheduleEntry(date: changetime, currentBlock: currentBlock, isUpcoming: isUpcoming, allDone: allDone, name: name, color: color, time: time)
-            entries.append(entry)
-                
-            let timeline = Timeline(entries: entries, policy: .after(changetime))
+        fetchBlocks { blocks in
+            for block in blocks {
+                let entry = ScheduleEntry(date: block.start, currentBlock: block.id, isUpcoming: block.isUpcoming, allDone: block.allDone, name: block.name, color: block.color, time: block.time)
+                entries.append(entry)
+            }
+            
+            let nextRefreshDate = Calendar.current.startOfDay(for: Date()).addingTimeInterval(86400)
+            let timeline = Timeline(entries: entries, policy: .after(nextRefreshDate))
             completion(timeline)
         }
     }
     
-    private func fetchCurrentBlock(completion: @escaping (String, Bool, Bool, String, String, String, String, Date) -> Void) {
-        print("fetchCurrentBlock called")
+    private func fetchBlocks(completion: @escaping ([Block]) -> Void) {
+        print("fetchBlocks called")
         let sharedDefaults = UserDefaults(suiteName: "group.com.example.CampusCommotion")!
         let requestData = sharedDefaults.string(forKey: "request_data") ?? ""
         let parsedData = JSON(parseJSON: requestData)
         let now = Date()
-        var allDone = true
-        var nextBlock: String? = nil
-        var selectedclass: String = ""
-        var name: String = ""
-        var nextblockclass: String = ""
-        var nextblockname: String = ""
-        var color: String = ""
-        var nextblockcolor: String = ""
-        var time: String = ""
-        var nextblocktime : String = ""
-        var nextblockstart: Date? = nil
+        var blocks: [Block] = []
 
         // Finds today's blocks
         let dateFormatter = DateFormatter()
@@ -76,52 +67,44 @@ struct Provider: TimelineProvider {
             for (_, day) in week {
                 if day[0]["date"].stringValue == todayString {
                     // This is today's set of blocks
-                    let blocks = day.arrayValue
-                    print("Found today's blocks: \(blocks)")
+                    let blockInfos = day.arrayValue
+                    print("Found today's blocks: \(blockInfos)")
                     // Looks for the block currently in session
-                    for blockInfo in blocks {
+                    var previousEnd: Date? = nil
+                    for blockInfo in blockInfos {
                         let startTimeString = blockInfo["starttime"].stringValue // "h:mm"
                         let endTimeString = blockInfo["endtime"].stringValue
                         let blockId = blockInfo["blockid"].stringValue
                         let pmstart = blockInfo["pmstart"].boolValue
                         let pmend = blockInfo["pmend"].boolValue
-                        selectedclass = blockInfo["classname"].stringValue
-                        name = blockInfo["classname"].stringValue
-                        color = blockInfo["color"].stringValue
-                        time = blockInfo["starttime"].stringValue + " - " + blockInfo["endtime"].stringValue
+                        let selectedclass = blockInfo["classname"].stringValue
+                        let name = blockInfo["classname"].stringValue
+                        let color = blockInfo["color"].stringValue
+                        let time = blockInfo["starttime"].stringValue + " - " + blockInfo["endtime"].stringValue
                         
                         // Converts times to Date
                         if
                             let start = parseTime(startTimeString, isAfternoon: pmstart),
                             let end = parseTime(endTimeString, isAfternoon: pmend)
                         {
-                            if now >= start && now < end {
-                                print("Current block: \(blockId)")
-                                completion(blockId, false, false, selectedclass, name, color, time, end)
-                                return
-                            } else if now < start && nextBlock == nil {
-                                nextBlock = blockId
-                                allDone = false
-                                nextblockname = name
-                                nextblockclass = selectedclass
-                                nextblockcolor = color
-                                nextblocktime = time
-                                nextblockstart = start
+                            // Add an entry for the time between blocks if there is a previous block
+                            if let previousEnd = previousEnd, previousEnd < start {
+                                let betweenBlock = Block(id: blockId, start: previousEnd, end: start, isUpcoming: true, allDone: false, name: name, color: color, time: time)
+                                blocks.append(betweenBlock)
                             }
+                            
+                            let isUpcoming = now < start
+                            let allDone = now >= end
+                            let block = Block(id: blockId, start: start, end: end, isUpcoming: isUpcoming, allDone: allDone, name: name, color: color, time: time)
+                            blocks.append(block)
+                            
+                            previousEnd = end
                         }
                     }
                 }
             }
         }
-        if let nextBlock = nextBlock {
-            if let nextblockstart = nextblockstart {
-                print("Next block: \(nextBlock)")
-                completion(nextBlock, true, false, nextblockclass, nextblockname, nextblockcolor, nextblocktime, nextblockstart)
-            }
-        } else {
-            print("No current or upcoming block found")
-            completion("Loading...", false, allDone, "", "", "#000000", "", Date())
-        }
+        completion(blocks)
     }
     
     // Example helper for converting "h:mm" string to Date. 
@@ -144,6 +127,17 @@ struct Provider: TimelineProvider {
         print("Parsed time string: \(timeString) with period: \(timeWithPeriod) to date: \(String(describing: parsedDate))")
         return parsedDate
     }
+}
+
+struct Block {
+    let id: String
+    let start: Date
+    let end: Date
+    let isUpcoming: Bool
+    let allDone: Bool
+    let name: String
+    let color: String
+    let time: String
 }
 
 struct ScheduleWidgetEntryView: View {
