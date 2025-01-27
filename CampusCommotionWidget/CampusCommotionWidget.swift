@@ -12,7 +12,6 @@ struct ScheduleEntry: TimelineEntry {
     let date: Date
     let currentBlock: String
     let isUpcoming: Bool
-    let assignmentsDue: Int
     let allDone: Bool
     let name: String
     let color: String
@@ -23,11 +22,11 @@ struct Provider: TimelineProvider {
     var allDone: Bool = false
     var selectedclass: String = ""
     func placeholder(in context: Context) -> ScheduleEntry {
-        ScheduleEntry(date: Date(), currentBlock: "Loading...", isUpcoming: false, assignmentsDue: 0, allDone: false, name: "", color: "#000000", time: "")
+        ScheduleEntry(date: Date(), currentBlock: "Loading...", isUpcoming: false, allDone: false, name: "", color: "#000000", time: "")
     }
     
     func getSnapshot(in context: Context, completion: @escaping (ScheduleEntry) -> Void) {
-        let entry = ScheduleEntry(date: Date(), currentBlock: "Loading...", isUpcoming: false, assignmentsDue: 0, allDone: false, name: "", color: "#000000", time: "")
+        let entry = ScheduleEntry(date: Date(), currentBlock: "Loading...", isUpcoming: false, allDone: false, name: "", color: "#000000", time: "")
         completion(entry)
     }
     
@@ -35,21 +34,18 @@ struct Provider: TimelineProvider {
         var entries: [ScheduleEntry] = []
         print("getTimeline called")
         
-        fetchCurrentBlock { currentBlock, isUpcoming, allDone, selectedclass, name, color, time in
+        fetchCurrentBlock { currentBlock, isUpcoming, allDone, selectedclass, name, color, time, changetime in
             print("fetchCurrentBlock completed with block: \(currentBlock)")
-            fetchAssignmentsDue(selectedclass: selectedclass, allDone: allDone) { assignmentsDue in
-                print("fetchAssignmentsDue completed with assignments: \(assignmentsDue)")
-                let entry = ScheduleEntry(date: Date(), currentBlock: currentBlock, isUpcoming: isUpcoming, assignmentsDue: assignmentsDue, allDone: allDone, name: name, color: color, time: time)
+            print("will hopefully refresh at \(changetime)")
+                let entry = ScheduleEntry(date: changetime, currentBlock: currentBlock, isUpcoming: isUpcoming, allDone: allDone, name: name, color: color, time: time)
                 entries.append(entry)
                 
-                // Create a timeline with the entry
-                let timeline = Timeline(entries: entries, policy: .atEnd)
+            let timeline = Timeline(entries: entries, policy: .after(changetime))
                 completion(timeline)
-            }
         }
     }
     
-    private func fetchCurrentBlock(completion: @escaping (String, Bool, Bool, String, String, String, String) -> Void) {
+    private func fetchCurrentBlock(completion: @escaping (String, Bool, Bool, String, String, String, String, Date) -> Void) {
         print("fetchCurrentBlock called")
         let sharedDefaults = UserDefaults(suiteName: "group.com.example.CampusCommotion")!
         let requestData = sharedDefaults.string(forKey: "request_data") ?? ""
@@ -65,6 +61,7 @@ struct Provider: TimelineProvider {
         var nextblockcolor: String = ""
         var time: String = ""
         var nextblocktime : String = ""
+        var nextblockstart: Date? = nil
 
         // Finds today's blocks
         let dateFormatter = DateFormatter()
@@ -100,7 +97,7 @@ struct Provider: TimelineProvider {
                         {
                             if now >= start && now < end {
                                 print("Current block: \(blockId)")
-                                completion(blockId, false, false, selectedclass, name, color, time)
+                                completion(blockId, false, false, selectedclass, name, color, time, end)
                                 return
                             } else if now < start && nextBlock == nil {
                                 nextBlock = blockId
@@ -109,6 +106,7 @@ struct Provider: TimelineProvider {
                                 nextblockclass = selectedclass
                                 nextblockcolor = color
                                 nextblocktime = time
+                                nextblockstart = start
                             }
                         }
                     }
@@ -116,13 +114,16 @@ struct Provider: TimelineProvider {
             }
         }
         if let nextBlock = nextBlock {
-            print("Next block: \(nextBlock)")
-            completion(nextBlock, true, false, nextblockclass, nextblockname, nextblockcolor, nextblocktime)
+            if let nextblockstart = nextblockstart {
+                print("Next block: \(nextBlock)")
+                    completion(nextBlock, true, false, nextblockclass, nextblockname, nextblockcolor, nextblocktime, nextblockstart)
+        }
         } else {
             print("No current or upcoming block found")
-            completion("Loading...", false, allDone, "", "", "#000000", "")
+            completion("Loading...", false, allDone, "", "", "#000000", "", Date())
         }
     }
+    
 }
     // Example helper for converting "h:mm" string to Date. 
     // Similar to [Shared/Connector.extractTime](Shared/Connector.swift).
@@ -145,96 +146,6 @@ private func parseTime(_ timeString: String, isAfternoon: Bool) -> Date? {
     return parsedDate
     }
 
-private func fetchAssignmentsDue(selectedclass: String, allDone: Bool, completion: @escaping (Int) -> Void) {
-    let keychain = KeychainSwift()
-    keychain.accessGroup = "group.com.example.CampusCommotion"
-    let token = keychain.get("token") ?? ""
-    guard !token.isEmpty else {
-        print("Token is empty")
-        completion(0)
-        return
-    }
-
-    if allDone {
-        print("All done is true")
-        completion(0)
-        return
-    }
-    
-    let classID = selectedclass.split(separator: " ").first ?? ""
-    print("Class ID: \(classID)")
-
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd"
-    let formattedDate = dateFormatter.string(from: Date())
-    let urlString = "https://canvas.example.edu/api/v1/planner/items?start_date=\(formattedDate)&access_token=\(token)&per_page=100"
-    
-    guard let url = URL(string: urlString) else {
-        print("Invalid URL: \(urlString)")
-        completion(0)
-        return
-    }
-
-    URLSession.shared.dataTask(with: url) { data, _, error in
-        if let error = error {
-            print("Error: \(error.localizedDescription)")
-            completion(0)
-            return
-        }
-
-        guard let data = data else {
-            print("No data received")
-            completion(0)
-            return
-        }
-
-        let jsonString = String(data: data, encoding: .utf8)
-        let parsedData = JSON(parseJSON: jsonString ?? "")
-        
-        DispatchQueue.main.async {
-            let dispatchGroup = DispatchGroup()
-            var assignmentsDue = 0
-
-            for item in parsedData.arrayValue {
-                dispatchGroup.enter()
-                let isoDateFormatter = ISO8601DateFormatter()
-                isoDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                
-                AF.request("https://canvas.example.edu/api/v1/courses/\(item["course_id"].stringValue)?access_token=\(token)&per_page=100").responseString { response in
-                    switch response.result {
-                    case .success(let value):
-                        let coursedata = JSON(parseJSON: value)
-                        let coursecodefix = coursedata["course_code"].stringValue.replacingOccurrences(of: "-", with: "*")
-                        print(coursecodefix)
-                        print(classID)
-                        if coursecodefix.contains(classID) {
-                            if let date = isoDateFormatter.date(from: item["plannable_date"].stringValue) {
-                                let dateFormatter = DateFormatter()
-                                print("coursedata " + coursedata["course_code"].stringValue)
-                                dateFormatter.dateFormat = "yyyy-MM-dd"
-                                dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
-                                let formattedDate = dateFormatter.string(from: date)
-                                let today = dateFormatter.string(from: Date())
-                                if formattedDate == today {
-                                    assignmentsDue += 1
-                                }
-                            }
-                        }
-                    case .failure(let error):
-                        print("Course request failed with error: \(error)")
-                    }
-                    dispatchGroup.leave()
-                }
-            }
-
-            dispatchGroup.notify(queue: .main) {
-                print("Assignments due: \(assignmentsDue)")
-                completion(assignmentsDue)
-            }
-        }
-    }.resume()
-}
-
 struct ScheduleWidgetEntryView: View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var family
@@ -250,13 +161,15 @@ struct ScheduleWidgetEntryView: View {
                             Text("Upcoming Block")
                                 .font(.caption)
                                 .foregroundColor(.gray)
+                                .bold()
                         } else {
                             Text("Current Block")
                                 .font(.caption)
                                 .foregroundColor(.gray)
+                                .bold()
                         }
                         Text(entry.currentBlock)
-                            .font(.largeTitle)
+                            .font(.system(size: 70, weight: .bold))
                             .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
                             .lineLimit(3)
                             .minimumScaleFactor(0.5)
@@ -279,18 +192,20 @@ struct ScheduleWidgetEntryView: View {
             default:
                 if !entry.allDone {
                 HStack {
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .center, spacing: 0) {
                         if entry.isUpcoming {
                             Text("Upcoming Block")
                                 .font(.caption)
                                 .foregroundColor(.gray)
+                                .bold()
                         } else {
                             Text("Current Block")
                                 .font(.caption)
                                 .foregroundColor(.gray)
+                                .bold()
                         }
                         Text(entry.currentBlock)
-                            .font(.largeTitle)
+                            .font(.system(size: 80, weight: .bold))
                             .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
                     }
                     Spacer()
