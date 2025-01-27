@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/Notifications.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Notifications.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Notifications.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Notifications.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Notifications.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Notifications.swiftdeps"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/ParameterEncoder.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/ParameterEncoder.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/ParameterEncoder.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/ParameterEncoder.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/ParameterEncoder.swiftdeps"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/ParameterEncoder.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/OperationQueue+Alamofire.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.swiftdeps"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/OperationQueue+Alamofire.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/NetworkReachabilityManager.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/NetworkReachabilityManager.dia"

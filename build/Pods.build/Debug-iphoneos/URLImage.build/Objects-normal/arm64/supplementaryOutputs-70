@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/URLSession/URLSessionDelegate.swift":
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionDelegate.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionDelegate.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionDelegate.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionDelegate.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionDelegate.swiftdeps"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/URLSession/URLSessionCoordinator.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLSessionCoordinator.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Dependencies/Sources/DownloadManager/Common/Utils.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Utils.d"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Utils.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Utils.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Utils.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/Utils.o"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/URLImage/Sources/URLImage/URLImageService+RemoteImage.swift":
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.swiftconstvalues"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/URLImage.build/Objects-normal/arm64/URLImageService+RemoteImage.dia"

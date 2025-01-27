@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>catalogPath</key>
-			<string>/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/CampusCommotion/Assets.xcassets</string>
+			<string>/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/CampusCommotion/Assets.xcassets</string>
 			<key>objcSymbol</key>
 			<string>ACColorNameLaunchScreenBackground</string>
 			<key>relativePath</key>
@@ -19,7 +19,7 @@
 	<array>
 		<dict>
 			<key>catalogPath</key>
-			<string>/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/CampusCommotion/Assets.xcassets</string>
+			<string>/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/CampusCommotion/Assets.xcassets</string>
 			<key>objcSymbol</key>
 			<string>ACImageNameLaunchIcon</string>
 			<key>relativePath</key>

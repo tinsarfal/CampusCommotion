@@ -1,0 +1,39 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_hppleVersionString",
+            "_hppleVersionNumber"
+          ],
+          "objc_class": [
+            "TFHpple",
+            "PodsDummy_hpple",
+            "TFHppleElement"
+          ]
+        },
+        "text": {
+          "global": [
+            "_PerformHTMLXPathQuery",
+            "_DictionaryForNode",
+            "_PerformXPathQuery",
+            "_PerformXMLXPathQuery"
+          ]
+        }
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/hpple.framework/hpple"
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "14.5",
+        "target": "arm64-ios"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

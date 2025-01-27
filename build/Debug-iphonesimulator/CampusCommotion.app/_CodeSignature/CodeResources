@@ -14,15 +14,15 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		fxoenDnimfGrW4tmtW5wcUSdAvI=
+		LCycUGOUpIvc59hS8eRj45Zxbc0=
 		</data>
 		<key>CampusCommotion.debug.dylib</key>
 		<data>
-		uPgmYzPEayMHaAr2L6p/g0BSvkg=
+		TqMkw6aYNci3gMBc2ggKFruuguo=
 		</data>
 		<key>Frameworks/ActivityIndicatorView.framework/ActivityIndicatorView</key>
 		<data>
-		+vMnYnQ8+0c2E6f3LhQFz1KdfR0=
+		6KRar5gr2uCBsx24H2HTD7KtMTw=
 		</data>
 		<key>Frameworks/ActivityIndicatorView.framework/Info.plist</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Frameworks/Alamofire.framework/Alamofire</key>
 		<data>
-		IRvFvxr+TnM44VI+a/JzUFUfyGM=
+		YOq1vOoOaeY1PKEZkEfHTZWd7P4=
 		</data>
 		<key>Frameworks/Alamofire.framework/Info.plist</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Frameworks/KeychainSwift.framework/KeychainSwift</key>
 		<data>
-		vEf3z0MeGsytrjmrZPkxE9TY5uM=
+		FmhrxsW6eIpJIEI6HTtR8Nx3GeY=
 		</data>
 		<key>Frameworks/KeychainSwift.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Frameworks/SwiftyJSON.framework/SwiftyJSON</key>
 		<data>
-		rFimEE3ed7bi2x6RQ+1LOlSbrbY=
+		qbV7Uh1TUpDN7oXoMmX8BPZZ9GM=
 		</data>
 		<key>Frameworks/SwiftyJSON.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -74,7 +74,7 @@
 		</data>
 		<key>Frameworks/URLImage.framework/URLImage</key>
 		<data>
-		GG0OyEWnNGhZwm93/V55+KOcKI8=
+		VklJHSFRgk7oqJm4k78jBuzN/yw=
 		</data>
 		<key>Frameworks/URLImage.framework/_CodeSignature/CodeResources</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Frameworks/hpple.framework/hpple</key>
 		<data>
-		KxOVn0k2lH3MvoUHyleb0qYxok4=
+		sEeTBNTAJd9JhCHCc/dyRKoCBbc=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -106,11 +106,11 @@
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/CampusCommotionWidgetExtension</key>
 		<data>
-		tQ08/doh6XB7ck5qaNkn+JV+qtM=
+		NT9zaCA0rx/urjysgSjCWNaRhUk=
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/CampusCommotionWidgetExtension.debug.dylib</key>
 		<data>
-		zRTiodhR7EWQn8M36uq39CCjqUY=
+		HbTUeyslvKyuWcbzq8BizEn4t4U=
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/Info.plist</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		JAXaS+vv0qOCRwMxPZ/8NFA9np8=
+		0JJAheD8JeCqhZolyPtrlGZ3Dic=
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/__preview.dylib</key>
 		<data>
@@ -149,21 +149,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			W/iQON82UhY4zP9BEzg/CONiRa9cbpp8rIOYf78DQXI=
+			USCUiS2HOYBCg8mkwxJTSTLe3uGBO6jNRBOcAuy59KY=
 			</data>
 		</dict>
 		<key>CampusCommotion.debug.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TwzeQTJrq1cwhGxSnZATRD0W/sQx9yfhbKsEajBuybo=
+			2ilBuiom4nd3g0oWsGF5o9kIS7YPb12YSkYMmFKj5UQ=
 			</data>
 		</dict>
 		<key>Frameworks/ActivityIndicatorView.framework/ActivityIndicatorView</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9kK1Z2mC3QK+BA1g0yXH8l2ORkQ2J+op8Nsz/f5mDR4=
+			zor/BrZQ9Wa+HnImSo/HrlyGF9sKqX+XoIozxG4FNiU=
 			</data>
 		</dict>
 		<key>Frameworks/ActivityIndicatorView.framework/Info.plist</key>
@@ -184,7 +184,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IdCOTf/RIlBkCeN6azkl9OPFx1cPFbqASIUAZLhinak=
+			dkM9UMZ8JzcnEqA03426DHB2grGl50cO+qDFvvQddco=
 			</data>
 		</dict>
 		<key>Frameworks/Alamofire.framework/Info.plist</key>
@@ -212,7 +212,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1jQzUNRGvlW+Oh2TiWrat7nEkTjkbjdERX9Q+oVohw4=
+			db7HK0sQ17kykFO/iLQ21grqYCrLbtJnOhWwHkXTLtc=
 			</data>
 		</dict>
 		<key>Frameworks/KeychainSwift.framework/_CodeSignature/CodeResources</key>
@@ -233,7 +233,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qxOD0x/F504q5PQaZJnUmtBOcX4cjN9vKMXmHnu3l/c=
+			NDLoFov+aEvNwE3JlfKC/LbmVhK5+JhZjXc4oJonMPg=
 			</data>
 		</dict>
 		<key>Frameworks/SwiftyJSON.framework/_CodeSignature/CodeResources</key>
@@ -254,7 +254,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XolvC5udgU/+txStb9VfmRVL7JVcnY7de8I21QjIkXY=
+			YYon0DBYNpD/EQ7/JAq26qEpr6MInzNfMYtxT6ntNxg=
 			</data>
 		</dict>
 		<key>Frameworks/URLImage.framework/_CodeSignature/CodeResources</key>
@@ -282,7 +282,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0Zkk8ISnI6bdgXvnfbtH/dwnBhRN6g9yQq2NFjjbiOM=
+			TOTSOvu6yBBnij802zO6Em/Hykben1Rpl19sx+O91q0=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/Assets.car</key>
@@ -296,14 +296,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			R+13hysmI5/TzAssVnU87AjQCYI0KTJU8+UtqiabuPk=
+			kJRnqtOdOVgZp89SSsiKaPaeD0xfb6Pj/P8hQ/qZyLE=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/CampusCommotionWidgetExtension.debug.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UG9y4D4R4KTttl5RngvSKckfn7vhNPsZYgzOx2zzcs4=
+			2RYzYeLuxwSGPR4SFvOU+9c31ToUaewShfskShswJas=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/Info.plist</key>
@@ -317,7 +317,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			HSDbVt5amFYVNMJkFVeZuqVyO2QeeM2oDkO5CSOOIoI=
+			L0HJHJd1FlBDMTumpA8Nrm+qCia1qYZbQWBGU0F6xXs=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/__preview.dylib</key>

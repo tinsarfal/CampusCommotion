@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/KeychainSwift.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		0t3+5zlpaZNtfMht8sejp+EgSqI=
+		A1JMhO8kOVE7+kFcSnARYQClZx4=
 		</data>
 		<key>Modules/KeychainSwift.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/KeychainSwift.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ZeshTaas85arw6+qbmmVdJedzmg=
+		stD1NtoNH2sANAdPit3JqTp7Wbg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -57,7 +57,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dYyV0U+bQDcTXd9z41smkGXi4nw9q/2ixvZTn5CNC8M=
+			otbYTNOBe6fYKzwuvdo3h6cWwdJWSebMm60RiXBxxbU=
 			</data>
 		</dict>
 		<key>Modules/KeychainSwift.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -78,7 +78,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rE1ijA9mOQsuxAgMpWdvnR4aW8Za2rRQgCA8YIMoTU4=
+			/Fw40qifKny11euFQubNeMpd5LcjHpLMRyhFhqjfiZs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -1,38 +1,38 @@
 {
   "" : {
-    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master.dia",
-    "emit-module-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master-emit-module.d",
-    "emit-module-diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master-emit-module.dia",
-    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master.swiftdeps"
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master.dia",
+    "emit-module-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master-emit-module.dia",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift-master.swiftdeps"
   },
-  "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/KeychainSwift/Sources/KeychainSwift.swift" : {
-    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.swiftconstvalues",
-    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.d",
-    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.dia",
+  "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/KeychainSwift/Sources/KeychainSwift.swift" : {
+    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.swiftconstvalues",
+    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.d",
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.dia",
     "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.o",
-    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.bc",
-    "object" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.o",
-    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.swiftdeps",
-    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift~partial.swiftmodule"
+    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.bc",
+    "object" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.o",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift.swiftdeps",
+    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwift~partial.swiftmodule"
   },
-  "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/KeychainSwift/Sources/KeychainSwiftAccessOptions.swift" : {
-    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.swiftconstvalues",
-    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.d",
-    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.dia",
+  "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/KeychainSwift/Sources/KeychainSwiftAccessOptions.swift" : {
+    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.swiftconstvalues",
+    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.d",
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.dia",
     "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.o",
-    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.bc",
-    "object" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.o",
-    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.swiftdeps",
-    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions~partial.swiftmodule"
+    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.bc",
+    "object" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.o",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions.swiftdeps",
+    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/KeychainSwiftAccessOptions~partial.swiftmodule"
   },
-  "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/Pods/KeychainSwift/Sources/TegKeychainConstants.swift" : {
-    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.swiftconstvalues",
-    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.d",
-    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.dia",
+  "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/KeychainSwift/Sources/TegKeychainConstants.swift" : {
+    "const-values" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.swiftconstvalues",
+    "dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.d",
+    "diagnostics" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.dia",
     "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.o",
-    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.bc",
-    "object" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.o",
-    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.swiftdeps",
-    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants~partial.swiftmodule"
+    "llvm-bc" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.bc",
+    "object" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.o",
+    "swift-dependencies" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants.swiftdeps",
+    "swiftmodule" : "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/KeychainSwift.build/Objects-normal/arm64/TegKeychainConstants~partial.swiftmodule"
   }
 }

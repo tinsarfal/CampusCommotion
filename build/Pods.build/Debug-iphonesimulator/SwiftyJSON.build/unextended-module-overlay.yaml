@@ -4,20 +4,20 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework/Modules"
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",
-      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/SwiftyJSON.build/unextended-module.modulemap",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/SwiftyJSON.build/unextended-module.modulemap",
     }]
     },
     {
     'type': 'directory',
-    'name': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework/Headers"
+    'name': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework/Headers"
     'contents': [{
       'type': 'file',
       'name': "SwiftyJSON-Swift.h",
-      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/CampusCommotion/build/Pods.build/Debug-iphonesimulator/SwiftyJSON.build/unextended-interface-header.h",
+      'external-contents': "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphonesimulator/SwiftyJSON.build/unextended-interface-header.h",
     }]
     }]
 }

@@ -1,0 +1,24 @@
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/AuthenticationInterceptor.swift":
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AuthenticationInterceptor.swiftconstvalues"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AuthenticationInterceptor.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AuthenticationInterceptor.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AuthenticationInterceptor.dia"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AuthenticationInterceptor.d"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/Alamofire.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire.d"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire.o"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire.dia"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/Alamofire.swiftconstvalues"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/AlamofireExtended.swift":
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AlamofireExtended.swiftdeps"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AlamofireExtended.o"
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AlamofireExtended.d"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AlamofireExtended.swiftconstvalues"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AlamofireExtended.dia"
+"/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/Pods/Alamofire/Source/AFError.swift":
+  dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AFError.d"
+  swift-dependencies: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AFError.swiftdeps"
+  diagnostics: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AFError.dia"
+  object: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AFError.o"
+  const-values: "/Users/samuelscheffler/CampusCommotion/Main/widget branch/CampusCommotion/build/Pods.build/Debug-iphoneos/Alamofire.build/Objects-normal/arm64/AFError.swiftconstvalues"
