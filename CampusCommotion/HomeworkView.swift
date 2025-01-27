@@ -6,6 +6,8 @@ struct HomeworkView: View {
     @State private var styledAttributedString: NSMutableAttributedString? = nil
     @State private var assignmentData: AssignmentData?
     @State private var calendarEventData: CalendarEventData?
+    @State private var discussionTopic: DiscussionTopic?
+    @State private var discussionEntries: [DiscussionEntry] = []
     var token: String = (KeychainSwift().get("token") ?? "")
     var selectedcourseid: Int
     var assignmentid: Int
@@ -16,6 +18,8 @@ struct HomeworkView: View {
         self.assignmentid = assignmentid
         self.type = type
         loadData()
+        loadDiscussionTopic()
+        print("Initialized HomeworkView with course ID: \(selectedcourseid), assignment ID: \(assignmentid), type: \(type)")
     }
     
     var body: some View {
@@ -115,8 +119,59 @@ struct HomeworkView: View {
                                 .onAppear(perform: loadData)
                         }
                         
-                    } else
-                    {
+                    } else if type == "discussion_topic" {
+                        if let discussionTopic = discussionTopic {
+                            Text(discussionTopic.title)
+                                .font(.largeTitle)
+                            if let attributedMessage = parseHTMLToAttributedString(htmlString: discussionTopic.message) {
+                                if #available(iOS 15, *) {
+                                    Text(AttributedString(attributedMessage))
+                                } else {
+                                    Text(attributedMessage.string)
+                                }
+                            }
+                            ForEach(discussionEntries, id: \.id) { entry in
+                                VStack(alignment: .leading) {
+                                    Text(entry.user_name)
+                                        .font(.headline)
+                                    if let attributedMessage = parseHTMLToAttributedString(htmlString: entry.message) {
+                                        if #available(iOS 15, *) {
+                                            Text(AttributedString(attributedMessage))
+                                        } else {
+                                            Text(attributedMessage.string)
+                                        }
+                                    }
+                                    if let replies = entry.recent_replies {
+                                        ForEach(replies, id: \.id) { reply in
+                                            VStack(alignment: .leading) {
+                                                Text(reply.user_name)
+                                                    .font(.subheadline)
+                                                if let attributedMessage = parseHTMLToAttributedString(htmlString: reply.message) {
+                                                    if #available(iOS 15, *) {
+                                                        Text(AttributedString(attributedMessage))
+                                                    } else {
+                                                        Text(attributedMessage.string)
+                                                    }
+                                                }
+                                            }
+                                            .padding(.leading)
+                                        }
+                                    } else {
+                                        Text("No replies")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                                .padding()
+                            }
+                        } else {
+                            Text("Loading discussion topic...")
+                                .onAppear {
+                                    loadDiscussionTopic()
+                                    loadDiscussionEntries()
+                                }
+                        }
+                    } else {
                         Text("Loading...")
                             .onAppear(perform: loadData)
                     }
@@ -132,19 +187,22 @@ struct HomeworkView: View {
             .documentType: NSAttributedString.DocumentType.html
         ]
         
-        if let attributedString = try? NSMutableAttributedString(data: htmlData, options: options, documentAttributes: nil) {
+        do {
+            let attributedString = try NSMutableAttributedString(data: htmlData, options: options, documentAttributes: nil)
             if #available(iOS 15, *) {
                 attributedString.addAttribute(.foregroundColor, value: textColor, range: NSRange(location: 0, length: attributedString.length))
                 attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attributedString.length))
             }
             return attributedString
+        } catch {
+            print("Error parsing HTML to attributed string: \(error)")
+            return nil
         }
-        return nil
     }
 
     func loadData() {
         if type != "calendar_event" {
-            guard let url = URL(string: "https://canvas.exeter.edu/api/v1/courses/\(selectedcourseid)/assignments/\(assignmentid)?access_token=\(token)") else {
+            guard let url = URL(string: "https://exeter.instructure.com/api/v1/courses/\(selectedcourseid)/assignments/\(assignmentid)?access_token=\(token)") else {
                 print("Invalid URL")
                 return
             }
@@ -201,6 +259,61 @@ struct HomeworkView: View {
             }.resume()
         }
     }
+
+    func loadDiscussionTopic() {
+        guard let url = URL(string: "https://exeter.instructure.com/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)?access_token=\(token)") else {
+            print("Invalid URL for discussion topic")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let data = data {
+                do {
+                    let fetchedTopic = try JSONDecoder().decode(DiscussionTopic.self, from: data)
+                    DispatchQueue.main.async {
+                        self.discussionTopic = fetchedTopic
+                        print("Fetched discussion topic: \(fetchedTopic)")
+                        self.loadDiscussionEntries() // Load entries only after topic is fetched
+                    }
+                } catch {
+                    print("Error decoding discussion topic: \(error)")
+                }
+            } else if let error = error {
+                print("Error fetching discussion topic: \(error)")
+            }
+        }.resume()
+    }
+
+    func loadDiscussionEntries() {
+        guard let url = URL(string: "https://exeter.instructure.com/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)/entries?access_token=\(token)") else {
+            print("Invalid URL for discussion entries")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let data = data {
+                do {
+                    let fetchedEntries = try JSONDecoder().decode([DiscussionEntry].self, from: data)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.discussionEntries = fetchedEntries
+                    }
+                    print("Fetched discussion entries: \(fetchedEntries)")
+                    for entry in fetchedEntries {
+                        print("Entry ID: \(entry.id), Message: \(entry.message), User: \(entry.user_name)")
+                        if let replies = entry.recent_replies {
+                            for reply in replies {
+                                print("Reply ID: \(reply.id), Message: \(reply.message), User: \(reply.user_name)")
+                            }
+                        }
+                    }
+                } catch {
+                    print("Error decoding discussion entries: \(error)")
+                }
+            } else if let error = error {
+                print("Error fetching discussion entries: \(error)")
+            }
+        }.resume()
+    }
 }
 
 struct AssignmentData: Codable {
@@ -218,5 +331,24 @@ struct CalendarEventData: Codable {
     let location_name: String?
     let description: String?
     let url: String
+}
+
+struct DiscussionTopic: Codable {
+    let id: Int
+    let title: String
+    let message: String
+}
+
+struct DiscussionEntry: Codable {
+    let id: Int
+    let message: String
+    let user_name: String
+    let recent_replies: [DiscussionReply]?
+}
+
+struct DiscussionReply: Codable {
+    let id: Int
+    let message: String
+    let user_name: String
 }
 
