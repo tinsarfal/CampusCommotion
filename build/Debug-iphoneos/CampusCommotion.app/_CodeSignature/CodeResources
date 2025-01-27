@@ -18,7 +18,7 @@
 		</data>
 		<key>CampusCommotion.debug.dylib</key>
 		<data>
-		Gtwhksdx9hjxhpP9NGkcm61OORU=
+		eU7XK4zerGHC2lWsIZ+PfpWevaI=
 		</data>
 		<key>Frameworks/ActivityIndicatorView.framework/ActivityIndicatorView</key>
 		<data>
@@ -94,7 +94,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		KXzAyUy+SNoaoK/Qvj1JvSTN+3M=
+		ZIwFNyA2f1JVZrCDnwTdMSXI4lw=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -106,11 +106,11 @@
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/CampusCommotionWidgetExtension</key>
 		<data>
-		a1ZchxpBAVWzUSj7k/5ET/+qnJ0=
+		YYjqo9jjsTCvhp+RIp5J8ityD6A=
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/CampusCommotionWidgetExtension.debug.dylib</key>
 		<data>
-		pqsWQuSPl7B8oNMps/kHtOBBYBQ=
+		8fcqPasMzASD89QPAeMH+UKFeOA=
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/Info.plist</key>
 		<data>
@@ -118,11 +118,11 @@
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		Ikuw35tUzHhveoBnHNm42dg1L5E=
+		31jCjQkn1akBA5GJvlpZfuhT9e8=
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/__preview.dylib</key>
 		<data>
-		/UlJGxmaqUjrijLjXd2Fc/frRXI=
+		IEGc/8o3GCgCkmThZt9wI746Y8k=
 		</data>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/embedded.mobileprovision</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>__preview.dylib</key>
 		<data>
-		plfl4eNQ3jbqtCJea3Erv5XsMPY=
+		Q4J8zUooLqOV+tsMCy7qVyC6zU0=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -164,7 +164,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1fqgHO/lqn2aDHIKNGTT6fAsYN8UTCorcFHAW/yt3CE=
+			3LHyr4gcSXttsVmtQ9fIrbk9ObwtCvhqogeorgV/H6w=
 			</data>
 		</dict>
 		<key>Frameworks/ActivityIndicatorView.framework/ActivityIndicatorView</key>
@@ -304,14 +304,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rF85uTrWGK1BQg6+EBhIiNbwoS0UkEBLem372XOYgl8=
+			cQ1i4vPWN3HFY7/8benZ3L5dCghY4ismWOQUcaLmio4=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/CampusCommotionWidgetExtension.debug.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ET99zr2uayYO7g/wmpFp8kJ4izR0gN97pnoWB00gZ8E=
+			dGN1H2qqULmfBHRhNVeHTPUNscZdm9iX9K/IIWVgdLs=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/Info.plist</key>
@@ -325,14 +325,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uCGxfxc/Tu0dhjJ68Nm5+F4wVQYxotQ0vGFAO+7GMH0=
+			2G1JnrvSmAWB0nIJgUn2O+vqWuTwGcbYVsGs+qX7pqs=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/__preview.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gsA/yVtQ53fDUvKh406c/DhZ9EOuChEGuwSjKc2TKRU=
+			0YmSYIB243av/rCSBmvp57sDXjJ8JNSE9y4skqoCvpI=
 			</data>
 		</dict>
 		<key>PlugIns/CampusCommotionWidgetExtension.appex/embedded.mobileprovision</key>
@@ -346,7 +346,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ScoAZgXgH3/6qMXR9dsIXdyWs62PUrRRPdS586s+o5U=
+			ghk2p24kvTCzYebyg6gGLi+YqrAlXMJZzQz0KR8iIdQ=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
