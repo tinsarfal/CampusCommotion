@@ -8,6 +8,7 @@ struct HomeworkView: View {
     @State private var calendarEventData: CalendarEventData?
     @State private var discussionTopic: DiscussionTopic?
     @State private var discussionEntries: [DiscussionEntry] = []
+    @State private var discussionEntriesLoaded: Bool = false
     var token: String = (KeychainSwift().get("token") ?? "")
     var selectedcourseid: Int
     var assignmentid: Int
@@ -17,8 +18,6 @@ struct HomeworkView: View {
         self.selectedcourseid = selectedcourseid
         self.assignmentid = assignmentid
         self.type = type
-        loadData()
-        loadDiscussionTopic()
         print("Initialized HomeworkView with course ID: \(selectedcourseid), assignment ID: \(assignmentid), type: \(type)")
     }
     
@@ -130,45 +129,55 @@ struct HomeworkView: View {
                                     Text(attributedMessage.string)
                                 }
                             }
-                            ForEach(discussionEntries, id: \.id) { entry in
-                                VStack(alignment: .leading) {
-                                    Text(entry.user_name)
-                                        .font(.headline)
-                                    if let attributedMessage = parseHTMLToAttributedString(htmlString: entry.message) {
-                                        if #available(iOS 15, *) {
-                                            Text(AttributedString(attributedMessage))
-                                        } else {
-                                            Text(attributedMessage.string)
-                                        }
+                            if !discussionEntriesLoaded {
+                                Text("Loading discussion entries...")
+                                    .onAppear {
+                                        loadDiscussionEntries()
                                     }
-                                    if let replies = entry.recent_replies {
-                                        ForEach(replies, id: \.id) { reply in
-                                            VStack(alignment: .leading) {
-                                                Text(reply.user_name)
-                                                    .font(.subheadline)
-                                                if let attributedMessage = parseHTMLToAttributedString(htmlString: reply.message) {
-                                                    if #available(iOS 15, *) {
-                                                        Text(AttributedString(attributedMessage))
-                                                    } else {
-                                                        Text(attributedMessage.string)
-                                                    }
+                            } else {
+                                if !discussionEntries.isEmpty {
+                                    ForEach(discussionEntries, id: \.id) { entry in
+                                        VStack(alignment: .leading) {
+                                            Text(entry.user_name)
+                                                .font(.headline)
+                                            if let attributedMessage = parseHTMLToAttributedString(htmlString: entry.message) {
+                                                if #available(iOS 15, *) {
+                                                    Text(AttributedString(attributedMessage))
+                                                } else {
+                                                    Text(attributedMessage.string)
                                                 }
                                             }
-                                            .padding(.leading)
+                                            if let replies = entry.recent_replies {
+                                                ForEach(replies, id: \.id) { reply in
+                                                    VStack(alignment: .leading) {
+                                                        Text(reply.user_name)
+                                                            .font(.subheadline)
+                                                        if let attributedMessage = parseHTMLToAttributedString(htmlString: reply.message) {
+                                                            if #available(iOS 15, *) {
+                                                                Text(AttributedString(attributedMessage))
+                                                            } else {
+                                                                Text(attributedMessage.string)
+                                                            }
+                                                        }
+                                                    }
+                                                    .padding(.leading)
+                                                }
+                                            } else {
+                                                Text("No replies")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.gray)
+                                            }
                                         }
-                                    } else {
-                                        Text("No replies")
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                        .padding()
                                     }
+                                } else {
+                                    Text("Loading discussion entries...")
                                 }
-                                .padding()
                             }
                         } else {
                             Text("Loading discussion topic...")
                                 .onAppear {
                                     loadDiscussionTopic()
-                                    loadDiscussionEntries()
                                 }
                         }
                     } else {
@@ -273,7 +282,6 @@ struct HomeworkView: View {
                     DispatchQueue.main.async {
                         self.discussionTopic = fetchedTopic
                         print("Fetched discussion topic: \(fetchedTopic)")
-                        self.loadDiscussionEntries() // Load entries only after topic is fetched
                     }
                 } catch {
                     print("Error decoding discussion topic: \(error)")
@@ -285,6 +293,7 @@ struct HomeworkView: View {
     }
 
     func loadDiscussionEntries() {
+        guard !discussionEntriesLoaded else { return }
         guard let url = URL(string: "https://exeter.instructure.com/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)/entries?access_token=\(token)") else {
             print("Invalid URL for discussion entries")
             return
@@ -294,8 +303,9 @@ struct HomeworkView: View {
             if let data = data {
                 do {
                     let fetchedEntries = try JSONDecoder().decode([DiscussionEntry].self, from: data)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    DispatchQueue.main.async {
                         self.discussionEntries = fetchedEntries
+                        self.discussionEntriesLoaded = true
                     }
                     print("Fetched discussion entries: \(fetchedEntries)")
                     for entry in fetchedEntries {
