@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0729730A2D437BF500D3FA83 /* CampusCommotionWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		07522B232B4EE6FB00E65E44 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B222B4EE6FB00E65E44 /* CoursesView.swift */; };
 		07522B252B4F247700E65E44 /* HomeworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B242B4F247700E65E44 /* HomeworkView.swift */; };
 		07E28C722B47510500E67F0F /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E28C712B47510500E67F0F /* MembersView.swift */; };
@@ -32,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		0729730B2D437BF500D3FA83 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 599B609226CD9C710056108A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 597D5D5726D729BA00468ED0;
+			remoteInfo = CampusCommotionWidgetExtension;
+		};
 		597D5D6326D729C400468ED0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 599B609226CD9C710056108A /* Project object */;
@@ -48,6 +56,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				0729730A2D437BF500D3FA83 /* CampusCommotionWidgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +250,7 @@
 			);
 			dependencies = (
 				597D5D6426D729C400468ED0 /* PBXTargetDependency */,
+				0729730C2D437BF500D3FA83 /* PBXTargetDependency */,
 			);
 			name = CampusCommotion;
 			productName = CampusCommotion;
@@ -400,6 +410,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0729730C2D437BF500D3FA83 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 597D5D5726D729BA00468ED0 /* CampusCommotionWidgetExtension */;
+			targetProxy = 0729730B2D437BF500D3FA83 /* PBXContainerItemProxy */;
+		};
 		597D5D6426D729C400468ED0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -419,15 +434,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XXXXXXXXXX;
 				INFOPLIST_FILE = CampusCommotionWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = CampusCommotionWidget.CampusCommotionWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CampusCommotion.WidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -448,15 +462,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XXXXXXXXXX;
 				INFOPLIST_FILE = CampusCommotionWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = CampusCommotionWidget.CampusCommotionWidgetExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CampusCommotion.WidgetExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -594,7 +607,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"CampusCommotion/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XXXXXXXXXX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CampusCommotion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -625,7 +638,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"CampusCommotion/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XXXXXXXXXX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = CampusCommotion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;

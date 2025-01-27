@@ -46,7 +46,9 @@ struct BlockView: View {
     var blockid: String
     var blockidsub: String
     var starttime: String
+    var pmstart: Bool
     var endtime: String
+    var pmend: Bool
     var classname: String
     var teacher: String
     var teacherusername: String
@@ -55,6 +57,7 @@ struct BlockView: View {
     var endstop: Bool
     @State private var hascanvas = false
     let id = UUID()
+    var keychain = KeychainSwift()
     var coursedata = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.data(forKey: "canvascourses")).flatMap {
         try? JSONDecoder().decode([String: CourseData].self, from: $0)
     }
@@ -125,7 +128,7 @@ struct BlockView: View {
 
 
             // Process data without a loop, using first(where:)
-            if hascanvas && (KeychainSwift().get("token") ?? "") != "" {
+            if hascanvas && (keychain.get("token") ?? "") != "" {
                 NavigationLink(destination: NavigationLazyView(CoursesView(selectedclass: classname, teacherusername: teacherusername, isclass: true))) {
                     Text("Info")
                         .fontWeight(.semibold)
@@ -142,6 +145,7 @@ struct BlockView: View {
         .background(Color(red: 0.08, green: 0.08, blue: 0.08))
         .cornerRadius(6)
         .onAppear {
+            keychain.accessGroup = "group.com.example.CampusCommotion"
             if (coursedata != nil) {
                 fetchCourseData()
             }}
