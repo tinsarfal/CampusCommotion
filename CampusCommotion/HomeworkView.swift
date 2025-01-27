@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import KeychainSwift
+import Alamofire
 
 struct HomeworkView: View {
     @State private var styledAttributedString: NSMutableAttributedString? = nil
@@ -130,7 +131,7 @@ struct HomeworkView: View {
                             Text(discussionTopic.title)
                                 .font(.largeTitle)
                                 .multilineTextAlignment(.center)
-                            if let attributedMessage = parseHTMLToAttributedString(htmlString: discussionTopic.message) {
+                            if let attributedMessage = discussionTopic.attributedMessage {
                                 if #available(iOS 15, *) {
                                     Text(AttributedString(attributedMessage))
                                 } else {
@@ -148,7 +149,8 @@ struct HomeworkView: View {
                                 VStack(alignment: .leading) {
                                     Text(entry.user_name)
                                         .font(.headline)
-                                    if let attributedMessage = parseHTMLToAttributedString(htmlString: entry.message) {
+                                    // Use attributedMessage instead of parsing in the view
+                                    if let attributedMessage = entry.attributedMessage {
                                         if #available(iOS 15, *) {
                                             Text(AttributedString(attributedMessage))
                                         } else {
@@ -160,7 +162,8 @@ struct HomeworkView: View {
                                             VStack(alignment: .leading) {
                                                 Text(reply.user_name)
                                                     .font(.subheadline)
-                                                if let attributedMessage = parseHTMLToAttributedString(htmlString: reply.message) {
+                                                // Use attributedMessage instead of parsing in the view
+                                                if let attributedMessage = reply.attributedMessage {
                                                     if #available(iOS 15, *) {
                                                         Text(AttributedString(attributedMessage))
                                                     } else {
@@ -219,13 +222,11 @@ struct HomeworkView: View {
 
     func loadData() {
         if type != "calendar_event" {
-            guard let url = URL(string: "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/assignments/\(assignmentid)?access_token=\(token)") else {
-                print("Invalid URL")
-                return
-            }
+            let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/assignments/\(assignmentid)?access_token=\(token)"
             
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                if let data = data {
+            AF.request(url).responseData { response in
+                switch response.result {
+                case .success(let data):
                     do {
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .iso8601
@@ -242,18 +243,16 @@ struct HomeworkView: View {
                     } catch {
                         print("Error decoding assignment data: \(error)")
                     }
-                } else if let error = error {
+                case .failure(let error):
                     print("Error fetching data: \(error)")
                 }
-            }.resume()
-        } else {
-            guard let url = URL(string: "https://canvas.example.edu/api/v1/calendar_events/\(assignmentid)?access_token=\(token)") else {
-                print("Invalid URL")
-                return
             }
+        } else {
+            let url = "https://canvas.example.edu/api/v1/calendar_events/\(assignmentid)?access_token=\(token)"
             
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                if let data = data {
+            AF.request(url).responseData { response in
+                switch response.result {
+                case .success(let data):
                     do {
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .iso8601
@@ -270,57 +269,70 @@ struct HomeworkView: View {
                     } catch {
                         print("Error decoding calendar event data: \(error)")
                     }
-                } else if let error = error {
+                case .failure(let error):
                     print("Error fetching calendar event data: \(error)")
                 }
-            }.resume()
+            }
         }
     }
 
     func loadDiscussionTopic() {
-        guard let url = URL(string: "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)?access_token=\(token)") else {
-            print("Invalid URL for discussion topic")
-            return
-        }
+        let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)?access_token=\(token)"
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let data = data {
+        AF.request(url).responseData { response in
+            switch response.result {
+            case .success(let data):
                 do {
                     let fetchedTopic = try JSONDecoder().decode(DiscussionTopic.self, from: data)
                     DispatchQueue.main.async {
                         self.discussionTopic = fetchedTopic
+                        self.discussionTopic?.attributedMessage = parseHTMLToAttributedString(htmlString: fetchedTopic.message)
                         print("Fetched discussion topic: \(fetchedTopic)")
                         self.loadDiscussionEntries()
                     }
                 } catch {
                     print("Error decoding discussion topic: \(error)")
                 }
-            } else if let error = error {
+            case .failure(let error):
                 print("Error fetching discussion topic: \(error)")
             }
-        }.resume()
+        }
     }
 
     func loadDiscussionEntries() {
-        guard let url = URL(string: "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)/entries?access_token=\(token)") else {
-            print("Invalid URL for discussion entries")
-            return
-        }
+        let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)/entries?access_token=\(token)"
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let data = data {
+        AF.request(url).responseData { response in
+            switch response.result {
+            case .success(let data):
                 do {
-                    let fetchedEntries = try JSONDecoder().decode([DiscussionEntry].self, from: data)
+                    var fetchedEntries = try JSONDecoder().decode([DiscussionEntry].self, from: data)
+                    
+                    // Parse HTML for each entry and its replies
+                    for index in fetchedEntries.indices {
+                        if let attributed = parseHTMLToAttributedString(htmlString: fetchedEntries[index].message) {
+                            fetchedEntries[index].attributedMessage = attributed
+                        }
+                        if var replies = fetchedEntries[index].recent_replies {
+                            for replyIndex in replies.indices {
+                                if let attributed = parseHTMLToAttributedString(htmlString: replies[replyIndex].message) {
+                                    replies[replyIndex].attributedMessage = attributed
+                                }
+                            }
+                            fetchedEntries[index].recent_replies = replies
+                        }
+                    }
+                    
                     DispatchQueue.main.async {
                         self.discussionEntries = fetchedEntries
                     }
                 } catch {
                     print("Error decoding discussion entries: \(error)")
                 }
-            } else if let error = error {
+            case .failure(let error):
                 print("Error fetching discussion entries: \(error)")
             }
-        }.resume()
+        }
     }
 }
 
@@ -353,18 +365,33 @@ struct DiscussionTopic: Codable {
     let id: Int
     let title: String
     let message: String
+    var attributedMessage: NSAttributedString?
+
+    enum CodingKeys: String, CodingKey {
+        case id, title, message
+    }
 }
 
 struct DiscussionEntry: Codable {
     let id: Int
     let message: String
     let user_name: String
-    let recent_replies: [DiscussionReply]?
+    var recent_replies: [DiscussionReply]?
+    var attributedMessage: NSAttributedString?
+
+    enum CodingKeys: String, CodingKey {
+        case id, message, user_name, recent_replies
+    }
 }
 
 struct DiscussionReply: Codable {
     let id: Int
     let message: String
     let user_name: String
+    var attributedMessage: NSAttributedString?
+
+    enum CodingKeys: String, CodingKey {
+        case id, message, user_name
+    }
 }
 

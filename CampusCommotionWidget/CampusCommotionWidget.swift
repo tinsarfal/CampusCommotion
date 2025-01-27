@@ -89,9 +89,16 @@ struct Provider: TimelineProvider {
                             let end = parseTime(endTimeString, isAfternoon: pmend)
                         {
                             // Add an entry for the time between blocks if there is a previous block
-                            if let previousEnd = previousEnd, previousEnd < start {
-                                let betweenBlock = Block(id: blockId, start: previousEnd, end: start, isUpcoming: true, allDone: false, name: name, color: color, time: time)
-                                blocks.append(betweenBlock)
+                            if let previousEnd = previousEnd {
+                                if previousEnd < start {
+                                    let betweenBlock = Block(id: blockId, start: previousEnd, end: start, isUpcoming: true, allDone: false, name: name, color: color, time: time)
+                                    blocks.append(betweenBlock)
+                                }
+                            } else {
+                                if now < start {
+                                    let betweenBlock = Block(id: blockId, start: now, end: start, isUpcoming: true, allDone: false, name: name, color: color, time: time)
+                                    blocks.append(betweenBlock)
+                                }
                             }
                             
                             let block = Block(id: blockId, start: start, end: end, isUpcoming: false, allDone: false, name: name, color: color, time: time)
