@@ -6,18 +6,15 @@ struct HomeworkView: View {
     @State private var styledAttributedString: NSMutableAttributedString? = nil
     @State private var assignmentData: AssignmentData?
     @State private var calendarEventData: CalendarEventData?
-    var keychain = KeychainSwift()
+    var token: String = (KeychainSwift().get("token") ?? "")
     var selectedcourseid: Int
     var assignmentid: Int
     var type: String
-    var token: String
     
     init(selectedcourseid: Int, assignmentid: Int, type: String) {
         self.selectedcourseid = selectedcourseid
         self.assignmentid = assignmentid
         self.type = type
-        keychain.accessGroup = "group.com.example.CampusCommotion"
-        token = keychain.get("token") ?? ""
         loadData()
     }
     
