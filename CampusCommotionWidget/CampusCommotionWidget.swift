@@ -114,7 +114,7 @@ struct Provider: TimelineProvider {
         completion(blocks)
     }
     
-    // Example helper for converting "h:mm" string to Date. 
+    // Example helper for converting "h:mm" string to Date.
     // Similar to [Shared/Connector.extractTime](Shared/Connector.swift).
     private func parseTime(_ timeString: String, isAfternoon: Bool) -> Date? {
         guard !timeString.isEmpty, timeString != "All Day" else { return nil }
@@ -275,7 +275,7 @@ struct CampusCommotionWidget: Widget {
             }
             .configurationDisplayName("Campus Commotion Widget")
             .description("Displays the current block and the number of assignments due.")
-            .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline])
+            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryRectangular, .accessoryInline])
             .disableContentMarginsIfNeeded()
         } else {
             StaticConfiguration(kind: kind, provider: Provider()) { entry in
@@ -283,7 +283,7 @@ struct CampusCommotionWidget: Widget {
             }
             .configurationDisplayName("Campus Commotion Widget")
             .description("Displays the current block and the number of assignments due.")
-            .supportedFamilies([.systemSmall, .systemMedium])
+            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
             .disableContentMarginsIfNeeded()        }
     }
 }
