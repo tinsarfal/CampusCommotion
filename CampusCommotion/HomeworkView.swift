@@ -179,7 +179,7 @@ struct HomeworkView: View {
                                 .padding()
                             }
                         } else {
-                            Text("Loading Entries...")
+                            Text("Loading entries...")
                                 .onAppear {
                                         loadDiscussionEntries()
                                 }
