@@ -44,9 +44,11 @@ struct HomeworkView: View {
                     if assignmentData.description != nil {
                         if assignmentData.name != nil {
                             Text(assignmentData.name!)
-                            .font(.largeTitle) } else {
+                            .font(.largeTitle)
+                            .multilineTextAlignment(.center)} else {
                                 Text("No Title For This Assignment")
                                     .font(.largeTitle)
+                                    .multilineTextAlignment(.center)
                             }
                         
                         if assignmentData.due_at != nil {
@@ -95,9 +97,11 @@ struct HomeworkView: View {
                         if let calendarEventData = calendarEventData {
                             if calendarEventData.title != nil {
                                 Text(calendarEventData.title)
-                                .font(.largeTitle) } else {
+                                .font(.largeTitle)
+                                .multilineTextAlignment(.center)} else {
                                     Text("No Title For This Assignment")
                                         .font(.largeTitle)
+                                        .multilineTextAlignment(.center)
                                 }
                             if calendarEventData.start_at != nil {
                                 Text(dayFormatter.string(from: calendarEventData.start_at!))
@@ -125,6 +129,7 @@ struct HomeworkView: View {
                         if let discussionTopic = discussionTopic {
                             Text(discussionTopic.title)
                                 .font(.largeTitle)
+                                .multilineTextAlignment(.center)
                             if let attributedMessage = parseHTMLToAttributedString(htmlString: discussionTopic.message) {
                                 if #available(iOS 15, *) {
                                     Text(AttributedString(attributedMessage))
