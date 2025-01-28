@@ -227,25 +227,62 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
       //  }
      //   return ""
    // }
+  //  func extractBlockLetter(from summary: String) -> String {
+   //     if let startIndex = summary.lastIndex(of: "("), let endIndex = summary.lastIndex(of: ")") {
+   //         let blockLetter = summary[summary.index(after: startIndex)..<endIndex]
+   //         var cleanedBlockLetter = blockLetter.replacingOccurrences(of: "/", with: "")
+   //         if cleanedBlockLetter == "Phillips Exeter Academy" {
+   //             if let range = summary.range(of: " - ") {
+    //                    let textBeforeDash = summary[..<range.lowerBound]
+   //                 return String(textBeforeDash)
+    //                }
+    //            else {
+    //                if summary.starts(with: "First Day") {
+    //                   return("First Day")
+     //               }
+     //           }
+     //       }
+     //       return String(cleanedBlockLetter)
+     //   }
+     //   return ""
+    //}
+    
     func extractBlockLetter(from summary: String) -> String {
         if let startIndex = summary.lastIndex(of: "("), let endIndex = summary.lastIndex(of: ")") {
             let blockLetter = summary[summary.index(after: startIndex)..<endIndex]
-            var cleanedBlockLetter = blockLetter.replacingOccurrences(of: "/", with: "")
-            if cleanedBlockLetter == "Phillips Exeter Academy" {
+            let blockLetterString = String(blockLetter)
+            
+            if blockLetterString == "Advising" {
+                return "ADV"
+            }
+            if blockLetterString == "Phillips Exeter Academy" {
                 if let range = summary.range(of: " - ") {
-                        let textBeforeDash = summary[..<range.lowerBound]
+                    let textBeforeDash = summary[..<range.lowerBound]
                     return String(textBeforeDash)
-                    }
-                else {
-                    if summary.starts(with: "First Day") {
-                       return("First Day")
-                    }
+                } else if summary.starts(with: "First Day") {
+                    return("First Day")
                 }
             }
-            return String(cleanedBlockLetter)
         }
+        
+        if let dashIndex = summary.lastIndex(of: "-"),
+           let parenIndex = summary.lastIndex(of: "("),
+           dashIndex < parenIndex {
+            
+            let startIndex = summary.index(after: dashIndex)
+            let endIndex = summary.index(before: parenIndex)
+            var extractedText = summary[startIndex...endIndex]
+            
+            let cleanedText = String(extractedText)
+                .trimmingCharacters(in: .whitespaces)
+                .replacingOccurrences(of: "\\d+$", with: "", options: .regularExpression)
+            
+            return cleanedText
+        }
+        
         return ""
     }
+    
     
     // Process each line from the iCal string
     for line in icalString.components(separatedBy: "\n") {
@@ -347,7 +384,7 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                 // Set the block ID to "Clubs" for club events
                 let blockDictionary: [String: Any] = [
                     "date": currentEvent["date"] ?? "",
-                    "blockid": "Clubs",  // All club events will have blockid as "Clubs"
+                    "blockid": "CLB",  // All club events will have blockid as "Clubs"
                     "color": "#6A5ACD",
                     "starttime": currentEvent["starttime"] ?? "",
                     "pmstart": currentEvent["isStartAfternoon"] ?? false,
