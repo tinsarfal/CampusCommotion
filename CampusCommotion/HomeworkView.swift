@@ -7,7 +7,7 @@ struct HomeworkView: View {
     @State private var assignmentData: AssignmentData?
     @State private var calendarEventData: CalendarEventData?
     @State private var discussionTopic: DiscussionTopic?
-    @State private var discussionEntries: [DiscussionEntry] = []
+    @State private var discussionEntries: [DiscussionEntry]?
     var token: String = (KeychainSwift().get("token") ?? "")
     var selectedcourseid: Int
     var assignmentid: Int
@@ -17,8 +17,6 @@ struct HomeworkView: View {
         self.selectedcourseid = selectedcourseid
         self.assignmentid = assignmentid
         self.type = type
-        loadData()
-        loadDiscussionTopic()
         print("Initialized HomeworkView with course ID: \(selectedcourseid), assignment ID: \(assignmentid), type: \(type)")
     }
     
@@ -41,6 +39,7 @@ struct HomeworkView: View {
             }()
         ScrollView {
             Group {
+                if type == "assignment" {
                 if let assignmentData = assignmentData {
                     if assignmentData.description != nil {
                         if assignmentData.name != nil {
@@ -89,7 +88,10 @@ struct HomeworkView: View {
                         Spacer()
                     }
                 } else {
-                    if type == "calendar_event" {
+                    Text("Loading...")
+                        .onAppear(perform: loadData)
+                }
+            } else if type == "calendar_event" {
                         if let calendarEventData = calendarEventData {
                             if calendarEventData.title != nil {
                                 Text(calendarEventData.title)
@@ -130,6 +132,13 @@ struct HomeworkView: View {
                                     Text(attributedMessage.string)
                                 }
                             }
+                        } else {
+                            Text("Loading discussion topic...")
+                                .onAppear {
+                                    loadDiscussionTopic()
+                                }
+                        }
+                        if let discussionEntries = discussionEntries {
                             ForEach(discussionEntries, id: \.id) { entry in
                                 VStack(alignment: .leading) {
                                     Text(entry.user_name)
@@ -165,17 +174,15 @@ struct HomeworkView: View {
                                 .padding()
                             }
                         } else {
-                            Text("Loading discussion topic...")
+                            Text("Loading Entries...")
                                 .onAppear {
-                                    loadDiscussionTopic()
-                                    loadDiscussionEntries()
+                                        loadDiscussionEntries()
                                 }
                         }
                     } else {
                         Text("Loading...")
                             .onAppear(perform: loadData)
                     }
-                }
             }
                 .padding()
         }
@@ -273,7 +280,7 @@ struct HomeworkView: View {
                     DispatchQueue.main.async {
                         self.discussionTopic = fetchedTopic
                         print("Fetched discussion topic: \(fetchedTopic)")
-                        self.loadDiscussionEntries() // Load entries only after topic is fetched
+                        self.loadDiscussionEntries()
                     }
                 } catch {
                     print("Error decoding discussion topic: \(error)")
@@ -294,7 +301,7 @@ struct HomeworkView: View {
             if let data = data {
                 do {
                     let fetchedEntries = try JSONDecoder().decode([DiscussionEntry].self, from: data)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    DispatchQueue.main.async {
                         self.discussionEntries = fetchedEntries
                     }
                     print("Fetched discussion entries: \(fetchedEntries)")
