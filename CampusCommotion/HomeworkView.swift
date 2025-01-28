@@ -199,6 +199,11 @@ struct HomeworkView: View {
             if #available(iOS 15, *) {
                 attributedString.addAttribute(.foregroundColor, value: textColor, range: NSRange(location: 0, length: attributedString.length))
                 attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attributedString.length))
+                attributedString.enumerateAttribute(.backgroundColor, in: NSRange(location: 0, length: attributedString.length)) { value, range, _ in
+                    if let color = value as? UIColor, color.isVeryLight {
+                        attributedString.addAttribute(.backgroundColor, value: UIColor.orange, range: range)
+                    }
+                }
             }
             return attributedString
         } catch {
@@ -304,15 +309,6 @@ struct HomeworkView: View {
                     DispatchQueue.main.async {
                         self.discussionEntries = fetchedEntries
                     }
-                    print("Fetched discussion entries: \(fetchedEntries)")
-                    for entry in fetchedEntries {
-                        print("Entry ID: \(entry.id), Message: \(entry.message), User: \(entry.user_name)")
-                        if let replies = entry.recent_replies {
-                            for reply in replies {
-                                print("Reply ID: \(reply.id), Message: \(reply.message), User: \(reply.user_name)")
-                            }
-                        }
-                    }
                 } catch {
                     print("Error decoding discussion entries: \(error)")
                 }
@@ -320,6 +316,14 @@ struct HomeworkView: View {
                 print("Error fetching discussion entries: \(error)")
             }
         }.resume()
+    }
+}
+
+extension UIColor {
+    var isVeryLight: Bool {
+        var white: CGFloat = 0
+        self.getWhite(&white, alpha: nil)
+        return white > 0.9
     }
 }
 
