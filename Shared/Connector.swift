@@ -6,6 +6,8 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+private let session = Session()
+
 func rgbToHex(red: Int, green: Int, blue: Int) -> String {
     let hexString = String(format: "#%02X%02X%02X", red, green, blue)
     return hexString
@@ -436,7 +438,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                     }
                 } else if line.starts(with: "SUMMARY") {
                     let className = extractStringFromLine(String(line))
-                    print(className)
                     if className == "First Day of School\r" {
                         currentEvent.removeAll()
                         continue
@@ -493,24 +494,16 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
     calendar.firstWeekday = 1
     if firstDate != nil {
         let weekStartDate = calendar.startOfWeek(for: firstDate!)
-        print(firstDate!)
-        print(calendar.startOfWeek(for: firstDate!))
         let weekEndDate = calendar.endOfWeek(for: lastDate!)
         var currentWeekDate = weekStartDate
-        print(currentWeekDate)
-        print(weekEndDate)
         while currentWeekDate <= weekEndDate {
-            print(currentWeekDate)
             let weekEndDate = calendar.date(byAdding: .day, value: 6, to: currentWeekDate)!
             let weekDays = calendar.generateDates(for: currentWeekDate, to: weekEndDate)
             // Filter out days with no events
             let weekBlocks = weekDays.compactMap { day in
                 dateFormatter.dateFormat = "EEEE M/d"
                 let dateKey = dateFormatter.string(from: day)
-                print(dateKey)
-                print(dayMap)
                 let eventsForDay = dayMap[dateKey] ?? []
-                print(eventsForDay)
                 return eventsForDay.isEmpty ? nil : eventsForDay
             }
             
@@ -519,7 +512,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
             }
             
             currentWeekDate = calendar.date(byAdding: .weekOfYear, value: 1, to: currentWeekDate)!
-            print(currentWeekDate)
         }
         
         return (weekschedules, uniqueClubs)
@@ -556,151 +548,137 @@ extension Calendar {
         return dates
     }
 }
-class ConnectorClass{
+class ConnectorClass {
     public init() {}
 
-    func makeRequest(calurl: String, cluburl: String, token: String, completionHandler: @escaping ()->Void){
+    func makeRequest(calurl: String, cluburl: String, token: String, completionHandler: @escaping () -> Void) {
         var weekschedules: [[[[String: Any]]]] = []
         var uniqueClubs: [String] = []
-        var isloaded = false
-                AF.request(calurl, method: .get).responseString{ (response) in
-                    //print(response.value)
-                    switch response.result{
-                    case .success(let value):
-                        if cluburl != "" {
-                            print("I am here")
-                            AF.request(cluburl, method: .get).responseString{ (response) in
-                                //print(response.value)
-                                switch response.result{
-                                case .success(let value2):
-                                    print("I am not here")
-                                    let (weekschedules, uniqueClubs) = parseICalendar(icalString: value, clubsString: value2)
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.dateFormat = "yyyy/MM/dd, HH:mm:ss.SSS"
-                                    let timestamp = dateFormatter.string(from: Date())
-                                    dateFormatter.dateFormat = "dd"
-                                    let retrievedDay = dateFormatter.string(from: Date())
+        let group = DispatchGroup()
 
-                                    let requestData: [String: Any] = [
-                                        "success": true,
-                                        "all_weeks_blocks": weekschedules,
-                                        "timestamp": timestamp,
-                                        "day_retrieved": retrievedDay
-                                    ]
-
-                                    if let theJSONData = try? JSONSerialization.data(withJSONObject: requestData, options: .prettyPrinted),
-                                       let jsontext = String(data: theJSONData, encoding: .utf8) {
-                                        let sharedDefaults = UserDefaults(suiteName: "group.com.example.CampusCommotion")!
-                                        sharedDefaults.set(jsontext, forKey: "request_data")
-                                    }
-
-                                    isloaded = true
-                                case .failure(let error):
-                                    print("Request failed with error: \(error)")
-                                }
-                            }
+        group.enter()
+        session.request(calurl, method: .get).responseString { response in
+            switch response.result {
+            case .success(let value):
+                if !cluburl.isEmpty {
+                    group.enter()
+                    session.request(cluburl, method: .get).responseString { response in
+                        switch response.result {
+                        case .success(let value2):
+                            (weekschedules, uniqueClubs) = parseICalendar(icalString: value, clubsString: value2)
+                            self.saveRequestData(weekschedules: weekschedules)
+                        case .failure(let error):
+                            print("Request failed with error: \(error)")
                         }
-                        else {
-                            let weekschedules = parseICalendar(icalString: value, clubsString: "").0
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy/MM/dd, HH:mm:ss.SSS"
-                            let timestamp = dateFormatter.string(from: Date())
-                            dateFormatter.dateFormat = "dd"
-                            let retrievedDay = dateFormatter.string(from: Date())
-
-                            let requestData: [String: Any] = [
-                                "success": true,
-                                "all_weeks_blocks": weekschedules,
-                                "timestamp": timestamp,
-                                "day_retrieved": retrievedDay
-                            ]
-
-                            if let theJSONData = try? JSONSerialization.data(withJSONObject: requestData, options: .prettyPrinted),
-                               let jsontext = String(data: theJSONData, encoding: .utf8) {
-                                let sharedDefaults = UserDefaults(suiteName: "group.com.example.CampusCommotion")!
-                                sharedDefaults.set(jsontext, forKey: "request_data")
-                            }
-
-                            isloaded = true
-                                }
-                        
-                    case .failure(let error):
-                        print(error)
+                        group.leave()
                     }
+                } else {
+                    weekschedules = parseICalendar(icalString: value, clubsString: "").0
+                    self.saveRequestData(weekschedules: weekschedules)
                 }
-                
-        
-        if isloaded {
-            let simpleCompletionHandler:()->Void =  {
-                completionHandler()
+            case .failure(let error):
+                print(error)
             }
+            group.leave()
         }
-        if token != "" {
-            AF.request("https://canvas.example.edu/api/v1/users/self/enrollments?access_token=\(token)&per_page=100").responseString { response in
+
+        if !token.isEmpty {
+            group.enter()
+            session.request("https://canvas.example.edu/api/v1/users/self/enrollments?access_token=\(token)&per_page=100").responseString { response in
                 switch response.result {
                 case .success(let value):
-                    var classStudentsDictionary = [String: CourseData]()
-                    let enrollments = JSON(parseJSON: value)
-                    let group = DispatchGroup()
-                    
-                    for (_, enrollment) in enrollments {
-                        group.enter()
-                        print(enrollment)
-                        print(enrollment["course_id"])
-                        let courseId = enrollment["course_id"].intValue
-                        let sectionID = enrollment["course_section_id"].intValue
-                        AF.request("https://canvas.example.edu/api/v1/courses/\(courseId)?access_token=\(token)&per_page=100").responseString { response in
-                            switch response.result {
-                            case .success(let value):
-                                let classname = enrollment["course_id"].stringValue
-                                let coursedata = JSON(parseJSON: value)
-                                let coursecode = (coursedata["course_code"].stringValue).replacingOccurrences(of: "-", with: "*")
-                                // Initialize an empty array for the classname if it doesn't exist
-                                if classStudentsDictionary[classname] == nil {
-                                    classStudentsDictionary[classname] = CourseData(coursecode: coursecode, students: [], courseid: courseId, sectionid: sectionID)
-                                }
-                                
-                                AF.request("https://canvas.example.edu/api/v1/sections/\(enrollment["course_section_id"])/enrollments?access_token=\(token)&include=avatar_url&per_page=100&type=StudentEnrollment").responseString { response in
-                                    switch response.result {
-                                    case .success(let value):
-                                        let students = JSON(parseJSON: value)
-                                        for (_, student) in students {
-                                            classStudentsDictionary[classname]?.students.append(studentimage(studentname: student["user"]["name"].stringValue, image: student["user"]["avatar_url"].stringValue, studentID: student["user"]["id"].intValue))
-                                            //print(student["user"]["name"])
-                                        }
-                                        
-                                    case .failure(let error):
-                                        print("Section enrollments request failed with error: \(error)")
-                                    }
-                                    group.leave()
-                                }
-                            case .failure(let error):
-                                print("Course request failed with error: \(error)")
-                                group.leave()
-                            }
-                        }
-                    }
-                    
-                    // Wait for all requests to finish
-                    group.notify(queue: .main) {
-                        print("All requests completed successfully")
-                        //print(classStudentsDictionary)
-                        do {
-                            completionHandler()
-                            let encodedcourses = try JSONEncoder().encode(classStudentsDictionary)
-                            UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(encodedcourses, forKey: "canvascourses")
-                        } catch {
-                            print("Error encoding data: \(error)")
-                            completionHandler()
-                        }
-
-                        
-                    }
-                    
+                    self.handleEnrollmentsResponse(value: value, token: token, group: group, completionHandler: completionHandler)
                 case .failure(let error):
                     print("Enrollments request failed with error: \(error)")
                 }
+                group.leave()
             }
         }
+
+        group.notify(queue: .main) {
+            completionHandler()
         }
     }
+
+    private func saveRequestData(weekschedules: [[[[String: Any]]]]) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd, HH:mm:ss.SSS"
+        let timestamp = dateFormatter.string(from: Date())
+        dateFormatter.dateFormat = "dd"
+        let retrievedDay = dateFormatter.string(from: Date())
+
+        let requestData: [String: Any] = [
+            "success": true,
+            "all_weeks_blocks": weekschedules,
+            "timestamp": timestamp,
+            "day_retrieved": retrievedDay
+        ]
+
+        if let theJSONData = try? JSONSerialization.data(withJSONObject: requestData, options: .prettyPrinted),
+           let jsontext = String(data: theJSONData, encoding: .utf8) {
+            let sharedDefaults = UserDefaults(suiteName: "group.com.example.CampusCommotion")!
+            sharedDefaults.set(jsontext, forKey: "request_data")
+        }
+    }
+
+    private func handleEnrollmentsResponse(value: String, token: String, group: DispatchGroup, completionHandler: @escaping () -> Void) {
+    var classStudentsDictionary = [String: CourseData]()
+    let enrollments = JSON(parseJSON: value)
+
+    let validEnrollments = enrollments.arrayValue.compactMap { enrollment -> (Int, Int)? in
+        let courseId = enrollment["course_id"].intValue
+        let sectionID = enrollment["course_section_id"].intValue
+        return (courseId > 0 && sectionID > 0) ? (courseId, sectionID) : nil
+    }
+
+    validEnrollments.forEach { (courseId, sectionID) in
+        group.enter()
+        session.request("https://canvas.example.edu/api/v1/courses/\(courseId)?access_token=\(token)&per_page=100")
+            .responseString { response in
+                defer { group.leave() }
+                switch response.result {
+                case .success(let value):
+                    let coursedata = JSON(parseJSON: value)
+                    let coursecode = coursedata["course_code"].stringValue.replacingOccurrences(of: "-", with: "*")
+
+                    if classStudentsDictionary[coursecode] == nil {
+                        classStudentsDictionary[coursecode] = CourseData(coursecode: coursecode, students: [], courseid: courseId, sectionid: sectionID)
+                    }
+
+                    // Fetch students for this course section
+                    group.enter()
+                    session.request("https://canvas.example.edu/api/v1/sections/\(sectionID)/enrollments?access_token=\(token)&include=avatar_url&per_page=100&type=StudentEnrollment")
+                        .responseString { response in
+                            defer { group.leave() }
+                            switch response.result {
+                            case .success(let value):
+                                let students = JSON(parseJSON: value)
+                                students.arrayValue.forEach { student in
+                                    classStudentsDictionary[coursecode]?.students.append(studentimage(
+                                        studentname: student["user"]["name"].stringValue,
+                                        image: student["user"]["avatar_url"].stringValue,
+                                        studentID: student["user"]["id"].intValue
+                                    ))
+                                }
+                            case .failure(let error):
+                                print("Section enrollments request failed: \(error)")
+                            }
+                        }
+                case .failure(let error):
+                    print("Course request failed: \(error)")
+                }
+            }
+    }
+
+    // Notify once all requests are done
+    group.notify(queue: .main) {
+        do {
+            let encodedcourses = try JSONEncoder().encode(classStudentsDictionary)
+            UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(encodedcourses, forKey: "canvascourses")
+        } catch {
+            print("Error encoding courses: \(error)")
+        }
+        completionHandler()
+    }
+}
+}
