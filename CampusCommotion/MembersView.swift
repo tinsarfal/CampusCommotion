@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftyJSON
 import URLImage
 import KeychainSwift
+import Alamofire
 
 extension String: Identifiable {
     public var id: String {
@@ -76,42 +77,35 @@ struct MembersView: View {
                 return
             }
 
-            // Replace the following URL with your actual API endpoint
             let apiURLString = "https://canvas.exeter.edu/api/v1/sections/\(sectionID)/enrollments?access_token=\(token)&include=avatar_url&per_page=100&type=StudentEnrollment"
-            
-            guard let apiURL = URL(string: apiURLString) else {
-                print("Invalid API URL.")
-                return
-            }
 
-            URLSession.shared.dataTask(with: apiURL) { data, response, error in
-                guard let data = data, error == nil else {
-                    print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
-                    return
-                }
-
-                do {
-                            let users = try JSONDecoder().decode([User].self, from: data)
-                    print(users)
-                                self.fetchedSchedules = users.map { user in
-                                    ClassInfo(studentName: user.user.name, imglink: user.user.avatar_url, studentID: user.user.id)
-                            }
-
-                    print(fetchedSchedules)
-                        } catch let error {
-                            print("Error decoding JSON: \(error)")
+            NetworkManager.shared.request(apiURLString).responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let users = try JSONDecoder().decode([User].self, from: data)
+                        print(users)
+                        self.fetchedSchedules = users.map { user in
+                            ClassInfo(studentName: user.user.name, imglink: user.user.avatar_url, studentID: user.user.id)
                         }
-            }.resume()
-        for parsedSchedule in parsedSchedules {
-            if let matchingFetchedSchedule = fetchedSchedules.first(where: { fetchedSchedule in
-                fetchedSchedule.studentID == parsedSchedule.studentID
-            }) {
-                matchingSchedules.append(ClassInfo(studentName: parsedSchedule.studentName, imglink: matchingFetchedSchedule.imglink, studentID: parsedSchedule.studentID))
-            } else {
-                // If no match, use imglink directly from parsedSchedule
-                matchingSchedules.append(ClassInfo(studentName: parsedSchedule.studentName, imglink: parsedSchedule.imglink, studentID: parsedSchedule.studentID))
+                        print(fetchedSchedules)
+                    } catch let error {
+                        print("Error decoding JSON: \(error)")
+                    }
+                case .failure(let error):
+                    print("Error fetching data: \(error.localizedDescription)")
+                }
             }
-        }
+
+            for parsedSchedule in parsedSchedules {
+                if let matchingFetchedSchedule = fetchedSchedules.first(where: { fetchedSchedule in
+                    fetchedSchedule.studentID == parsedSchedule.studentID
+                }) {
+                    matchingSchedules.append(ClassInfo(studentName: parsedSchedule.studentName, imglink: matchingFetchedSchedule.imglink, studentID: parsedSchedule.studentID))
+                } else {
+                    matchingSchedules.append(ClassInfo(studentName: parsedSchedule.studentName, imglink: parsedSchedule.imglink, studentID: parsedSchedule.studentID))
+                }
+            }
         }
     
     private mutating func loadData() {

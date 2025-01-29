@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftyJSON
 import KeychainSwift
+import Alamofire
 
 struct TodoItem: Codable, Identifiable {
     let id: Int
@@ -47,7 +48,6 @@ struct CoursesView: View {
             if isclass {
                 let classIDtag = selectedclass.split(separator: " ").first ?? ""
                 //let classID = (classIDtag?.split(separator: "-").map(String.init).prefix(2).joined(separator: "*")) ?? ""
-                
                 for (key, classItem) in coursedata {
                     let classIDFromJSON = classItem.coursecode
                     if classIDFromJSON.contains(classIDtag) {
@@ -74,24 +74,44 @@ struct CoursesView: View {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let error = error {
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let data = data else {
-                print("No data received")
-                return
-            }
-            
-            let jsonString = String(data: data, encoding: .utf8)
-            let todoparsed = JSON(parseJSON: jsonString ?? "")
-            
-            DispatchQueue.main.async {
-                if self.isclass {
-                    for (_, item) in todoparsed {
-                        if item["course_id"].intValue == courseid {
+        NetworkManager.shared.request(url).responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonString = String(data: data, encoding: .utf8)
+                let todoparsed = JSON(parseJSON: jsonString ?? "")
+                
+                DispatchQueue.main.async {
+                    if self.isclass {
+                        for (_, item) in todoparsed {
+                            if item["course_id"].intValue == self.courseid {
+                                let isoDateFormatter = ISO8601DateFormatter()
+                                isoDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+                                
+                                if let date = isoDateFormatter.date(from: item["plannable_date"].stringValue) {
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "MMMM dd"
+                                    
+                                    let timeFormatter = DateFormatter()
+                                    timeFormatter.dateFormat = "hh:mm a"
+                                    
+                                    dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
+                                    timeFormatter.timeZone = TimeZone(identifier: "America/New_York")
+                                    
+                                    let formattedDate = dateFormatter.string(from: date)
+                                    let formattedTime = timeFormatter.string(from: date)
+                                    
+                                    self.todos.append(TodoItem(id: item["plannable"]["id"].intValue,
+                                                               title: item["plannable"]["title"].stringValue,
+                                                               description: item["context_name"].stringValue,
+                                                               type: item["plannable_type"].stringValue,
+                                                               courseid: item["course_id"].intValue,
+                                                               duedate: formattedDate,
+                                                               duetime: formattedTime))
+                                }
+                            }
+                        }
+                    } else {
+                        for (_, item) in todoparsed {
                             let isoDateFormatter = ISO8601DateFormatter()
                             isoDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
                             
@@ -108,48 +128,23 @@ struct CoursesView: View {
                                 let formattedDate = dateFormatter.string(from: date)
                                 let formattedTime = timeFormatter.string(from: date)
                                 
-                                todos.append(TodoItem(id: item["plannable"]["id"].intValue,
-                                                      title: item["plannable"]["title"].stringValue,
-                                                      description: item["context_name"].stringValue,
-                                                      type: item["plannable_type"].stringValue,
-                                                      courseid: item["course_id"].intValue,
-                                                      duedate: formattedDate,
-                                                      duetime: formattedTime))
+                                self.todos.append(TodoItem(id: item["plannable"]["id"].intValue,
+                                                           title: item["plannable"]["title"].stringValue,
+                                                           description: item["context_name"].stringValue,
+                                                           type: item["plannable_type"].stringValue,
+                                                           courseid: item["course_id"].intValue,
+                                                           duedate: formattedDate,
+                                                           duetime: formattedTime))
                             }
                         }
                     }
-                } else {
-                    for (_, item) in todoparsed {
-                        let isoDateFormatter = ISO8601DateFormatter()
-                        isoDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                        
-                        if let date = isoDateFormatter.date(from: item["plannable_date"].stringValue) {
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "MMMM dd"
-                            
-                            let timeFormatter = DateFormatter()
-                            timeFormatter.dateFormat = "hh:mm a"
-                            
-                            dateFormatter.timeZone = TimeZone(identifier: "America/New_York")
-                            timeFormatter.timeZone = TimeZone(identifier: "America/New_York")
-                            
-                            let formattedDate = dateFormatter.string(from: date)
-                            let formattedTime = timeFormatter.string(from: date)
-                            
-                            todos.append(TodoItem(id: item["plannable"]["id"].intValue,
-                                                  title: item["plannable"]["title"].stringValue,
-                                                  description: item["context_name"].stringValue,
-                                                  type: item["plannable_type"].stringValue,
-                                                  courseid: item["course_id"].intValue,
-                                                  duedate: formattedDate,
-                                                  duetime: formattedTime))
-                        }
-                    }
+                    
+                    self.notretrieved = false
                 }
-                
-                notretrieved = false
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
             }
-        }.resume()
+        }
     }
     
     var body: some View {
