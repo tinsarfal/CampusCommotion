@@ -14,30 +14,42 @@ struct ScheduleDate: Identifiable {
     var name: String
 }
 struct Information {
-        public static var todaydate: String {
+    private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
         df.dateFormat = "M/d"
-        return df.string(from: Date())
+        return df
+    }()
+    
+    public static var todaydate: String {
+        return dateFormatter.string(from: Date())
     }
     
+    private static var _currentnum: (Int, String)? = nil
+    private static var lastUpdateDate: String? = nil
+    
     public static var currentnum: (Int, String) {
+        let today = todaydate
+        
+        if let cachedCurrentnum = _currentnum, lastUpdateDate == today {
+            return cachedCurrentnum
+        }
+        
         guard let request_data = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")?.string(forKey: "request_data"),
               let requestDataJSON = try? JSON(parseJSON: request_data) else {
             return (0, "0")
         }
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "M/d"
-        let today = Date()
         let calendar = Calendar.current
-        let currentYear = calendar.component(.year, from: today)
-        let currentMonth = calendar.component(.month, from: today)
+        let currentYear = calendar.component(.year, from: Date())
+        let currentMonth = calendar.component(.month, from: Date())
 
         for i in 0..<requestDataJSON["all_weeks_blocks"].count {
             for (key, day) in requestDataJSON["all_weeks_blocks"][i] {
                 guard let rawDateString = day[0]["date"].string?.split(separator: " ").last else { continue }
                 
-                if rawDateString == todaydate {
+                if rawDateString == today {
+                    _currentnum = (i, key)
+                    lastUpdateDate = today
                     return (i, key)
                 }
                 
@@ -52,12 +64,16 @@ struct Information {
                         adjustedDate = calendar.date(bySetting: .year, value: currentYear, of: dayDate) ?? dayDate
                     }
                     
-                    if adjustedDate >= today {
+                    if adjustedDate >= Date() {
+                        _currentnum = (i, key)
+                        lastUpdateDate = today
                         return (i, key)
                     }
                 }
             }
         }
+        _currentnum = (0, "0")
+        lastUpdateDate = today
         return (0, "0")
     }
     
@@ -65,8 +81,7 @@ struct Information {
 }
 
 struct ContentView: View {
-    @State var request_data: String = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data")  ?? ""
-    @State var menu_data: String = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "menu_data")  ?? ""
+    @State var request_data: String = ""
     @State var showingAlert = false
     @State var showLoadingIndicator = false
     @State var date_selected = "n/a"
@@ -100,18 +115,23 @@ struct ContentView: View {
     }
     
     func updateScheduleView() {
-        if ((UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data") != nil) {
-            request_data = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data")  ?? ""
-        }
-        else {
-            let simpleCompletionHandler:()->Void =  {
-                updateScheduleView()
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let requestData = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")?.string(forKey: "request_data") {
+                DispatchQueue.main.async {
+                    self.request_data = requestData
+                    self.parsedData = JSON(parseJSON: requestData)
+                    self.updateUI()
+                }
+            } else {
+                let simpleCompletionHandler: () -> Void = {
+                    self.updateScheduleView()
+                }
+                ConnectorClass().makeRequest(calurl: "", cluburl: "", token: "", completionHandler: simpleCompletionHandler)
             }
-            ConnectorClass().makeRequest(calurl: "", cluburl: "", token: "", completionHandler: simpleCompletionHandler)
-            request_data = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data")  ?? ""
         }
+    }
 
-        parsedData = JSON.init(parseJSON: request_data)
+    func updateUI() {
         WidgetCenter.shared.reloadAllTimelines()
         all_keys = []
         let date = Date()
@@ -145,7 +165,7 @@ struct ContentView: View {
         showLoadingIndicator = false
         
         dateFormatter.dateFormat = "dd"
-        if day_selected.components(separatedBy: "/").count > 1{
+        if day_selected.components(separatedBy: "/").count > 1 {
             if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
                 warning_opacity = 0.0
             } else {
@@ -167,7 +187,7 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 ScrollView(.vertical) {
-                    VStack(alignment: .leading) {
+                    LazyVStack(alignment: .leading) {
                         Spacer(minLength: 10)
                         HStack (alignment: .center) {
                             Spacer()
