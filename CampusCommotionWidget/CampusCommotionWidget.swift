@@ -101,8 +101,10 @@ struct Provider: TimelineProvider {
                                 }
                             }
                             
-                            let block = Block(id: blockId, start: start, end: end, isUpcoming: false, allDone: false, name: name, color: color, time: time)
-                            blocks.append(block)
+                            if start != end {
+                                let block = Block(id: blockId, start: start, end: end, isUpcoming: false, allDone: false, name: name, color: color, time: time)
+                                blocks.append(block)
+                            }
                             
                             previousEnd = end
                             lastBlockEnd = end
