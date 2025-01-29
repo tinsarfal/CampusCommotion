@@ -35,99 +35,92 @@ struct BlockCollection: View {
     @Binding var which_date: String
     private var block_list: [BlockView] = []
     
+    private func makeBlock(
+        blockid: String = "",
+        blockidsub: String = "",
+        starttime: String = "",
+        pmstart: Bool = false,
+        endtime: String = "",
+        pmend: Bool = false,
+        location: String = "",
+        classname: String = "",
+        teacher: String = "",
+        teacherusername: String = "",
+        color: String = "ffffff",
+        endstop: Bool = true
+    ) -> BlockView {
+        var my_color = Color(hexStringToUIColor(hex: color))
+        if classname == "" && blockid != "" {
+            my_color = Color(red: 143/255, green: 145/255, blue: 162/255)
+        } else if classname != "" && (blockid == "" || blockid == " "){
+            my_color = Color(red: 244/255, green: 185/255, blue: 96/255)
+        }
+        return BlockView(
+            blockid: blockid,
+            blockidsub: blockidsub,
+            starttime: starttime,
+            pmstart: pmstart,
+            endtime: endtime,
+            pmend: pmend,
+            classname: classname,
+            teacher: teacher,
+            teacherusername: teacherusername,
+            location: location,
+            use_color: my_color,
+            endstop: endstop
+        )
+    }
+    
     init(text: Binding<String>, whichDate: Binding<String>) {
         _request_data = text
         _which_date = whichDate
         block_list = []
-        let parsed_data = JSON.init(parseJSON:request_data)
-        //print(request_data)
-        if !parsed_data["success"].exists() {
-            //something is wrong with the data payload, display it
-            let blockid = ""
-            let blockidsub = ""
-            let starttime = "oh"
-            let pmstart = false
-            let endtime = "no"
-            let pmend = false
-            let location = "check your profile info"
-            let classname = "Unable to Retrieve Data"
-            let teacher = ""
-            let teacherusername = ""
-            let endstop = true
-            let my_color = Color(red: 0.6353, green: 0.1412, blue: 0.1333)
-            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, pmstart: pmstart, endtime: endtime, pmend: pmend, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
-        } else if parsed_data["success"] == false{
-            //something is wrong with the data payload, display it
-            let blockid = ""
-            let blockidsub = ""
-            let starttime = "oh"
-            let pmstart = false
-            let endtime = "no"
-            let pmend = false
-            let location = parsed_data["all_days_blocks"].rawValue as! String
-            let classname = "Server Error"
-            let teacher = ""
-            let teacherusername = ""
-            let endstop = true
-            let my_color = Color(red: 0.6353, green: 0.1412, blue: 0.1333)
-            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, pmstart: pmstart, endtime: endtime, pmend: pmend, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
+        let parsedData = JSON(parseJSON: request_data)
+        if !parsedData["success"].exists() {
+            block_list.append(makeBlock(
+                starttime: "oh",
+                endtime: "no",
+                location: "check your profile info",
+                classname: "Unable to Retrieve Data",
+                color: "a22222"
+            ))
+        } else if parsedData["success"] == false {
+            let location = parsedData["all_days_blocks"].stringValue
+            block_list.append(makeBlock(
+                starttime: "oh",
+                endtime: "no",
+                location: location,
+                classname: "Server Error",
+                color: "a22222"
+            ))
         } else {
-            for (key, allDaysJson) in parsed_data["all_weeks_blocks"][Information.indexnumber] {
-                    //debugPrint(key)
-                    //debugPrint(which_date)
-                    if key.contains(which_date){
-                        for (key, subJson) in allDaysJson {
-                            //debugPrint(which_date)
-                            //debugPrint(subJson["classname"].rawValue as? String)
-                            var blockid = subJson["blockid"].rawValue as? String
-                            var blockidsub = ""
-                            let starttime = subJson["starttime"].rawValue as? String
-                            let pmstart = subJson["pmstart"].rawValue as? Bool
-                            let endtime = subJson["endtime"].rawValue as? String
-                            let pmend = subJson["pmend"].rawValue as? Bool
-                            let location = subJson["location"].rawValue as? String
-                            let classname = subJson["classname"].rawValue as? String
-                            let teacher = subJson["teacher"].rawValue as? String
-                            let teacherusername = subJson["teacherusername"].rawValue as? String
-                            var endstop = true
-                            //var my_color = Color(red: 0.6353, green: 0.1412, blue: 0.1333)
-                            var my_color = Color(hexStringToUIColor(hex:subJson["color"].rawValue as? String ?? "ffffff"))
-                            
-                            if classname == "" && blockid != "" {
-                                my_color = Color(red: 143/255, green: 145/255, blue: 162/255)
-                            } else if classname != "" && (blockid == "" || blockid == " "){
-                                my_color = Color(red: 244/255, green: 185/255, blue: 96/255)
-                            }
-                            
-                            //if blockid?.components(separatedBy: " ").count ?? 0 > 1 {
-                            //    blockidsub = blockid?.components(separatedBy: " ")[1] ?? ""
-                            //    blockid = blockid?.components(separatedBy: " ")[0]
-                            //}
-                            
-                            if Int(key) != parsed_data["todays_blocks"].count-1 {
-                                endstop = true
-                            }
-                            block_list.append(BlockView(blockid: blockid ?? "", blockidsub: blockidsub, starttime: starttime ?? "", pmstart: pmstart ?? false, endtime: endtime ?? "", pmend: pmend ?? false, classname: classname ?? "", teacher: teacher ?? "", teacherusername: teacherusername ?? "", location: location ?? "", use_color: my_color, endstop: endstop))
-                        }
+            for (key, allDaysJson) in parsedData["all_weeks_blocks"][Information.indexnumber] {
+                if key.contains(which_date) {
+                    for (_, subJson) in allDaysJson {
+                        block_list.append(makeBlock(
+                            blockid: subJson["blockid"].stringValue,
+                            starttime: subJson["starttime"].stringValue,
+                            pmstart: subJson["pmstart"].boolValue,
+                            endtime: subJson["endtime"].stringValue,
+                            pmend: subJson["pmend"].boolValue,
+                            location: subJson["location"].stringValue,
+                            classname: subJson["classname"].stringValue,
+                            teacher: subJson["teacher"].stringValue,
+                            teacherusername: subJson["teacherusername"].stringValue,
+                            color: subJson["color"].stringValue
+                        ))
+                    }
                 }
             }
         }
         
         if block_list.count == 0 {
-            //then it's no school!
-            let blockid = ""
-            let blockidsub = ""
-            let starttime = "☺"
-            let pmstart = false
-            let endtime = ""
-            let pmend = false
-            let location = "have fun"
-            let classname = "No School"
-            let teacher = ""
-            let teacherusername = ""
-            let endstop = true
-            let my_color = Color(red: 156/255, green: 227/255, blue: 125/255)
-            block_list.append(BlockView(blockid: blockid, blockidsub: blockidsub, starttime: starttime, pmstart: pmstart, endtime: endtime, pmend: pmend, classname: classname, teacher: teacher, teacherusername: teacherusername, location: location, use_color: my_color, endstop: endstop))
+            block_list.append(makeBlock(
+                starttime: "☺",
+                location: "have fun",
+                classname: "No School",
+                color: "9ce37d"
+            ))
         }
     }
     

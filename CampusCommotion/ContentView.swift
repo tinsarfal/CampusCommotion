@@ -14,63 +14,53 @@ struct ScheduleDate: Identifiable {
     var name: String
 }
 struct Information {
-    public static var todaydate: String {
-            let df = DateFormatter()
-            df.dateFormat = "M/d"
-            return df.string(from: Date())
-        }
+        public static var todaydate: String {
+        let df = DateFormatter()
+        df.dateFormat = "M/d"
+        return df.string(from: Date())
+    }
     
     public static var currentnum: (Int, String) {
-            let request_data = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data")  ?? ""
-            
-            for i in (0..<JSON.init(parseJSON:request_data)["all_weeks_blocks"].count) {
-                for (key, day) in JSON.init(parseJSON:request_data)["all_weeks_blocks"][i] {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "M/d"
-                    let calendar = Calendar.current
-                    let currentYear = calendar.component(.year, from: Date())
-                    let currentMonth = calendar.component(.month, from: Date())
-                    
-                    //  if day[0]["date"].string!.contains(todaydate) {
-                    //    print(i)
-                    //    print(key)
-                    //    print("1")
-                    //    return (i, key)
-                    //}
-                    //print(String(day[0]["date"].string!.split(separator: " ")[1]))
-                    //print(todaydate)
-                    if String(day[0]["date"].string?.split(separator: " ")[1] ?? "") == todaydate {
-                        print(i)
-                        print(key)
-                        print("1")
-                        return (i, key)
-                      } else {
-                          var idate = dateFormatter.date(from: String(day[0]["date"].string?.split(separator: " ")[1] ?? ""))
-                        if var unwrappedIdate = idate {
-                            print("Before if conditions: currentMonth=\(currentMonth), monthComponent=\(calendar.component(.month, from: unwrappedIdate))")
-                            if currentMonth == 12 && calendar.component(.month, from: unwrappedIdate) == 1 {
-                                idate = calendar.date(bySetting: .year, value: currentYear + 1, of: unwrappedIdate)
-                            } else if currentMonth <= 4 && calendar.component(.month, from: unwrappedIdate) >= 11 {
-                                var comps = Calendar.current.dateComponents([.year, .month, .day], from: unwrappedIdate)
-                                //idate = calendar.date(bySetting: .year, value: currentYear, of: unwrappedIdate)
-                                var dc = DateComponents(year: currentYear - 1, month: comps.month, day: comps.day)
-                                idate = Calendar(identifier: .gregorian).date(from: dc)
-                            } else {
-                                var comps = Calendar.current.dateComponents([.year, .month, .day], from: unwrappedIdate)
-                                //idate = calendar.date(bySetting: .year, value: currentYear, of: unwrappedIdate)
-                                var dc = DateComponents(year: currentYear, month: comps.month, day: comps.day)
-                                idate = Calendar(identifier: .gregorian).date(from: dc)
-                            }
+        guard let request_data = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")?.string(forKey: "request_data"),
+              let requestDataJSON = try? JSON(parseJSON: request_data) else {
+            return (0, "0")
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "M/d"
+        let today = Date()
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: today)
+        let currentMonth = calendar.component(.month, from: today)
 
-                            if var updatedIdate = idate, updatedIdate > Date() {
-                                return (i, key)
-                            }
-                        }
+        for i in 0..<requestDataJSON["all_weeks_blocks"].count {
+            for (key, day) in requestDataJSON["all_weeks_blocks"][i] {
+                guard let rawDateString = day[0]["date"].string?.split(separator: " ").last else { continue }
+                
+                if rawDateString == todaydate {
+                    return (i, key)
+                }
+                
+                if let dayDate = dateFormatter.date(from: String(rawDateString)) {
+                    var adjustedDate = dayDate
+                    
+                    if currentMonth == 12 && calendar.component(.month, from: dayDate) == 1 {
+                        adjustedDate = calendar.date(bySetting: .year, value: currentYear + 1, of: dayDate) ?? dayDate
+                    } else if currentMonth <= 4 && calendar.component(.month, from: dayDate) >= 11 {
+                        adjustedDate = calendar.date(bySetting: .year, value: currentYear - 1, of: dayDate) ?? dayDate
+                    } else {
+                        adjustedDate = calendar.date(bySetting: .year, value: currentYear, of: dayDate) ?? dayDate
+                    }
+                    
+                    if adjustedDate >= today {
+                        return (i, key)
                     }
                 }
             }
-            return (0, "0")
         }
+        return (0, "0")
+    }
+    
     static var indexnumber = currentnum.0
 }
 
@@ -89,7 +79,7 @@ struct ContentView: View {
     @State var token: String
     @State private var shouldRefresh = true
     @State public var menuLoading = true
-    //@State private var oldMenu: Bool = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")?.bool(forKey: "oldMenu") ?? false)
+    @State private var parsedData = JSON()
     
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.colorScheme) var colorScheme
@@ -104,10 +94,12 @@ struct ContentView: View {
         calurl = (keychain.get("calurl") ?? "")
         cluburl = (keychain.get("cluburl") ?? "")
         token = (keychain.get("token") ?? "")
+        if !email.isEmpty {
+            parsedData = JSON.init(parseJSON: (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data") ?? "")
+        }
     }
     
     func updateScheduleView() {
-        print(Information.currentnum)
         if ((UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data") != nil) {
             request_data = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data")  ?? ""
         }
@@ -119,28 +111,18 @@ struct ContentView: View {
             request_data = (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data")  ?? ""
         }
 
-        print(request_data)
+        parsedData = JSON.init(parseJSON: request_data)
         WidgetCenter.shared.reloadAllTimelines()
         all_keys = []
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d"
         let toMatchDate = dateFormatter.string(from: date)
-        //debugPrint(toMatchDate)
         
         all_keys = []
         var counterID = 0
         
-        for (key, day) in JSON.init(parseJSON:request_data)["all_weeks_blocks"][Information.indexnumber] {
-            //debugPrint(day[0]["date"].string)
-            //debugPrint(toMatchDate)
-            //if day[0]["date"].string!.contains(toMatchDate) {
-            //    date_selected = key
-            //    day_selected = day[0]["date"].string!
-            //}
-            //if key.contains(toMatchDate) {
-            //    date_selected = key
-            //}
+        for (key, day) in parsedData["all_weeks_blocks"][Information.indexnumber] {
             all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string ?? ""))
             counterID = counterID + 1
         }
@@ -165,7 +147,6 @@ struct ContentView: View {
         dateFormatter.dateFormat = "dd"
         if day_selected.components(separatedBy: "/").count > 1{
             if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
-            //if current_day ?? 100 != retrieve_day ?? -100 {
                 warning_opacity = 0.0
             } else {
                 warning_opacity = 0.8
@@ -176,11 +157,9 @@ struct ContentView: View {
     }
 
     func setToLoading() {
-        debugPrint("set to loading")
         self.showLoadingIndicator = true
     }
     func setToNotLoading() {
-        debugPrint("set to loading")
         self.showLoadingIndicator = false
     }
 
@@ -193,14 +172,12 @@ struct ContentView: View {
                         HStack (alignment: .center) {
                             Spacer()
                             Button(action: {
-                                // Handle the action for the previous button
-                                debugPrint("Previous Button Tapped")
                                 if Int(date_selected) == 0 {
                                     if Information.indexnumber != 0 {
                                         Information.indexnumber -= 1
                                         all_keys = []
                                         var counterID = 0
-                                        for (key, day) in JSON.init(parseJSON:request_data)["all_weeks_blocks"][Information.indexnumber] {
+                                        for (key, day) in parsedData["all_weeks_blocks"][Information.indexnumber] {
 
                                             if day[0]["date"].string!.contains(Information.todaydate) {
                                                 date_selected = key
@@ -217,10 +194,8 @@ struct ContentView: View {
                                         } else {
                                             warning_opacity = 0.8
                                         }}} else {
-                                            print(date_selected)
                                             date_selected = String(all_keys[Int(date_selected)! - 1].id)
                                             day_selected = all_keys[Int(date_selected)!].name
-                                            print(day_selected)
                                             if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
                                                 warning_opacity = 0.0
                                             } else {
@@ -240,7 +215,6 @@ struct ContentView: View {
                             Menu(content: {
                                 ForEach(0..<all_keys.count, id: \.self) { myNewKey in
                                     Button(action: {
-                                        debugPrint(all_keys)
                                         date_selected = String(all_keys[myNewKey].id)
                                         day_selected = all_keys[myNewKey].name
                                         if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
@@ -264,15 +238,12 @@ struct ContentView: View {
                             })
                             
                             Button(action: {
-                                debugPrint("Next Button Tapped")
                                 if Int(date_selected) == (all_keys.count - 1){
-                                    if Information.indexnumber != (JSON.init(parseJSON:request_data)["all_weeks_blocks"].count - 1) {
+                                    if Information.indexnumber != (parsedData["all_weeks_blocks"].count - 1) {
                                         Information.indexnumber += 1
                                         all_keys = []
                                         var counterID = 0
-                                        for (key, day) in JSON.init(parseJSON:request_data)["all_weeks_blocks"][Information.indexnumber] {
-                                            //debugPrint(day[0]["date"].string)
-                                            //debugPrint(toMatchDate)
+                                        for (key, day) in parsedData["all_weeks_blocks"][Information.indexnumber] {
                                             if day[0]["date"].string!.contains(Information.todaydate) {
                                                 date_selected = key
                                                 day_selected = day[0]["date"].string!
@@ -283,25 +254,20 @@ struct ContentView: View {
                                         date_selected = String(all_keys[0].id)
                                         day_selected = all_keys[0].name
                                         if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
-                                        //if current_day ?? 100 != retrieve_day ?? -100 {
                                             warning_opacity = 0.0
                                         } else {
                                             warning_opacity = 0.8
                                         }}} else {
-                                            print(date_selected)
                                             if let currentIndex = Int(date_selected),
                                                currentIndex + 1 < all_keys.count {
                                                 date_selected = String(all_keys[currentIndex + 1].id)
                                                 day_selected = all_keys[Int(date_selected)!].name
-                                                print(day_selected)
                                                 if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
                                                     warning_opacity = 0.0
                                                 } else {
                                                     warning_opacity = 0.8
                                                 }
                                             } else {
-                                                // Handle the case where index is out of range or date_selected is not a valid Int
-                                                // For example, you could set date_selected to a default value or leave it unchanged
                                                 print("Index out of range or invalid date_selected")
                                             }
 
@@ -323,55 +289,52 @@ struct ContentView: View {
                         BlockCollection(text: $request_data, whichDate: $date_selected)
                     }
                 }
-                //.navigationBarTitle("Week \(Int(Information.indexnumber) + 1)")
-                .navigationBarItems(leading: Button(action: {
-                    //debugPrint(all_keys)
-                    Information.indexnumber = Information.currentnum.0
-                    all_keys = []
-                    var counterID = 0
-                    for (key, day) in JSON.init(parseJSON:request_data)["all_weeks_blocks"][Information.indexnumber] {
-                        if day[0]["date"].string!.contains(Information.todaydate) {
-                            date_selected = key
-                            day_selected = day[0]["date"].string!
-                        }
-                        all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string!))
-                        counterID = counterID + 1
-                    }
-                    date_selected = Information.currentnum.1
-                    if let index = Int(date_selected), index >= 0, index < all_keys.count, !all_keys.isEmpty  {
-                        day_selected = all_keys[Int(date_selected)!].name
-                        warning_opacity = 0.0
+                .navigationBarItems(
+                    leading: HStack {
 
-                    }
-                }) {
-                    HStack {
-                        Image(systemName: "arrow.uturn.left")
-                        Text("today")
-                    }
-                }
-                .padding(5)
-                .foregroundColor(.white)
-                .background(Color(red: 218/255, green: 165/255, blue: 32/255))
-                .cornerRadius(20)
-                .opacity($warning_opacity.wrappedValue)
-)
-                .navigationBarItems(leading:
-                                        HStack {
-                                            Text("Week \(Int(Information.indexnumber) + 1)")
-                                        }
-                                        .font(.title3)
-                                        .padding(5)
-                                        .background(Color.white)
-                                        .foregroundColor(Color.black)
-                                        .cornerRadius(5)
-                )
-                .navigationBarItems(trailing:
-                    Button(action: {
-                    setToLoading()
+                        Text("Week \(Int(Information.indexnumber) + 1)")
+                            .font(.title3)
+                            .padding(5)
+                            .background(Color.white)
+                            .foregroundColor(Color.black)
+                            .cornerRadius(5)
+                            
+                        Button(action: {
+                            Information.indexnumber = Information.currentnum.0
+                            all_keys = []
+                            var counterID = 0
+                            for (key, day) in parsedData["all_weeks_blocks"][Information.indexnumber] {
+                                if day[0]["date"].string!.contains(Information.todaydate) {
+                                    date_selected = key
+                                    day_selected = day[0]["date"].string!
+                                }
+                                all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string!))
+                                counterID = counterID + 1
+                            }
+                            date_selected = Information.currentnum.1
+                            if let index = Int(date_selected), index >= 0, index < all_keys.count, !all_keys.isEmpty  {
+                                day_selected = all_keys[Int(date_selected)!].name
+                                warning_opacity = 0.0
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: "arrow.uturn.left")
+                                Text("today")
+                            }
+                        }
+                        .padding(5)
+                        .foregroundColor(.white)
+                        .background(Color(red: 218/255, green: 165/255, blue: 32/255))
+                        .cornerRadius(20)
+                        .opacity($warning_opacity.wrappedValue)
+                        
+                    },
+                    trailing: Button(action: {
+                        setToLoading()
                         let simpleCompletionHandler:()->Void =  {
                             updateScheduleView()
                         }
-                    ConnectorClass().makeRequest(calurl: calurl, cluburl: cluburl, token: token, completionHandler: simpleCompletionHandler)
+                        ConnectorClass().makeRequest(calurl: calurl, cluburl: cluburl, token: token, completionHandler: simpleCompletionHandler)
                     }) {
                         Image(systemName: "arrow.counterclockwise").imageScale(.large)
                     }
@@ -454,7 +417,6 @@ struct ContentView: View {
                 switch phase {
                 case .background:
                     if colorScheme == .light {
-                        //(UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).set("light", forKey: "lastColors")
                         (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).set("dark", forKey: "lastColors")
                     } else {
                         (UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).set("dark", forKey: "lastColors")
@@ -513,7 +475,6 @@ struct ContentView: View {
                     }
                     
                     print("App is Active")
-                    //debugPrint((UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!).string(forKey: "request_data")  ?? "")
                     UITabBar.appearance().isTranslucent = false
                     UITabBar.appearance().barTintColor = .white
                     if request_data == "" {
