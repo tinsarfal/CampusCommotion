@@ -224,7 +224,7 @@ struct HomeworkView: View {
         if type != "calendar_event" {
             let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/assignments/\(assignmentid)?access_token=\(token)"
             
-            AF.request(url).responseData { response in
+            NetworkManager.shared.request(url).responseData { response in
                 switch response.result {
                 case .success(let data):
                     do {
@@ -250,7 +250,7 @@ struct HomeworkView: View {
         } else {
             let url = "https://canvas.example.edu/api/v1/calendar_events/\(assignmentid)?access_token=\(token)"
             
-            AF.request(url).responseData { response in
+            NetworkManager.shared.request(url).responseData { response in
                 switch response.result {
                 case .success(let data):
                     do {
@@ -279,7 +279,7 @@ struct HomeworkView: View {
     func loadDiscussionTopic() {
         let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)?access_token=\(token)"
         
-        AF.request(url).responseData { response in
+        NetworkManager.shared.request(url).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
@@ -302,7 +302,7 @@ struct HomeworkView: View {
     func loadDiscussionEntries() {
         let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)/entries?access_token=\(token)"
         
-        AF.request(url).responseData { response in
+        NetworkManager.shared.request(url).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
