@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072479CE2D4AB7F0000185B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072479CD2D4AB7F0000185B7 /* NetworkManager.swift */; };
+		072479CF2D4AB7F0000185B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072479CD2D4AB7F0000185B7 /* NetworkManager.swift */; };
 		0729730A2D437BF500D3FA83 /* CampusCommotionWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		07522B232B4EE6FB00E65E44 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B222B4EE6FB00E65E44 /* CoursesView.swift */; };
 		07522B252B4F247700E65E44 /* HomeworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B242B4F247700E65E44 /* HomeworkView.swift */; };
@@ -64,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		072479CD2D4AB7F0000185B7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		07522B222B4EE6FB00E65E44 /* CoursesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 		07522B242B4F247700E65E44 /* HomeworkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeworkView.swift; sourceTree = "<group>"; };
 		07E28C712B47510500E67F0F /* MembersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				59D984F226CDC9830063E7E5 /* Connector.swift */,
+				072479CD2D4AB7F0000185B7 /* NetworkManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -382,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				072479CF2D4AB7F0000185B7 /* NetworkManager.swift in Sources */,
 				597D5D5F26D729BA00468ED0 /* CampusCommotionWidget.swift in Sources */,
 				597D5D6B26D72A7000468ED0 /* Connector.swift in Sources */,
 			);
@@ -401,6 +406,7 @@
 				59D984F326CDC9840063E7E5 /* Connector.swift in Sources */,
 				598DC3AD2780F65E00DBC055 /* WebView.swift in Sources */,
 				5951AD532785161D00E11C1D /* WebViewController.swift in Sources */,
+				072479CE2D4AB7F0000185B7 /* NetworkManager.swift in Sources */,
 				599B60A026CD9C710056108A /* ContentView.swift in Sources */,
 				07522B252B4F247700E65E44 /* HomeworkView.swift in Sources */,
 				599B609E26CD9C710056108A /* CampusCommotionApp.swift in Sources */,
