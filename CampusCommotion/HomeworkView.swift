@@ -62,11 +62,8 @@ struct HomeworkView: View {
                         Spacer()
                         //.navigationBarTitle(assignmentData.name)
                         if let styledAttributedString = styledAttributedString {
-                            if #available(iOS 15, *) {
                                 Text(AttributedString(styledAttributedString))
-                            } else {
-                                Text(styledAttributedString.string)
-                            }}
+                            }
                         else {
                             Text("Loading...")
                         }
@@ -87,7 +84,11 @@ struct HomeworkView: View {
                             }
                         
                         Spacer()
-                        Text("No description for this assignment.")
+                        if let lockdetails = assignmentData.lock_explanation {
+                            Text(lockdetails)
+                        } else {
+                            Text("No description for this assignment.")
+                        }
                         Spacer()
                     }
                 } else {
@@ -116,11 +117,8 @@ struct HomeworkView: View {
                                 Text(calendarEventData.location_name!)
                                 .font(.title3) }
                             if let styledAttributedString = styledAttributedString {
-                                if #available(iOS 15, *) {
                                     Text(AttributedString(styledAttributedString))
-                                } else {
-                                    Text(styledAttributedString.string)
-                                }}
+                                }
                         } else {
                             Text("Loading...")
                                 .onAppear(perform: loadData)
@@ -132,11 +130,7 @@ struct HomeworkView: View {
                                 .font(.largeTitle)
                                 .multilineTextAlignment(.center)
                             if let attributedMessage = discussionTopic.attributedMessage {
-                                if #available(iOS 15, *) {
-                                    Text(AttributedString(attributedMessage))
-                                } else {
-                                    Text(attributedMessage.string)
-                                }
+                                Text(AttributedString(attributedMessage))
                             }
                         } else {
                             Text("Loading discussion topic...")
@@ -151,11 +145,8 @@ struct HomeworkView: View {
                                         .font(.headline)
                                     // Use attributedMessage instead of parsing in the view
                                     if let attributedMessage = entry.attributedMessage {
-                                        if #available(iOS 15, *) {
-                                            Text(AttributedString(attributedMessage))
-                                        } else {
-                                            Text(attributedMessage.string)
-                                        }
+                                        Text(AttributedString(attributedMessage))
+
                                     }
                                     if let replies = entry.recent_replies {
                                         ForEach(replies, id: \.id) { reply in
@@ -164,11 +155,7 @@ struct HomeworkView: View {
                                                     .font(.subheadline)
                                                 // Use attributedMessage instead of parsing in the view
                                                 if let attributedMessage = reply.attributedMessage {
-                                                    if #available(iOS 15, *) {
-                                                        Text(AttributedString(attributedMessage))
-                                                    } else {
-                                                        Text(attributedMessage.string)
-                                                    }
+                                                    Text(AttributedString(attributedMessage))
                                                 }
                                             }
                                             .padding(.leading)
@@ -185,6 +172,24 @@ struct HomeworkView: View {
                             Text("Loading entries...")
                                 .onAppear {
                                         loadDiscussionEntries()
+                                }
+                        }
+                    } else if type == "announcement" {
+                        if let discussionTopic = discussionTopic {
+                            Text(discussionTopic.title)
+                                .font(.largeTitle)
+                                .multilineTextAlignment(.center)
+                            if let postedat = discussionTopic.posted_at {
+                            Text("Posted: " + dateFormatter.string(from: postedat))
+                                    .font(.title3)
+                            }
+                            if let attributedMessage = discussionTopic.attributedMessage {
+                                Text(AttributedString(attributedMessage))
+                            }
+                        } else {
+                            Text("Loading announcement...")
+                                .onAppear {
+                                    loadDiscussionTopic()
                                 }
                         }
                     } else {
@@ -204,7 +209,6 @@ struct HomeworkView: View {
         
         do {
             let attributedString = try NSMutableAttributedString(data: htmlData, options: options, documentAttributes: nil)
-            if #available(iOS 15, *) {
                 attributedString.addAttribute(.foregroundColor, value: textColor, range: NSRange(location: 0, length: attributedString.length))
                 attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attributedString.length))
                 attributedString.enumerateAttribute(.backgroundColor, in: NSRange(location: 0, length: attributedString.length)) { value, range, _ in
@@ -212,7 +216,6 @@ struct HomeworkView: View {
                         attributedString.addAttribute(.backgroundColor, value: UIColor.orange, range: range)
                     }
                 }
-            }
             return attributedString
         } catch {
             print("Error parsing HTML to attributed string: \(error)")
@@ -283,7 +286,9 @@ struct HomeworkView: View {
             switch response.result {
             case .success(let data):
                 do {
-                    let fetchedTopic = try JSONDecoder().decode(DiscussionTopic.self, from: data)
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    let fetchedTopic = try decoder.decode(DiscussionTopic.self, from: data)
                     DispatchQueue.main.async {
                         self.discussionTopic = fetchedTopic
                         self.discussionTopic?.attributedMessage = parseHTMLToAttributedString(htmlString: fetchedTopic.message)
@@ -349,6 +354,13 @@ struct AssignmentData: Codable {
     let due_at: Date?
     let description: String?
     let location: String?
+    let lock_info: LockInfo?
+    let lock_explanation: String?
+}
+
+struct LockInfo: Codable {
+    let unlock_at: String?
+    let asset_string: String?
 }
 
 struct CalendarEventData: Codable {
@@ -365,10 +377,11 @@ struct DiscussionTopic: Codable {
     let id: Int
     let title: String
     let message: String
+    let posted_at: Date?
     var attributedMessage: NSAttributedString?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, message
+        case id, title, message, posted_at
     }
 }
 
