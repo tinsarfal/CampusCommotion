@@ -77,7 +77,7 @@ struct MembersView: View {
                 return
             }
 
-            let apiURLString = "https://canvas.example.edu/api/v1/sections/\(sectionID)/enrollments?access_token=\(token)&include=avatar_url&per_page=100&type=StudentEnrollment"
+            let apiURLString = "https://canvas.example.edu/api/v1/sections/\(sectionID)/enrollments?include=avatar_url&per_page=100&type=StudentEnrollment"
 
             NetworkManager.shared.request(apiURLString).responseData { response in
                 switch response.result {

@@ -225,7 +225,7 @@ struct HomeworkView: View {
 
     func loadData() {
         if type != "calendar_event" {
-            let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/assignments/\(assignmentid)?access_token=\(token)"
+            let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/assignments/\(assignmentid)"
             
             NetworkManager.shared.request(url).responseData { response in
                 switch response.result {
@@ -251,7 +251,7 @@ struct HomeworkView: View {
                 }
             }
         } else {
-            let url = "https://canvas.example.edu/api/v1/calendar_events/\(assignmentid)?access_token=\(token)"
+            let url = "https://canvas.example.edu/api/v1/calendar_events/\(assignmentid)"
             
             NetworkManager.shared.request(url).responseData { response in
                 switch response.result {
@@ -280,7 +280,7 @@ struct HomeworkView: View {
     }
 
     func loadDiscussionTopic() {
-        let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)?access_token=\(token)"
+        let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)"
         
         NetworkManager.shared.request(url).responseData { response in
             switch response.result {
@@ -305,7 +305,7 @@ struct HomeworkView: View {
     }
 
     func loadDiscussionEntries() {
-        let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)/entries?access_token=\(token)"
+        let url = "https://canvas.example.edu/api/v1/courses/\(selectedcourseid)/discussion_topics/\(assignmentid)/entries"
         
         NetworkManager.shared.request(url).responseData { response in
             switch response.result {
