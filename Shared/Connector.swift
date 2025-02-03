@@ -584,7 +584,7 @@ class ConnectorClass {
 
         if !token.isEmpty {
             group.enter()
-            NetworkManager.shared.request("https://canvas.exeter.edu/api/v1/users/self/enrollments?access_token=\(token)&per_page=100").responseString { response in
+            NetworkManager.shared.request("https://canvas.exeter.edu/api/v1/users/self/enrollments?per_page=100").responseString { response in
                 switch response.result {
                 case .success(let value):
                     self.handleEnrollmentsResponse(value: value, token: token, group: group, completionHandler: completionHandler)
@@ -633,7 +633,7 @@ class ConnectorClass {
 
     validEnrollments.forEach { (courseId, sectionID) in
         group.enter()
-        NetworkManager.shared.request("https://canvas.exeter.edu/api/v1/courses/\(courseId)?access_token=\(token)&per_page=100")
+        NetworkManager.shared.request("https://canvas.exeter.edu/api/v1/courses/\(courseId)?per_page=100")
             .responseString { response in
                 defer { group.leave() }
                 switch response.result {
@@ -647,7 +647,7 @@ class ConnectorClass {
 
                     // Fetch students for this course section
                     group.enter()
-                    NetworkManager.shared.request("https://canvas.exeter.edu/api/v1/sections/\(sectionID)/enrollments?access_token=\(token)&include=avatar_url&per_page=100&type=StudentEnrollment")
+                    NetworkManager.shared.request("https://canvas.exeter.edu/api/v1/sections/\(sectionID)/enrollments?include=avatar_url&per_page=100&type=StudentEnrollment")
                         .responseString { response in
                             defer { group.leave() }
                             switch response.result {

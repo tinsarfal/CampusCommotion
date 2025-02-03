@@ -69,7 +69,7 @@ struct CoursesView: View {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let formattedDate = dateFormatter.string(from: Date())
         
-        guard let url = URL(string: "https://exeter.instructure.com/api/v1/planner/items?start_date=\(formattedDate)&access_token=\(token)&per_page=100") else {
+        guard let url = URL(string: "https://canvas.exeter.edu/api/v1/planner/items?start_date=\(formattedDate)&per_page=100") else {
             print("Invalid URL")
             return
         }
