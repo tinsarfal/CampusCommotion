@@ -15,7 +15,6 @@
 		07E28C722B47510500E67F0F /* MembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E28C712B47510500E67F0F /* MembersView.swift */; };
 		07F3AC1D2C9B713C004444AE /* Acknowledgements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F3AC1C2C9B7114004444AE /* Acknowledgements.swift */; };
 		5946356F2786397F00FB49DD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5946356E2786397F00FB49DD /* ProfileView.swift */; };
-		5951AD532785161D00E11C1D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951AD522785161D00E11C1D /* WebViewController.swift */; };
 		5951AD55278546CF00E11C1D /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951AD54278546CF00E11C1D /* Preferences.swift */; };
 		597D5D5A26D729BA00468ED0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597D5D5926D729BA00468ED0 /* WidgetKit.framework */; };
 		597D5D5C26D729BA00468ED0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 597D5D5B26D729BA00468ED0 /* SwiftUI.framework */; };
@@ -72,7 +71,6 @@
 		07E28C712B47510500E67F0F /* MembersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		07F3AC1C2C9B7114004444AE /* Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgements.swift; sourceTree = "<group>"; };
 		5946356E2786397F00FB49DD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		5951AD522785161D00E11C1D /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		5951AD54278546CF00E11C1D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		597B966E26DC45B700A9D6EB /* CampusCommotion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CampusCommotion.entitlements; sourceTree = "<group>"; };
 		597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CampusCommotionWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +135,7 @@
 		597D5D5D26D729BA00468ED0 /* CampusCommotionWidget */ = {
 			isa = PBXGroup;
 			children = (
+				59E1B10E26DAF6FC00B42681 /* CampusCommotionWidgetExtension.entitlements */,
 				597D5D5E26D729BA00468ED0 /* CampusCommotionWidget.swift */,
 				597D5D6026D729C400468ED0 /* Assets.xcassets */,
 				59AF3FB62757F7FE00D873F4 /* Info.plist */,
@@ -157,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				59A7BE7326E8CE8E00E05CD1 /* Launch Screen.storyboard */,
-				59E1B10E26DAF6FC00B42681 /* CampusCommotionWidgetExtension.entitlements */,
 				597D5D6A26D72A5500468ED0 /* Shared */,
 				599B609C26CD9C710056108A /* CampusCommotion */,
 				597D5D5D26D729BA00468ED0 /* CampusCommotionWidget */,
@@ -188,7 +186,6 @@
 				599B60A326CD9C750056108A /* Preview Content */,
 				59B8FB6526CEDFE6008903BB /* BlockView.swift */,
 				59925CA826D5CF6200B474CD /* BlockCollection.swift */,
-				5951AD522785161D00E11C1D /* WebViewController.swift */,
 				07522B242B4F247700E65E44 /* HomeworkView.swift */,
 				07E28C712B47510500E67F0F /* MembersView.swift */,
 				07522B222B4EE6FB00E65E44 /* CoursesView.swift */,
@@ -405,7 +402,6 @@
 				59B8FB6626CEDFE6008903BB /* BlockView.swift in Sources */,
 				59D984F326CDC9840063E7E5 /* Connector.swift in Sources */,
 				598DC3AD2780F65E00DBC055 /* WebView.swift in Sources */,
-				5951AD532785161D00E11C1D /* WebViewController.swift in Sources */,
 				072479CE2D4AB7F0000185B7 /* NetworkManager.swift in Sources */,
 				599B60A026CD9C710056108A /* ContentView.swift in Sources */,
 				07522B252B4F247700E65E44 /* HomeworkView.swift in Sources */,
@@ -436,7 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = CampusCommotionWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CampusCommotionWidget/CampusCommotionWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
@@ -465,7 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = CampusCommotionWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CampusCommotionWidget/CampusCommotionWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
