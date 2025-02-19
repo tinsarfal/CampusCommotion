@@ -8,6 +8,7 @@ import WidgetKit
 import ActivityIndicatorView
 import WebKit
 import KeychainSwift
+import WatchConnectivity
 
 struct ScheduleDate: Identifiable {
     var id: Int
@@ -120,6 +121,14 @@ struct ContentView: View {
                 DispatchQueue.main.async {
                     self.request_data = requestData
                     self.parsedData = JSON(parseJSON: requestData)
+                    // Use try with error handling for the throwing call
+                    do {
+                        try WatchSessionManager.sharedManager.updateApplicationContext(applicationContext: [
+                            "request_data": requestData as AnyObject
+                        ])
+                    } catch {
+                        print("Error updating watch context: \(error)")
+                    }
                     self.updateUI()
                 }
             } else {
@@ -303,7 +312,9 @@ struct ContentView: View {
                             }
                             Spacer()
                         }
-                        .onAppear() {
+                        .onAppear {
+                            // Start the WC session when view appears
+                            WatchSessionManager.sharedManager.startSession()
                             updateScheduleView()
                         }
                         BlockCollection(text: $request_data, whichDate: $date_selected)
