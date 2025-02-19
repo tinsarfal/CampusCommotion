@@ -5,7 +5,6 @@ target 'CampusCommotion' do
   use_frameworks!
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'hpple'
   pod 'ActivityIndicatorView'
   pod 'URLImage'
   pod 'KeychainSwift'
@@ -15,6 +14,13 @@ target 'CampusCommotionWidgetExtension' do
   use_frameworks!
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'hpple'
+  pod 'KeychainSwift'
+end
+
+target 'CampusCommotionWatch' do
+  use_frameworks!
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'ActivityIndicatorView'
   pod 'KeychainSwift'
 end
