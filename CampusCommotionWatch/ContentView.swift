@@ -107,12 +107,19 @@ struct ContentView: View {
                 }
             }
             .onAppear {
-                // Start the WC session and listen for connectivity updates
+                // Start the WC session and load cached schedule data if available
                 WatchSessionManager.sharedManager.startSession()
+                if requestData.isEmpty,
+                   let cachedData = UserDefaults.standard.string(forKey: "cachedScheduleData") {
+                    requestData = cachedData
+                    loadSchedule()
+                }
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ReceivedRequestData"))) { note in
                 if let info = note.userInfo, let newData = info["request_data"] as? String {
                     requestData = newData
+                    // Cache the received schedule data
+                    UserDefaults.standard.set(newData, forKey: "cachedScheduleData")
                 }
                 loadSchedule()
             }
