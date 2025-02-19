@@ -126,8 +126,10 @@ struct BlockCollection: View {
     
 
     var body: some View {
+        #if !os(watchOS)
         Spacer(minLength: 20)
         Divider()
+        #endif
     
         ForEach(block_list, id: \.id) { block in
             block
