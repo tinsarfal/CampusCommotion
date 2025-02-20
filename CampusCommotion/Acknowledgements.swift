@@ -1,7 +1,6 @@
 //
 //  Acknowledgements.swift
 //  CampusCommotion
-//
 
 import SwiftUI
 import CoreData

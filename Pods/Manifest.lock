@@ -1,8 +1,8 @@
 PODS:
-  - ActivityIndicatorView (1.0.1)
-  - Alamofire (5.4.3)
-  - KeychainSwift (21.0.0)
-  - SwiftyJSON (5.0.1)
+  - ActivityIndicatorView (1.1.1)
+  - Alamofire (5.10.2)
+  - KeychainSwift (24.0.0)
+  - SwiftyJSON (5.0.2)
   - URLImage (2.2.5):
     - URLImage/Common (= 2.2.5)
     - URLImage/DownloadManager (= 2.2.5)
@@ -39,12 +39,12 @@ SPEC REPOS:
     - URLImage
 
 SPEC CHECKSUMS:
-  ActivityIndicatorView: 425e6db935766a4a87d65cd2ce021a023bfa0603
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  KeychainSwift: 4a71a45c802fd9e73906457c2dcbdbdc06c9419d
-  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  ActivityIndicatorView: f14ac8e200a344fe992577807998b0c8562bd964
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
+  KeychainSwift: 007c4647486e4563adca839cf02cef00deb3b670
+  SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   URLImage: 36a66c03ba2a9ccbbf06bc83431f2cef171008e8
 
-PODFILE CHECKSUM: 8860157ecf0d965d57952bc103514216b217a712
+PODFILE CHECKSUM: 25ded9df461c6884bcc648acd89fb277c9f3866e
 
 COCOAPODS: 1.16.2

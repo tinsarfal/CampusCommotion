@@ -3,6 +3,7 @@ import SwiftyJSON
 import ActivityIndicatorView
 import KeychainSwift
 import WatchConnectivity
+import WidgetKit
 
 struct Event: Codable {
     let pmstart: Bool
@@ -110,7 +111,7 @@ struct ContentView: View {
                 // Start the WC session and load cached schedule data if available
                 WatchSessionManager.sharedManager.startSession()
                 if requestData.isEmpty,
-                   let cachedData = UserDefaults.standard.string(forKey: "cachedScheduleData") {
+                   let cachedData = UserDefaults(suiteName: "group.com.example.CampusCommotion")!.string(forKey: "request_data") {
                     requestData = cachedData
                     loadSchedule()
                 }
@@ -119,7 +120,8 @@ struct ContentView: View {
                 if let info = note.userInfo, let newData = info["request_data"] as? String {
                     requestData = newData
                     // Cache the received schedule data
-                    UserDefaults.standard.set(newData, forKey: "cachedScheduleData")
+                    UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(newData, forKey: "request_data")
+                    WidgetCenter.shared.reloadAllTimelines()
                 }
                 loadSchedule()
             }
