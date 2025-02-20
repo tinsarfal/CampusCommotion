@@ -1,5 +1,5 @@
-<img src="https://github.com/exyte/ActivityIndicatorView/blob/master/Assets/header.png">
-<img align="right" src="https://raw.githubusercontent.com/exyte/ActivityIndicatorView/master/Assets/demo.gif" width="480" />
+<img src="https://raw.githubusercontent.com/exyte/media/master/common/header.png">
+<img align="right" src="https://raw.githubusercontent.com/exyte/media/master/ActivityIndicatorView/demo.gif" width="480" />
 
 <p><h1 align="left">ActivityIndicatorView</h1></p>
 
@@ -38,26 +38,53 @@ You may alter it with standard SwiftUI means like this:
         .frame(width: 50.0, height: 50.0)
         .foregroundColor(.red)
    ```
+Or specify another indicator type:
 
-### Indicator types
-`default` - iOS UIActivityIndicator style  
-`arcs`  
-`rotatingDots`  
-`flickeringDots`  
-`scalingDots`  
-`opacityDots`  
-`equalizer`  
-`growingArc` - add custom color for growing Arc, the default value is `Color.red`
    ```swift
-   ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .growingArc(.red))
+   ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .growingArc(.red, lineWidth: 4))
        .frame(width: 50.0, height: 50.0)
    ```
-`growingCircle`  
-`gradient` - circle with angular gradient border stroke, pass colors ilke this:
-   ```swift
-   ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .gradient([.white, .red]))
-       .frame(width: 50.0, height: 50.0)
-   ```  
+
+### Indicator types
+Each indicator type has a number of parameters that have reasonable defaults. You can change them as you see fit, but it is advised to not set them too high or too low.
+
+`default` - iOS UIActivityIndicator style  
+```swift
+.default(count: 8)
+```
+`arcs`    
+```swift
+.arcs(count: 3, lineWidth: 2)
+```
+`rotatingDots`    
+```swift
+.rotatingDots(count: 5)
+```
+`flickeringDots`    
+```swift
+.flickeringDots(count: 8)
+```
+`scalingDots`     
+```swift
+.scalingDots(count: 3, inset: 2)
+``` 
+`opacityDots`  
+```swift
+.opacityDots(count: 3, inset: 4)
+``` 
+`equalizer`  
+```swift
+.equalizer(count: 5)
+```
+`growingArc` - add custom color for growing Arc, the default value is `Color.black`      
+```swift
+.growingArc(.red, lineWidth: 4))
+```
+`growingCircle` no parameters   
+`gradient` - circle with angular gradient border stroke, pass colors ilke this:    
+```swift
+.gradient([.white, .red], lineWidth: 4)
+```  
 
 ## Examples
 
@@ -69,6 +96,14 @@ To try out the ActivityIndicatorView examples:
 - Try it!
 
 ## Installation
+
+### Swift Package Manager
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/exyte/ActivityIndicatorView.git")
+]
+```
 
 ### CocoaPods
 
@@ -82,19 +117,20 @@ pod 'ActivityIndicatorView'
 github "Exyte/ActivityIndicatorView"
 ```
 
-### Swift Package Manager
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/exyte/ActivityIndicatorView.git", from: "0.0.1")
-]
-```
-
-### Manually
-
-Drop [ActivityIndicatorView.swift](https://github.com/exyte/ActivityIndicatorView/blob/master/Source/ActivityIndicatorView.swift) into your project.
-
 ## Requirements
 
-* iOS 13+ / watchOS 13+ / tvOS 13+ / macOS 10.15+
+* iOS 13+ / watchOS 6+ / tvOS 13+ / macOS 10.15+
 * Xcode 11+
+
+## Our other open source SwiftUI libraries
+[PopupView](https://github.com/exyte/PopupView) - Toasts and popups library    
+[Grid](https://github.com/exyte/Grid) - The most powerful Grid container    
+[ScalingHeaderScrollView](https://github.com/exyte/ScalingHeaderScrollView) - A scroll view with a sticky header which shrinks as you scroll  
+[AnimatedTabBar](https://github.com/exyte/AnimatedTabBar) - A tabbar with number of preset animations         
+[MediaPicker](https://github.com/exyte/mediapicker) - Customizable media picker     
+[ConcentricOnboarding](https://github.com/exyte/ConcentricOnboarding) - Animated onboarding flow    
+[FloatingButton](https://github.com/exyte/FloatingButton) - Floating button menu     
+[ProgressIndicatorView](https://github.com/exyte/ProgressIndicatorView) - A number of animated progress indicators    
+[SVGView](https://github.com/exyte/SVGView) - SVG parser    
+[LiquidSwipe](https://github.com/exyte/LiquidSwipe) - Liquid navigation animation    
+
