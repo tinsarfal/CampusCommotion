@@ -24,3 +24,10 @@ target 'CampusCommotionWatch' do
   pod 'ActivityIndicatorView'
   pod 'KeychainSwift'
 end
+
+target 'CampusComplication' do
+  use_frameworks!
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'KeychainSwift'
+end
