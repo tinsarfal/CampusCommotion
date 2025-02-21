@@ -28,10 +28,12 @@ struct Information {
         return dateFormatter.string(from: Date())
     }
     static var isOld: Bool = true
-    private static var _currentnum: (Int, String)? = nil
+
+    // Change the second element of the tuple to Int
+    private static var _currentnum: (Int, Int)? = nil
     private static var lastUpdateDate: String? = nil
     
-    public static var currentnum: (Int, String) {
+    public static var currentnum: (Int, Int) {
         let today = todaydate
         
         if let cachedCurrentnum = _currentnum, lastUpdateDate == today, !isOld {
@@ -40,7 +42,7 @@ struct Information {
         
         guard let request_data = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "request_data"),
               let requestDataJSON = try? JSON(parseJSON: request_data) else {
-            return (0, "0")
+            return (0, 0)
         }
         
         let calendar = Calendar.current
@@ -49,13 +51,16 @@ struct Information {
 
         for i in 0..<requestDataJSON["all_weeks_blocks"].count {
             for (key, day) in requestDataJSON["all_weeks_blocks"][i] {
-                guard let rawDateString = day[0]["date"].string?.split(separator: " ").last else { continue }
+                guard
+                    let rawDateString = day[0]["date"].string?.split(separator: " ").last,
+                    let intKey = Int(key) // Convert key to Int
+                else { continue }
                 
                 if rawDateString == today {
-                    _currentnum = (i, key)
+                    _currentnum = (i, intKey)
                     isOld = false
                     lastUpdateDate = today
-                    return (i, key)
+                    return (i, intKey)
                 }
                 
                 if let dayDate = dateFormatter.date(from: String(rawDateString)) {
@@ -70,17 +75,17 @@ struct Information {
                     }
                     
                     if adjustedDate >= Date() {
-                        _currentnum = (i, key)
+                        _currentnum = (i, intKey)
                         isOld = false
                         lastUpdateDate = today
-                        return (i, key)
+                        return (i, intKey)
                     }
                 }
             }
         }
-        _currentnum = (0, "0")
+        _currentnum = (0, 0)
         lastUpdateDate = today
-        return (0, "0")
+        return (0, 0)
     }
     
     static var indexnumber = currentnum.0
@@ -88,60 +93,56 @@ struct Information {
 
 struct ContentView: View {
     @State private var requestData: String = ""
-    // Use computed property to update parsed JSON as requestData changes.
     private var parsedJSON: JSON { JSON(requestData) }
     @State private var showLoadingIndicator = false
     @State private var selectedDate: ScheduleDate?
     @State private var shouldRefresh = false
+
     @State private var date_selected = Information.currentnum.1
 
     var body: some View {
-            VStack {
-                if showLoadingIndicator {
-                    ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .growingArc(.red))
-                        .frame(width: 50, height: 50)
+        VStack {
+            if showLoadingIndicator {
+                ActivityIndicatorView(isVisible: $showLoadingIndicator, type: .growingArc(.red))
+                    .frame(width: 50, height: 50)
+            } else {
+                ScrollView {
+                    BlockCollection(text: $requestData, whichDate: .constant(String(date_selected)))
+                }
+            }
+        }
+        .onAppear {
+            WatchSessionManager.sharedManager.startSession()
+            if requestData == "" {
+                if let cachedData = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "request_data"), cachedData != "" {
+                    print("CachedData: " + cachedData)
+                    requestData = cachedData
                 } else {
-                    ScrollView {
-                        BlockCollection(text: $requestData, whichDate: $date_selected)
+                    let context = WCSession.default.receivedApplicationContext
+                    if let retrievedData = context["request_data"] as? String {
+                        print("retrievedData: " + retrievedData)
+                        requestData = retrievedData
+                        UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(requestData, forKey: "request_data")
+                        Information.isOld = true
+                        Information.indexnumber = Information.currentnum.0
+                        date_selected = Information.currentnum.1
+                        WidgetCenter.shared.reloadAllTimelines()
                     }
                 }
             }
-            .onAppear {
-                // Start the WC session and load cached schedule data if available
-                WatchSessionManager.sharedManager.startSession()
-                if requestData == "" {
-                    if let cachedData = UserDefaults(suiteName: "group.com.example.CampusCommotion")!.string(forKey: "request_data"), cachedData != "" {
-                        print("CachedData: " + cachedData)
-                        requestData = cachedData
-                    } else {
-                        let context = WCSession.default.receivedApplicationContext
-                        if let retrievedData = context["request_data"] as? String {
-                            print("retrievedData: " + retrievedData)
-                            requestData = retrievedData
-                            UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(requestData, forKey: "request_data")
-                            Information.isOld=true
-                            Information.indexnumber = Information.currentnum.0
-                            date_selected = Information.currentnum.1
-                            WidgetCenter.shared.reloadAllTimelines()
-
-                        }
-                    }
-                }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ReceivedRequestData"))) { note in
+            if let info = note.userInfo, let newData = info["request_data"] as? String {
+                requestData = newData
+                print("newData" + newData)
+                UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(newData, forKey: "request_data")
+                Information.isOld = true
+                Information.indexnumber = Information.currentnum.0
+                date_selected = Information.currentnum.1
+                WidgetCenter.shared.reloadAllTimelines()
             }
-            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ReceivedRequestData"))) { note in
-                if let info = note.userInfo, let newData = info["request_data"] as? String {
-                    requestData = newData
-                    print("newData" + newData)
-                    // Cache the received schedule data
-                    UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(newData, forKey: "request_data")
-                    Information.isOld=true
-                    Information.indexnumber = Information.currentnum.0
-                    date_selected = Information.currentnum.1
-                    WidgetCenter.shared.reloadAllTimelines()
-                }
-            }
+        }
     }
-
 }
 
 /// Model representing a schedule date item.
