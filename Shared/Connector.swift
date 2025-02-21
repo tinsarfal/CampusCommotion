@@ -303,8 +303,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                 "endtime": currentEvent["endtime"] ?? "",
                 "pmend": currentEvent["isEndAfternoon"] ?? false,
                 "classname": currentEvent["classname"] ?? "",
-                "teacher": currentEvent["teacher"] ?? "",
-                "teacherusername": (currentEvent["teacherusername"] as? String)?.dropFirst(7) ?? "",
                 "location": currentEvent["location"] ?? ""
             ]
             blockschedules.append(blockDictionary)
@@ -359,11 +357,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                 currentEvent["description"] = extractStringFromLine(String(line))
             } else if line.starts(with: "UID") {
                 currentEvent["blockid"] = extractStringFromLine(String(line))
-            } else if line.starts(with: "TEACHER") {
-                currentEvent["teacher"] = extractStringFromLine(String(line))
-            } else if line.starts(with: "TEACHERUSERNAME") {
-                let teacherUsername = extractStringFromLine(String(line))
-                currentEvent["teacherusername"] = teacherUsername
             }
         }
     }
@@ -393,8 +386,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                     "endtime": currentEvent["endtime"] ?? "",
                     "pmend": currentEvent["isEndAfternoon"] ?? false,
                     "classname": clubName,
-                    "teacher": currentEvent["teacher"] ?? "",
-                    "teacherusername": (currentEvent["teacherusername"] as? String)?.dropFirst(7) ?? "",
                     "location": currentEvent["location"] ?? ""
                 ]
                 blockschedules.append(blockDictionary)
@@ -453,11 +444,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                     currentEvent["description"] = extractStringFromLine(String(line))
                 } else if line.starts(with: "UID") {
                     currentEvent["blockid"] = extractStringFromLine(String(line))
-                } else if line.starts(with: "TEACHER") {
-                    currentEvent["teacher"] = extractStringFromLine(String(line))
-                } else if line.starts(with: "TEACHERUSERNAME") {
-                    let teacherUsername = extractStringFromLine(String(line))
-                    currentEvent["teacherusername"] = teacherUsername
                 }
             }
         }
