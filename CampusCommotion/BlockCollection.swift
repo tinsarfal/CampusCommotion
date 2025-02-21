@@ -44,8 +44,6 @@ struct BlockCollection: View {
         pmend: Bool = false,
         location: String = "",
         classname: String = "",
-        teacher: String = "",
-        teacherusername: String = "",
         color: String = "ffffff",
         endstop: Bool = true
     ) -> BlockView {
@@ -63,8 +61,6 @@ struct BlockCollection: View {
             endtime: endtime,
             pmend: pmend,
             classname: classname,
-            teacher: teacher,
-            teacherusername: teacherusername,
             location: location,
             use_color: my_color,
             endstop: endstop
@@ -105,8 +101,6 @@ struct BlockCollection: View {
                             pmend: subJson["pmend"].boolValue,
                             location: subJson["location"].stringValue,
                             classname: subJson["classname"].stringValue,
-                            teacher: subJson["teacher"].stringValue,
-                            teacherusername: subJson["teacherusername"].stringValue,
                             color: subJson["color"].stringValue
                         ))
                     }
@@ -126,8 +120,10 @@ struct BlockCollection: View {
     
 
     var body: some View {
+        #if !os(watchOS)
         Spacer(minLength: 20)
         Divider()
+        #endif
     
         ForEach(block_list, id: \.id) { block in
             block

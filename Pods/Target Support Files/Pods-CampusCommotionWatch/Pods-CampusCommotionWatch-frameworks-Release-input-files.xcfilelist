@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-CampusCommotionWatch/Pods-CampusCommotionWatch-frameworks.sh
+${BUILT_PRODUCTS_DIR}/ActivityIndicatorView-watchOS/ActivityIndicatorView.framework
+${BUILT_PRODUCTS_DIR}/Alamofire-watchOS/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/KeychainSwift-watchOS/KeychainSwift.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON-watchOS/SwiftyJSON.framework
