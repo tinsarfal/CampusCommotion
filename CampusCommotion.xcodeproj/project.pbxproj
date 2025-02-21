@@ -286,6 +286,7 @@
 				07625A4F2D66F0E800E01039 /* CampusCommotionWidgetExtension copy-Info.plist */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		599B609B26CD9C710056108A /* Products */ = {
 			isa = PBXGroup;

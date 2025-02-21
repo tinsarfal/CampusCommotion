@@ -29,14 +29,14 @@ struct Information {
     public static var todaydate: String {
         return dateFormatter.string(from: Date())
     }
-    
+    static var isOld: Bool = true
     private static var _currentnum: (Int, String)? = nil
     private static var lastUpdateDate: String? = nil
     
     public static var currentnum: (Int, String) {
         let today = todaydate
         
-        if let cachedCurrentnum = _currentnum, lastUpdateDate == today {
+        if let cachedCurrentnum = _currentnum, lastUpdateDate == today, !isOld {
             return cachedCurrentnum
         }
         
@@ -55,6 +55,7 @@ struct Information {
                 
                 if rawDateString == today {
                     _currentnum = (i, key)
+                    isOld = false
                     lastUpdateDate = today
                     return (i, key)
                 }
@@ -72,6 +73,7 @@ struct Information {
                     
                     if adjustedDate >= Date() {
                         _currentnum = (i, key)
+                        isOld = false
                         lastUpdateDate = today
                         return (i, key)
                     }
@@ -110,17 +112,36 @@ struct ContentView: View {
             .onAppear {
                 // Start the WC session and load cached schedule data if available
                 WatchSessionManager.sharedManager.startSession()
-                if requestData.isEmpty,
-                   let cachedData = UserDefaults(suiteName: "group.com.example.CampusCommotion")!.string(forKey: "request_data") {
-                    requestData = cachedData
-                    loadSchedule()
+                if requestData == "" {
+                    if let cachedData = UserDefaults(suiteName: "group.com.example.CampusCommotion")!.string(forKey: "request_data"), cachedData != "" {
+                        print("CachedData: " + cachedData)
+                        requestData = cachedData
+                        loadSchedule()
+                    } else {
+                        let context = WCSession.default.receivedApplicationContext
+                        if let retrievedData = context["request_data"] as? String {
+                            print("retrievedData: " + retrievedData)
+                            requestData = retrievedData
+                            UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(requestData, forKey: "request_data")
+                            Information.isOld=true
+                            Information.indexnumber = Information.currentnum.0
+                            date_selected = Information.currentnum.1
+                            WidgetCenter.shared.reloadAllTimelines()
+                            loadSchedule()
+
+                        }
+                    }
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ReceivedRequestData"))) { note in
                 if let info = note.userInfo, let newData = info["request_data"] as? String {
                     requestData = newData
+                    print("newData" + newData)
                     // Cache the received schedule data
                     UserDefaults(suiteName: "group.com.example.CampusCommotion")!.set(newData, forKey: "request_data")
+                    Information.isOld=true
+                    Information.indexnumber = Information.currentnum.0
+                    date_selected = Information.currentnum.1
                     WidgetCenter.shared.reloadAllTimelines()
                 }
                 loadSchedule()
