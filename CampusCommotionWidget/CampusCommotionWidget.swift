@@ -213,9 +213,24 @@ struct ScheduleWidgetEntryView: View {
                                 .foregroundColor(.gray)
                                 .bold()
                         }
-                        Text(entry.currentBlock)
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        //Text(entry.currentBlock)
+                        //    .font(.system(size: 20, weight: .bold))
+                        //    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        ViewThatFits {
+                            if entry.color != "#ffffff",
+                               entry.currentBlock != "CLB",
+                               let blockname = entry.name.split(separator: " ").first {
+                                Text(blockname + " (" + entry.currentBlock + ")")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                Text(blockname)
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                            }
+                            Text(entry.currentBlock)
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        }
                         Text(entry.time)
                             .font(.headline)
                             .foregroundColor(.white)
@@ -258,6 +273,7 @@ struct ScheduleWidgetEntryView: View {
                             if entry.isUpcoming {
                                 Text(entry.currentBlock + " at:")
                                         .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                        .minimumScaleFactor(0.5)
                                 Text(
                                         DateFormatter.localizedString(
                                             from: entry.end,
@@ -272,6 +288,7 @@ struct ScheduleWidgetEntryView: View {
                             } else {
                                 Text(entry.currentBlock + " ends:")
                                         .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                        .minimumScaleFactor(0.5)
                                 Text(
                                         DateFormatter.localizedString(
                                             from: entry.date,
@@ -307,9 +324,21 @@ struct ScheduleWidgetEntryView: View {
                                     .foregroundColor(.gray)
                                     .bold()
                             }
-                            Text(entry.currentBlock)
-                                .font(.system(size: 80, weight: .bold))
-                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                            ViewThatFits {
+                                if entry.color != "#ffffff",
+                                   entry.currentBlock != "CLB",
+                                   let blockname = entry.name.split(separator: " ").first {
+                                    Text(blockname + " (" + entry.currentBlock + ")")
+                                        .font(.system(size: 80, weight: .bold))
+                                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                    Text(blockname)
+                                        .font(.system(size: 80, weight: .bold))
+                                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                }
+                                Text(entry.currentBlock)
+                                    .font(.system(size: 80, weight: .bold))
+                                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                            }
                         }
                         Spacer()
                         VStack(alignment: .leading, spacing: 0) {
