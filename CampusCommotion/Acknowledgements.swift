@@ -1,7 +1,6 @@
 //
 //  Acknowledgements.swift
 //  CampusCommotion
-//
 
 import SwiftUI
 import CoreData
@@ -14,8 +13,6 @@ struct Acknowledgements: View {
     Copyright (c) 2014-2022 Alamofire Software Foundation (http://alamofire.org/)
     SwiftyJSON
     Copyright (c) 2017 Ruoyu Fu
-    hpple
-    Copyright (c) 2009 Topfunky Corporation, http://topfunky.com
     ActivityIndicatorView
     Copyright (c) 2020 exyte <info@exyte.com>
     URLImage

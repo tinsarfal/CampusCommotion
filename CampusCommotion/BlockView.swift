@@ -50,8 +50,6 @@ struct BlockView: View {
     var endtime: String
     var pmend: Bool
     var classname: String
-    var teacher: String
-    var teacherusername: String
     var location: String
     var use_color: Color
     var endstop: Bool
@@ -62,41 +60,26 @@ struct BlockView: View {
         try? JSONDecoder().decode([String: CourseData].self, from: $0)
     }
     func fetchCourseData() {
-            // Split the classname by space and get the first element
-            let classIDtag = classname.split(separator: " ").first ?? ""
-            
-            // Fetch the token from Keychain (replace with actual keychain implementation)
-            
-            // Loop through the coursedata and find matching classItem
-            for (_, classItem) in coursedata! {
-                let classIDFromJSON = classItem.coursecode
-                if classIDFromJSON.contains(classIDtag) {
-                    // If it contains the classID tag, update state
-                    hascanvas=true
-                }
+        let classIDtag = classname.split(separator: " ").first ?? ""
+        for (_, classItem) in coursedata! {
+            let classIDFromJSON = classItem.coursecode
+            if classIDFromJSON.contains(classIDtag) {
+                hascanvas = true
             }
         }
+    }
+    
     var body: some View {
         HStack(alignment: .center) {
-            
             VStack(alignment: .leading) {
-                
                 if blockid != "" {
                     Text(blockid)
                         .font(.largeTitle)
                         .fontWeight(.black)
                         .foregroundColor(use_color)
-                        .lineLimit(1) // Ensure it's limited to one line
-                        .minimumScaleFactor(0.5) // Scale down to 50% of the original font size if needed
-                }
-                if blockidsub != "" {
-                    Text(blockidsub.lowercased())
-                        .font(.body)
-                        .fontWeight(.thin)
-                        .foregroundColor(use_color)
                         .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }
-                
                 Text(starttime)
                     .font(.headline)
                     .foregroundColor(use_color)
@@ -105,31 +88,38 @@ struct BlockView: View {
                     .font(.headline)
                     .foregroundColor(use_color)
                     .lineLimit(2)
-            }.padding()
+            }
+            .padding()
+            #if os(watchOS)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            #endif
             
+            #if os(watchOS)
+            if use_color != Color.white,
+            blockid != "CLB" {
+                Text(classname.split(separator: " ").first ?? "")
+                    .font(.title3)
+                    .fontWeight(.regular)
+                    .foregroundColor(use_color)
+                    .padding()
+            }
+            #endif
+            
+            #if !os(watchOS)
             VStack(alignment: .leading) {
                 Text(classname)
                     .font(.title2)
                     .fontWeight(.regular)
                     .foregroundColor(use_color)
-                if teacher != "" {
-                    Text(teacher)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
                 if location != "" {
                     Text(location.uppercased())
-                        //, systemImage: "location")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
             }.padding([.trailing, .top, .bottom, .leading])
             Spacer()
-
-
-            // Process data without a loop, using first(where:)
             if hascanvas && (keychain.get("token") ?? "") != "" {
-                NavigationLink(destination: NavigationLazyView(CoursesView(selectedclass: classname, teacherusername: teacherusername, isclass: true))) {
+                NavigationLink(destination: NavigationLazyView(CoursesView(selectedclass: classname, isclass: true))) {
                     Text("Info")
                         .fontWeight(.semibold)
                         .font(.title3)
@@ -139,7 +129,9 @@ struct BlockView: View {
                         .cornerRadius(10)
                         .padding(.leading, 15)
                         .padding(.trailing, 15)
-                }}
+                }
+            }
+            #endif
         }
         .cornerRadius(10)
         .background(Color(red: 0.08, green: 0.08, blue: 0.08))
@@ -148,15 +140,14 @@ struct BlockView: View {
             keychain.accessGroup = "group.com.sscheffler.CampusCommotion"
             if (coursedata != nil) {
                 fetchCourseData()
-            }}
+            }
+        }
         if endstop {
-            //Divider()
+            // Divider()
         } else {
             LabelledDivider(label: "OVERLAPS")
-            .font(.caption)
-            .foregroundColor(.secondary)
+                .font(.caption)
+                .foregroundColor(.secondary)
         }
-        
     }
-    
 }

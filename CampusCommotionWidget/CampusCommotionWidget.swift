@@ -10,6 +10,7 @@ import Alamofire
 
 struct ScheduleEntry: TimelineEntry {
     let date: Date
+    let end: Date
     let currentBlock: String
     let isUpcoming: Bool
     let allDone: Bool
@@ -22,11 +23,11 @@ struct Provider: TimelineProvider {
     var allDone: Bool = false
     var selectedclass: String = ""
     func placeholder(in context: Context) -> ScheduleEntry {
-        ScheduleEntry(date: Date(), currentBlock: "Loading...", isUpcoming: false, allDone: false, name: "", color: "#000000", time: "")
+        ScheduleEntry(date: Date(), end: Date(), currentBlock: "Loading...", isUpcoming: false, allDone: false, name: "", color: "#000000", time: "")
     }
     
     func getSnapshot(in context: Context, completion: @escaping (ScheduleEntry) -> Void) {
-        let entry = ScheduleEntry(date: Date(), currentBlock: "Loading...", isUpcoming: false, allDone: false, name: "", color: "#000000", time: "")
+        let entry = ScheduleEntry(date: Date(), end: Date(), currentBlock: "Loading...", isUpcoming: false, allDone: false, name: "", color: "#000000", time: "")
         completion(entry)
     }
     
@@ -36,7 +37,7 @@ struct Provider: TimelineProvider {
         
         fetchBlocks { blocks in
             for block in blocks {
-                let entry = ScheduleEntry(date: block.start, currentBlock: block.id, isUpcoming: block.isUpcoming, allDone: block.allDone, name: block.name, color: block.color, time: block.time)
+                let entry = ScheduleEntry(date: block.start, end: block.end, currentBlock: block.id, isUpcoming: block.isUpcoming, allDone: block.allDone, name: block.name, color: block.color, time: block.time)
                 entries.append(entry)
             }
             
@@ -48,8 +49,14 @@ struct Provider: TimelineProvider {
     
     private func fetchBlocks(completion: @escaping ([Block]) -> Void) {
         print("fetchBlocks called")
+        //#if os(watchOS)
+        //let sharedDefaults = UserDefaults.standard
+        //let requestData = sharedDefaults.string(forKey: "cachedScheduleData") ?? ""
+        //#else
         let sharedDefaults = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")!
         let requestData = sharedDefaults.string(forKey: "request_data") ?? ""
+        //#endif
+        print("Request Data: " + requestData)
         let parsedData = JSON(parseJSON: requestData)
         let now = Date()
         var lastBlockEnd: Date? = nil
@@ -206,9 +213,24 @@ struct ScheduleWidgetEntryView: View {
                                 .foregroundColor(.gray)
                                 .bold()
                         }
-                        Text(entry.currentBlock)
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        //Text(entry.currentBlock)
+                        //    .font(.system(size: 20, weight: .bold))
+                        //    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        ViewThatFits {
+                            if entry.color != "#ffffff",
+                               entry.currentBlock != "CLB",
+                               let blockname = entry.name.split(separator: " ").first {
+                                Text(blockname + " (" + entry.currentBlock + ")")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                Text(blockname)
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                            }
+                            Text(entry.currentBlock)
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                        }
                         Text(entry.time)
                             .font(.headline)
                             .foregroundColor(.white)
@@ -220,11 +242,71 @@ struct ScheduleWidgetEntryView: View {
                 }
             case .accessoryInline:
                 if !entry.allDone {
-                    Text(entry.currentBlock + ": " + entry.time)
-                        .font(.headline)
-                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                    ViewThatFits {
+                        if entry.color != "#ffffff",
+                           entry.currentBlock != "CLB",
+                           let blockname = entry.name.split(separator: " ").first {
+                            Text(blockname + " (" + entry.currentBlock + "): " + entry.time)
+                                .font(.title3)
+                                .fontWeight(.regular)
+                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                .padding()
+                            Text(blockname + ": " +  entry.time)
+                                .font(.title3)
+                                .fontWeight(.regular)
+                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                .padding()
+                        }
+                        Text(entry.currentBlock + ": " + entry.time)
+                            .font(.headline)
+                            .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                    }
                 } else {
                     Text("All Done!")
+                        .foregroundColor(.white)
+                }
+            
+            case .accessoryCircular:
+                if !entry.allDone {
+                    ZStack {
+                        VStack {
+                            if entry.isUpcoming {
+                                Text(entry.currentBlock + " at:")
+                                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                        .minimumScaleFactor(0.5)
+                                Text(
+                                        DateFormatter.localizedString(
+                                            from: entry.end,
+                                            dateStyle: .none,
+                                            timeStyle: .short
+                                        )
+                                    )
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                                    .minimumScaleFactor(0.5)
+                                    .padding(.bottom)
+                            } else {
+                                Text(entry.currentBlock + " ends:")
+                                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                        .minimumScaleFactor(0.5)
+                                Text(
+                                        DateFormatter.localizedString(
+                                            from: entry.date,
+                                            dateStyle: .none,
+                                            timeStyle: .short
+                                        )
+                                    )
+                                    .font(.caption)
+                                    .foregroundColor(.white)
+                                    .minimumScaleFactor(0.5)
+                                    .padding(.bottom)
+                            }
+
+                    }
+                    }
+                } else {
+                    Text("Done!")
+                        .font(.caption)
                         .foregroundColor(.white)
                 }
             default:
@@ -242,9 +324,21 @@ struct ScheduleWidgetEntryView: View {
                                     .foregroundColor(.gray)
                                     .bold()
                             }
-                            Text(entry.currentBlock)
-                                .font(.system(size: 80, weight: .bold))
-                                .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                            ViewThatFits {
+                                if entry.color != "#ffffff",
+                                   entry.currentBlock != "CLB",
+                                   let blockname = entry.name.split(separator: " ").first {
+                                    Text(blockname + " (" + entry.currentBlock + ")")
+                                        .font(.system(size: 80, weight: .bold))
+                                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                    Text(blockname)
+                                        .font(.system(size: 80, weight: .bold))
+                                        .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                                }
+                                Text(entry.currentBlock)
+                                    .font(.system(size: 80, weight: .bold))
+                                    .foregroundColor(Color(hexStringToUIColor(hex: entry.color)))
+                            }
                         }
                         Spacer()
                         VStack(alignment: .leading, spacing: 0) {
@@ -276,24 +370,28 @@ struct ScheduleWidgetEntryView: View {
 @main
 struct CampusCommotionWidget: Widget {
     let kind: String = "CampusCommotionWidget"
-
+    
+    // Computed property to return supported widget families based on platform and iOS version.
+    private var supportedFamilies: [WidgetFamily] {
+        #if os(watchOS)
+            return [.accessoryCircular, .accessoryRectangular, .accessoryInline]
+        #else
+            if #available(iOSApplicationExtension 16.0, *) {
+                return [.systemSmall, .systemMedium, .systemLarge, .accessoryRectangular, .accessoryInline]
+            } else {
+                return [.systemSmall, .systemMedium, .systemLarge]
+            }
+        #endif
+    }
+    
     var body: some WidgetConfiguration {
-        if #available(iOSApplicationExtension 16.0, *) {
             StaticConfiguration(kind: kind, provider: Provider()) { entry in
                 ScheduleWidgetEntryView(entry: entry)
             }
             .configurationDisplayName("Campus Commotion Widget")
             .description("Displays the current block and the number of assignments due.")
-            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryRectangular, .accessoryInline])
+            .supportedFamilies(supportedFamilies)
             .disableContentMarginsIfNeeded()
-        } else {
-            StaticConfiguration(kind: kind, provider: Provider()) { entry in
-                ScheduleWidgetEntryView(entry: entry)
-            }
-            .configurationDisplayName("Campus Commotion Widget")
-            .description("Displays the current block and the number of assignments due.")
-            .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
-            .disableContentMarginsIfNeeded()        }
     }
 }
 
