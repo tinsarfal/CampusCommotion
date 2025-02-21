@@ -22,14 +22,12 @@ struct CoursesView: View {
     @State private var token: String
     var keychain = KeychainSwift()
     var selectedclass: String
-    var teacherusername: String
     var isclass: Bool
     
     private let enccoursedata: Data?
     
-    init(selectedclass: String, teacherusername: String, isclass: Bool) {
+    init(selectedclass: String, isclass: Bool) {
         self.selectedclass = selectedclass
-        self.teacherusername = teacherusername
         self.isclass = isclass
         keychain.accessGroup = "group.com.sscheffler.CampusCommotion"
         self.token = keychain.get("token") ?? ""
@@ -187,7 +185,7 @@ struct CoursesView: View {
             }
             Spacer()
             if isclass, enccoursedata != nil, !notretrieved {
-                NavigationLink(destination: NavigationLazyView(MembersView(selectedclass: selectedclass, teacherusername: teacherusername, classkey: classkey))) {
+                NavigationLink(destination: NavigationLazyView(MembersView(selectedclass: selectedclass, classkey: classkey))) {
                     Text("Students")
                         .fontWeight(.semibold)
                         .font(.title3)

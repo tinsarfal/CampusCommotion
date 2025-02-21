@@ -468,7 +468,7 @@ struct ContentView: View {
                 }
             }
             NavigationView {
-                NavigationLazyView(CoursesView(selectedclass: "", teacherusername: "", isclass: false))
+                NavigationLazyView(CoursesView(selectedclass: "", isclass: false))
             }.navigationViewStyle(.stack).tabItem {
                 Image(systemName: "folder")
                 Text("Todo")
