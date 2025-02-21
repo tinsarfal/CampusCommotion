@@ -86,7 +86,7 @@ struct ContentView: View {
     @State var request_data: String = ""
     @State var showingAlert = false
     @State var showLoadingIndicator = false
-    @State var date_selected = "n/a"
+    @State var date_selected: Int? = nil  // Changed type from String to Int?
     @State var day_selected = "n/a"
     @State var warning_opacity = 0.8
     @State var all_keys: [ScheduleDate] = []
@@ -156,11 +156,11 @@ struct ContentView: View {
             all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string ?? ""))
             counterID = counterID + 1
         }
-        if date_selected == "n/a" {
-            date_selected = String(Information.currentnum.1)
+        if date_selected == nil {
+            date_selected = Information.currentnum.1  // Use default if nil
         }
-        if all_keys.count > 0 {
-            day_selected = all_keys[Int(date_selected)!].name
+        if let index = date_selected, all_keys.indices.contains(index) {
+            day_selected = all_keys[index].name
         } else {
             day_selected = "n/a"
         }
@@ -202,10 +202,8 @@ struct ContentView: View {
                         HStack (alignment: .center) {
                             Spacer()
                             Button(action: {
-                                print("HELP ME")
-                                print(date_selected)
-                                print(Information.currentnum.1)
-                                if Int(date_selected) == 0 {
+                                let currentIndex = date_selected ?? Information.currentnum.1
+                                if currentIndex == 0 {
                                     if Information.indexnumber != 0 {
                                         Information.indexnumber -= 1
                                         all_keys = []
@@ -213,28 +211,22 @@ struct ContentView: View {
                                         for (key, day) in parsedData["all_weeks_blocks"][Information.indexnumber] {
 
                                             if day[0]["date"].string!.contains(Information.todaydate) {
-                                                date_selected = key
+                                                date_selected = Int(key)  // safe conversion assumed valid
                                                 day_selected = day[0]["date"].string!
                                             }
                                             all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string!))
                                             counterID = counterID + 1
                                         }
                                         
-                                        date_selected = String(all_keys.last?.id ?? 0)
+                                        date_selected = all_keys.last?.id
                                         day_selected = all_keys.last?.name ?? ""
-                                        if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
-                                            warning_opacity = 0.0
-                                        } else {
-                                            warning_opacity = 0.8
-                                        }}} else {
-                                            date_selected = String(all_keys[Int(date_selected)! - 1].id)
-                                            day_selected = all_keys[Int(date_selected)!].name
-                                            if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
-                                                warning_opacity = 0.0
-                                            } else {
-                                                warning_opacity = 0.8
-                                            }
-                                        }
+                                        warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
+                                    }
+                                } else {
+                                    date_selected = currentIndex - 1
+                                    day_selected = all_keys[date_selected!].name
+                                    warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
+                                }
                             }) {
                                 Image(systemName: "chevron.left")
                                     .font(.title)
@@ -248,19 +240,15 @@ struct ContentView: View {
                             Menu(content: {
                                 ForEach(0..<all_keys.count, id: \.self) { myNewKey in
                                     Button(action: {
-                                        date_selected = String(all_keys[myNewKey].id)
+                                        date_selected = all_keys[myNewKey].id
                                         day_selected = all_keys[myNewKey].name
-                                        if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
-                                            warning_opacity = 0.0
-                                        } else {
-                                            warning_opacity = 0.8
-                                        }
+                                        warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
                                     }) {
                                         Text(all_keys[myNewKey].name)
                                     }
                                 }
                             }, label: {
-                                Text($day_selected.wrappedValue)
+                                Text(day_selected)
                                     .font(.title)
                                     .fontWeight(.semibold)
                                     .padding(8)
@@ -271,40 +259,29 @@ struct ContentView: View {
                             })
                             
                             Button(action: {
-                                if Int(date_selected) == (all_keys.count - 1){
+                                let currentIndex = date_selected ?? Information.currentnum.1
+                                if currentIndex == (all_keys.count - 1) {
                                     if Information.indexnumber != (parsedData["all_weeks_blocks"].count - 1) {
                                         Information.indexnumber += 1
                                         all_keys = []
                                         var counterID = 0
                                         for (key, day) in parsedData["all_weeks_blocks"][Information.indexnumber] {
                                             if day[0]["date"].string!.contains(Information.todaydate) {
-                                                date_selected = key
+                                                date_selected = Int(key)
                                                 day_selected = day[0]["date"].string!
                                             }
                                             all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string!))
-                                            counterID = counterID + 1
+                                            counterID += 1
                                         }
-                                        date_selected = String(all_keys[0].id)
-                                        day_selected = all_keys[0].name
-                                        if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
-                                            warning_opacity = 0.0
-                                        } else {
-                                            warning_opacity = 0.8
-                                        }}} else {
-                                            if let currentIndex = Int(date_selected),
-                                               currentIndex + 1 < all_keys.count {
-                                                date_selected = String(all_keys[currentIndex + 1].id)
-                                                day_selected = all_keys[Int(date_selected)!].name
-                                                if day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0 {
-                                                    warning_opacity = 0.0
-                                                } else {
-                                                    warning_opacity = 0.8
-                                                }
-                                            } else {
-                                                print("Index out of range or invalid date_selected")
-                                            }
-
-                                        }
+                                        date_selected = all_keys.first?.id
+                                        day_selected = all_keys.first?.name ?? ""
+                                        warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
+                                    }
+                                } else {
+                                    date_selected = currentIndex + 1
+                                    day_selected = all_keys[date_selected!].name
+                                    warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
+                                }
                             }) {
                                 Image(systemName: "chevron.right")
                                     .font(.title)
@@ -321,7 +298,10 @@ struct ContentView: View {
                             WatchSessionManager.sharedManager.startSession()
                             updateScheduleView()
                         }
-                        BlockCollection(text: $request_data, whichDate: $date_selected)
+                        BlockCollection(text: $request_data, whichDate: Binding(
+                            get: { date_selected.map(String.init) ?? "n/a" },
+                            set: { date_selected = Int($0) }
+                        ))
                     }
                 }
                 .navigationBarItems(
@@ -340,15 +320,15 @@ struct ContentView: View {
                             var counterID = 0
                             for (key, day) in parsedData["all_weeks_blocks"][Information.indexnumber] {
                                 if day[0]["date"].string!.contains(Information.todaydate) {
-                                    date_selected = key
+                                    date_selected = Int(key)
                                     day_selected = day[0]["date"].string!
                                 }
                                 all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string!))
-                                counterID = counterID + 1
+                                counterID += 1
                             }
-                            date_selected = String(Information.currentnum.1)
-                            if let index = Int(date_selected), index >= 0, index < all_keys.count, !all_keys.isEmpty  {
-                                day_selected = all_keys[Int(date_selected)!].name
+                            date_selected = Information.currentnum.1
+                            if let index = date_selected, all_keys.indices.contains(index) {
+                                day_selected = all_keys[index].name
                                 warning_opacity = 0.0
                             }
                         }) {
