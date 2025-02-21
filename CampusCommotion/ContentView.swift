@@ -25,19 +25,20 @@ struct Information {
         return dateFormatter.string(from: Date())
     }
     
-    private static var _currentnum: (Int, String)? = nil
+    private static var _currentnum: (Int, Int)? = nil
     private static var lastUpdateDate: String? = nil
     
-    public static var currentnum: (Int, String) {
+    public static var currentnum: (Int, Int) {
         let today = todaydate
         
-        if let cachedCurrentnum = _currentnum, lastUpdateDate == today {
+        if let cachedCurrentnum: (Int, Int) = _currentnum, lastUpdateDate == today {
+            print(cachedCurrentnum)
             return cachedCurrentnum
         }
         
         guard let request_data = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")?.string(forKey: "request_data"),
               let requestDataJSON = try? JSON(parseJSON: request_data) else {
-            return (0, "0")
+            return (0, 0)
         }
         
         let calendar = Calendar.current
@@ -49,9 +50,9 @@ struct Information {
                 guard let rawDateString = day[0]["date"].string?.split(separator: " ").last else { continue }
                 
                 if rawDateString == today {
-                    _currentnum = (i, key)
+                    _currentnum = (i, Int(key) ?? 0)
                     lastUpdateDate = today
-                    return (i, key)
+                    return (i, Int(key) ?? 0)
                 }
                 
                 if let dayDate = dateFormatter.date(from: String(rawDateString)) {
@@ -66,16 +67,16 @@ struct Information {
                     }
                     
                     if adjustedDate >= Date() {
-                        _currentnum = (i, key)
+                        _currentnum = (i, Int(key) ?? 0)
                         lastUpdateDate = today
-                        return (i, key)
+                        return (i, Int(key) ?? 0)
                     }
                 }
             }
         }
-        _currentnum = (0, "0")
+        _currentnum = (0, 0)
         lastUpdateDate = today
-        return (0, "0")
+        return (0, 0)
     }
     
     static var indexnumber = currentnum.0
@@ -156,7 +157,7 @@ struct ContentView: View {
             counterID = counterID + 1
         }
         if date_selected == "n/a" {
-            date_selected = Information.currentnum.1
+            date_selected = String(Information.currentnum.1)
         }
         if all_keys.count > 0 {
             day_selected = all_keys[Int(date_selected)!].name
@@ -201,6 +202,9 @@ struct ContentView: View {
                         HStack (alignment: .center) {
                             Spacer()
                             Button(action: {
+                                print("HELP ME")
+                                print(date_selected)
+                                print(Information.currentnum.1)
                                 if Int(date_selected) == 0 {
                                     if Information.indexnumber != 0 {
                                         Information.indexnumber -= 1
@@ -342,7 +346,7 @@ struct ContentView: View {
                                 all_keys.append(ScheduleDate(id: counterID, name: day[0]["date"].string!))
                                 counterID = counterID + 1
                             }
-                            date_selected = Information.currentnum.1
+                            date_selected = String(Information.currentnum.1)
                             if let index = Int(date_selected), index >= 0, index < all_keys.count, !all_keys.isEmpty  {
                                 day_selected = all_keys[Int(date_selected)!].name
                                 warning_opacity = 0.0
