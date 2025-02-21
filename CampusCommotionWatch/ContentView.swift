@@ -93,7 +93,6 @@ struct ContentView: View {
     // Use computed property to update parsed JSON as requestData changes.
     private var parsedJSON: JSON { JSON(requestData) }
     @State private var showLoadingIndicator = false
-    @State private var scheduleBlocks: [ScheduleDate] = []
     @State private var selectedDate: ScheduleDate?
     @State private var shouldRefresh = false
     @State private var date_selected = Information.currentnum.1
@@ -116,7 +115,6 @@ struct ContentView: View {
                     if let cachedData = UserDefaults(suiteName: "group.com.example.CampusCommotion")!.string(forKey: "request_data"), cachedData != "" {
                         print("CachedData: " + cachedData)
                         requestData = cachedData
-                        loadSchedule()
                     } else {
                         let context = WCSession.default.receivedApplicationContext
                         if let retrievedData = context["request_data"] as? String {
@@ -127,7 +125,6 @@ struct ContentView: View {
                             Information.indexnumber = Information.currentnum.0
                             date_selected = Information.currentnum.1
                             WidgetCenter.shared.reloadAllTimelines()
-                            loadSchedule()
 
                         }
                     }
@@ -144,59 +141,9 @@ struct ContentView: View {
                     date_selected = Information.currentnum.1
                     WidgetCenter.shared.reloadAllTimelines()
                 }
-                loadSchedule()
             }
-            .refreshable { loadSchedule() }
     }
 
-    private func loadSchedule() {
-        showLoadingIndicator = true
-        Information.indexnumber = Information.currentnum.0
-        if !requestData.isEmpty {  // <-- Changed from "if let ..."
-            print("Data found")
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE M/d"
-            let today = dateFormatter.string(from: Date())
-            
-            var filteredBlocks: [ScheduleDate] = []
-            // Iterate over parsedJSON from computed property.
-            for week in parsedJSON["all_weeks_blocks"].arrayValue {
-                for day in week.arrayValue {
-                    if let dateString = day[0]["date"].string, dateString == today {
-                        for block in day.arrayValue {
-                            filteredBlocks.append(ScheduleDate(id: filteredBlocks.count, name: dateString))
-                        }
-                    }
-                }
-            }
-            print("Dates:")
-            print(filteredBlocks)
-            DispatchQueue.main.async {
-                scheduleBlocks = filteredBlocks
-                showLoadingIndicator = false
-            }
-        } else {
-            print("No data found, making request")
-            let keychain = KeychainSwift()
-            keychain.accessGroup = "group.com.example.CampusCommotion"
-//let calurl = keychain.get("calurl") ?? "https://calendar.example.edu/podium/feed/iCal.aspx?z=CALENDAR_FEED_TOKEN"
-            //let cluburl = keychain.get("cluburl") ?? "https://calendar.example.edu/podium/feed/iCal.aspx?z=CALENDAR_FEED_TOKEN"
-            //let token = keychain.get("token") ?? "6333~DOy2IKmaUuAuPxKsI9JQk11rtX8mzCaCIVYtmdjFXDMwSVL3O41gvNJMu6hoZ4dj"
-            let calurl = keychain.get("calurl") ?? ""
-            let cluburl = keychain.get("cluburl") ?? ""
-            let token = keychain.get("token") ?? ""
-            print("calurl: \(calurl)")
-            print("cluburl: \(cluburl)")
-            print("token: \(token)")
-            guard !calurl.isEmpty, !cluburl.isEmpty, !token.isEmpty else {
-                print("Error: One or more Keychain values are empty")
-                DispatchQueue.main.async { showLoadingIndicator = false }
-                return
-            }
-            let simpleCompletionHandler: () -> Void = { self.loadSchedule() }
-            ConnectorClass().makeRequest(calurl: calurl, cluburl: cluburl, token: token, completionHandler: simpleCompletionHandler)
-        }
-    }
 }
 
 /// Model representing a schedule date item.
