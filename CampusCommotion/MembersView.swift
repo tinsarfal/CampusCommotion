@@ -42,7 +42,6 @@ struct MembersView: View {
     var selectedclass: String
     var classkey: String?
     var numofstudents = 0
-    var teacherusername: String
     var token: String
     var parsedSchedules: [ClassInfo] = []
     let coursedata = try? JSONDecoder().decode([String: CourseData].self, from: (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.data(forKey: "canvascourses")!)!)
@@ -50,9 +49,8 @@ struct MembersView: View {
     @State private var matchingSchedules: [ClassInfo] = [] // New state variable for fetched data
     
     
-    init(selectedclass: String, teacherusername: String, classkey: String?) {
+    init(selectedclass: String, classkey: String?) {
         self.selectedclass = selectedclass
-        self.teacherusername = teacherusername
         self.classkey = classkey
         keychain.accessGroup = "group.com.example.CampusCommotion"
         token = keychain.get("token") ?? ""

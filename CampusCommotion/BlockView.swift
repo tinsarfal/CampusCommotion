@@ -50,8 +50,6 @@ struct BlockView: View {
     var endtime: String
     var pmend: Bool
     var classname: String
-    var teacher: String
-    var teacherusername: String
     var location: String
     var use_color: Color
     var endstop: Bool
@@ -113,11 +111,6 @@ struct BlockView: View {
                     .font(.title2)
                     .fontWeight(.regular)
                     .foregroundColor(use_color)
-                if teacher != "" {
-                    Text(teacher)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
                 if location != "" {
                     Text(location.uppercased())
                         .font(.caption)
@@ -126,7 +119,7 @@ struct BlockView: View {
             }.padding([.trailing, .top, .bottom, .leading])
             Spacer()
             if hascanvas && (keychain.get("token") ?? "") != "" {
-                NavigationLink(destination: NavigationLazyView(CoursesView(selectedclass: classname, teacherusername: teacherusername, isclass: true))) {
+                NavigationLink(destination: NavigationLazyView(CoursesView(selectedclass: classname, isclass: true))) {
                     Text("Info")
                         .fontWeight(.semibold)
                         .font(.title3)

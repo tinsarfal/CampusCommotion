@@ -9,10 +9,8 @@ struct Event: Codable {
     let pmstart: Bool
     let starttime: String
     let location: String
-    let teacher: String
     let blockid: String
     let color: String
-    let teacherusername: String
     let endtime: String
     let pmend: Bool
     let date: String
