@@ -171,10 +171,8 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
         
         let dateTimeString = String(trimmedInput[dateTimeRange.upperBound...])
         
-        // Default time zone if not found
         var timeZoneIdentifier = "EST"
         
-        // Check for TZID= in the input
         if let timeZoneRange = trimmedInput.range(of: "TZID=") {
             let timeZoneEndIndex = trimmedInput.range(of: ":", range: timeZoneRange.upperBound..<trimmedInput.endIndex)?.lowerBound ?? trimmedInput.endIndex
             timeZoneIdentifier = String(trimmedInput[timeZoneRange.upperBound..<timeZoneEndIndex])
@@ -183,7 +181,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
         
-        // Try setting the correct time zone
         if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
             dateFormatter.timeZone = timeZone
         } else {
@@ -191,7 +188,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
             dateFormatter.timeZone = TimeZone(abbreviation: "EST")
         }
         
-        // Parse the date
         guard let date = dateFormatter.date(from: dateTimeString) else {
             print("Error: Failed to parse date-time string '\(dateTimeString)' with format '\(dateFormatter.dateFormat)'.")
             return nil
@@ -379,7 +375,7 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
                 // Set the block ID to "Clubs" for club events
                 let blockDictionary: [String: Any] = [
                     "date": currentEvent["date"] ?? "",
-                    "blockid": "CLB",  // All club events will have blockid as "Clubs"
+                    "blockid": "CLB",
                     "color": "#6A5ACD",
                     "starttime": currentEvent["starttime"] ?? "",
                     "pmstart": currentEvent["isStartAfternoon"] ?? false,
@@ -457,14 +453,6 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "EEEE M/d"
     
-    // Dictionary to hold blocks organized by date
-    //var dayMap: [String: [[String: Any]]] = [:]
-    
-    // Organize blocks by date
-    
-    // Convert dayMap to dayschedules
-    
-    // Determine the range of weeks based on the available dates
     for block in blockschedules {
         if let dateStr = block["date"] as? String {
             if dayMap[dateStr] == nil {

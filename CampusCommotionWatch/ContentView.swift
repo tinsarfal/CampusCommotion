@@ -53,7 +53,7 @@ struct Information {
             for (key, day) in requestDataJSON["all_weeks_blocks"][i] {
                 guard
                     let rawDateString = day[0]["date"].string?.split(separator: " ").last,
-                    let intKey = Int(key) // Convert key to Int
+                    let intKey = Int(key)
                 else { continue }
                 
                 if rawDateString == today {
@@ -145,7 +145,6 @@ struct ContentView: View {
     }
 }
 
-/// Model representing a schedule date item.
 struct ScheduleDate: Identifiable {
     let id: Int
     let name: String
