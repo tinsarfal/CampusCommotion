@@ -38,6 +38,7 @@ struct Information {
         
         guard let request_data = UserDefaults(suiteName: "group.com.sscheffler.CampusCommotion")?.string(forKey: "request_data"),
               let requestDataJSON = try? JSON(parseJSON: request_data) else {
+            print("JSON decode failed")
             return (0, 0)
         }
         
@@ -51,30 +52,48 @@ struct Information {
                 
                 if rawDateString == today {
                     _currentnum = (i, Int(key) ?? 0)
+                    //print("Date matched: " + String(i) + " " + key)
                     lastUpdateDate = today
                     return (i, Int(key) ?? 0)
                 }
                 
+                
                 if let dayDate = dateFormatter.date(from: String(rawDateString)) {
                     var adjustedDate = dayDate
+                    //print("dayDate: " + dateFormatter.string(from: dayDate))
+                    //print(String(calendar.component(.month, from: dayDate)))
+                    //print("CurrentYear: " + String(currentYear))
+                    //print("dayYear: " + String(calendar.component(.year, from: dayDate)))
                     
-                    if currentMonth == 12 && calendar.component(.month, from: dayDate) == 1 {
-                        adjustedDate = calendar.date(bySetting: .year, value: currentYear + 1, of: dayDate) ?? dayDate
+                    if currentMonth == 12 && calendar.component(.month, from: dayDate) <= 4 {
+                        adjustedDate = calendar.date(byAdding: .year, value: (currentYear - 1999), to: dayDate) ?? dayDate
+                        //adjustedDate = calendar.date(bySetting: .year, value: (currentYear + 1), of: dayDate) ?? dayDate
+                        //print("isnextyear")
                     } else if currentMonth <= 4 && calendar.component(.month, from: dayDate) >= 11 {
-                        adjustedDate = calendar.date(bySetting: .year, value: currentYear - 1, of: dayDate) ?? dayDate
+                        //adjustedDate = calendar.date(bySetting: .year, value: (currentYear - 1), of: dayDate) ?? dayDate
+                        adjustedDate = calendar.date(byAdding: .year, value: (currentYear - 2001), to: dayDate) ?? dayDate
+                        //print("islastyear")
                     } else {
-                        adjustedDate = calendar.date(bySetting: .year, value: currentYear, of: dayDate) ?? dayDate
+                        //print("isthisyear")
+                        //adjustedDate = calendar.date(bySetting: .year, value: currentYear, of: dayDate) ?? dayDate
+                        adjustedDate = calendar.date(byAdding: .year, value: (currentYear - 2000), to: dayDate) ?? dayDate
                     }
                     
+                    //print("Adjusted date: " + dateFormatter.string(from: adjustedDate))
+                    //print(String(calendar.component(.year, from: adjustedDate)))
+                    //print("Adjusted Year: " + String(calendar.component(.year, from: adjustedDate)))
+                    
+                        
                     if adjustedDate >= Date() {
                         _currentnum = (i, Int(key) ?? 0)
+                        //print("Used future date: " + String(i) + " " + key)
                         lastUpdateDate = today
                         return (i, Int(key) ?? 0)
                     }
                 }
             }
         }
-        _currentnum = (0, 0)
+        //_currentnum = (0, 0)
         lastUpdateDate = today
         return (0, 0)
     }
