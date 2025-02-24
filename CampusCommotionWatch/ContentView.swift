@@ -66,12 +66,12 @@ struct Information {
                 if let dayDate = dateFormatter.date(from: String(rawDateString)) {
                     var adjustedDate = dayDate
                     
-                    if currentMonth == 12 && calendar.component(.month, from: dayDate) == 1 {
-                        adjustedDate = calendar.date(bySetting: .year, value: currentYear + 1, of: dayDate) ?? dayDate
+                    if currentMonth == 12 && calendar.component(.month, from: dayDate) <= 4 {
+                        adjustedDate = calendar.date(byAdding: .year, value: (currentYear - 1999), to: dayDate) ?? dayDate
                     } else if currentMonth <= 4 && calendar.component(.month, from: dayDate) >= 11 {
-                        adjustedDate = calendar.date(bySetting: .year, value: currentYear - 1, of: dayDate) ?? dayDate
+                        adjustedDate = calendar.date(byAdding: .year, value: (currentYear - 2001), to: dayDate) ?? dayDate
                     } else {
-                        adjustedDate = calendar.date(bySetting: .year, value: currentYear, of: dayDate) ?? dayDate
+                        adjustedDate = calendar.date(byAdding: .year, value: (currentYear - 2000), to: dayDate) ?? dayDate
                     }
                     
                     if adjustedDate >= Date() {
