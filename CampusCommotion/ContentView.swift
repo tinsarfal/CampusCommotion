@@ -180,9 +180,8 @@ struct ContentView: View {
         }
         if let index = date_selected, all_keys.indices.contains(index) {
             day_selected = all_keys[index].name
-        } else {
-            day_selected = "n/a"
         }
+        
         var calendar = Calendar(identifier: .gregorian)
         let nyTimeZone = TimeZone(identifier: "America/New_York")
         calendar.timeZone = nyTimeZone!
@@ -243,7 +242,9 @@ struct ContentView: View {
                                     }
                                 } else {
                                     date_selected = currentIndex - 1
-                                    day_selected = all_keys[date_selected!].name
+                                    if let index = date_selected, all_keys.indices.contains(index) {
+                                        day_selected = all_keys[index].name
+                                    }
                                     warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
                                 }
                             }) {
@@ -298,7 +299,10 @@ struct ContentView: View {
                                     }
                                 } else {
                                     date_selected = currentIndex + 1
-                                    day_selected = all_keys[date_selected!].name
+                                    //day_selected = all_keys[date_selected!].name
+                                    if let index = date_selected, all_keys.indices.contains(index) {
+                                        day_selected = all_keys[index].name
+                                    }
                                     warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
                                 }
                             }) {

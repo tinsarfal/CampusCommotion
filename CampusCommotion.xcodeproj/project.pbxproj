@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0718DE612D5524F100E4E34D /* CampusCommotionWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 0718DE3E2D5524EF00E4E34D /* CampusCommotionWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0718DE612D5524F100E4E34D /* CampusCommotionWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 0718DE3E2D5524EF00E4E34D /* CampusCommotionWatch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0718DE852D55257100E4E34D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0718DE7F2D55257100E4E34D /* Preview Assets.xcassets */; };
 		0718DE862D55257100E4E34D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0718DE812D55257100E4E34D /* Assets.xcassets */; };
 		0718DE872D55257100E4E34D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718DE832D55257100E4E34D /* ContentView.swift */; };
@@ -20,8 +20,8 @@
 		072479CF2D4AB7F0000185B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072479CD2D4AB7F0000185B7 /* NetworkManager.swift */; };
 		072504772D66321A00F8A2FC /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072504762D66321A00F8A2FC /* WatchSessionManager.swift */; };
 		072504782D66321A00F8A2FC /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072504762D66321A00F8A2FC /* WatchSessionManager.swift */; };
-		072504792D66321A00F8A2FC /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072504762D66321A00F8A2FC /* WatchSessionManager.swift */; };
-		0729730A2D437BF500D3FA83 /* CampusCommotionWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		072504792D66321A00F8A2FC /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072504762D66321A00F8A2FC /* WatchSessionManager.swift */; platformFilter = ios; };
+		0729730A2D437BF500D3FA83 /* CampusCommotionWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 597D5D5826D729BA00468ED0 /* CampusCommotionWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		07522B232B4EE6FB00E65E44 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B222B4EE6FB00E65E44 /* CoursesView.swift */; };
 		07522B252B4F247700E65E44 /* HomeworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07522B242B4F247700E65E44 /* HomeworkView.swift */; };
 		07625A412D66F0E800E01039 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072479CD2D4AB7F0000185B7 /* NetworkManager.swift */; };
@@ -64,13 +64,6 @@
 			remoteGlobalIDString = 0718DE3D2D5524EF00E4E34D;
 			remoteInfo = "CampusCommotionWatch Watch App";
 		};
-		0729730B2D437BF500D3FA83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 599B609226CD9C710056108A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 597D5D5726D729BA00468ED0;
-			remoteInfo = CampusCommotionWidgetExtension;
-		};
 		07625A512D66F14000E01039 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 599B609226CD9C710056108A /* Project object */;
@@ -110,15 +103,15 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		597D5D6626D729C400468ED0 /* Embed App Extensions */ = {
+		597D5D6626D729C400468ED0 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				0729730A2D437BF500D3FA83 /* CampusCommotionWidgetExtension.appex in Embed App Extensions */,
+				0729730A2D437BF500D3FA83 /* CampusCommotionWidgetExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -135,7 +128,7 @@
 		07522B222B4EE6FB00E65E44 /* CoursesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 		07522B242B4F247700E65E44 /* HomeworkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeworkView.swift; sourceTree = "<group>"; };
 		07625A4E2D66F0E800E01039 /* CampusComplication.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CampusComplication.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		07625A4F2D66F0E800E01039 /* CampusCommotionWidgetExtension copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CampusCommotionWidgetExtension copy-Info.plist"; path = "CampusCommotionWidgetExtension copy-Info.plist"; sourceTree = "<group>"; };
+		0778CBFB2D90E9600094591C /* CampusCommotionWidgetExtension copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CampusCommotionWidgetExtension copy-Info.plist"; path = "CampusCommotionWidgetExtension copy-Info.plist"; sourceTree = "<group>"; };
 		07E28C712B47510500E67F0F /* MembersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersView.swift; sourceTree = "<group>"; };
 		07F3AC1C2C9B7114004444AE /* Acknowledgements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acknowledgements.swift; sourceTree = "<group>"; };
 		12AC1FF9E3362EE36334D967 /* Pods_CampusComplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusComplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,7 +276,7 @@
 				599B609B26CD9C710056108A /* Products */,
 				5F1664986BA1871F67723D5E /* Pods */,
 				2DB5A205682397E300E9AA01 /* Frameworks */,
-				07625A4F2D66F0E800E01039 /* CampusCommotionWidgetExtension copy-Info.plist */,
+				0778CBFB2D90E9600094591C /* CampusCommotionWidgetExtension copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -414,7 +407,7 @@
 				599B609626CD9C710056108A /* Sources */,
 				599B609726CD9C710056108A /* Frameworks */,
 				599B609826CD9C710056108A /* Resources */,
-				597D5D6626D729C400468ED0 /* Embed App Extensions */,
+				597D5D6626D729C400468ED0 /* Embed Foundation Extensions */,
 				03B98D85A1513B337AEB7AF8 /* [CP] Embed Pods Frameworks */,
 				0718DE622D5524F100E4E34D /* Embed Watch Content */,
 			);
@@ -422,7 +415,6 @@
 			);
 			dependencies = (
 				597D5D6426D729C400468ED0 /* PBXTargetDependency */,
-				0729730C2D437BF500D3FA83 /* PBXTargetDependency */,
 				0718DE602D5524F100E4E34D /* PBXTargetDependency */,
 			);
 			name = CampusCommotion;
@@ -436,8 +428,9 @@
 		599B609226CD9C710056108A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					0718DE3D2D5524EF00E4E34D = {
 						CreatedOnToolsVersion = 16.2;
@@ -696,13 +689,9 @@
 /* Begin PBXTargetDependency section */
 		0718DE602D5524F100E4E34D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 0718DE3D2D5524EF00E4E34D /* CampusCommotionWatch */;
 			targetProxy = 0718DE5F2D5524F100E4E34D /* PBXContainerItemProxy */;
-		};
-		0729730C2D437BF500D3FA83 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 597D5D5726D729BA00468ED0 /* CampusCommotionWidgetExtension */;
-			targetProxy = 0729730B2D437BF500D3FA83 /* PBXContainerItemProxy */;
 		};
 		07625A522D66F14000E01039 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
