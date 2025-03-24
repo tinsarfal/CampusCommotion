@@ -52,8 +52,7 @@ struct MembersView: View {
     init(selectedclass: String, classkey: String?) {
         self.selectedclass = selectedclass
         self.classkey = classkey
-        keychain.accessGroup = "group.com.example.CampusCommotion"
-        token = keychain.get("token") ?? ""
+        token = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? ""
         
         // Perform data loading and parsing in the initializer
         loadData()

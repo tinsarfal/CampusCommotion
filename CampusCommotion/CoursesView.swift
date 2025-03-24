@@ -30,7 +30,7 @@ struct CoursesView: View {
         self.selectedclass = selectedclass
         self.isclass = isclass
         keychain.accessGroup = "group.com.example.CampusCommotion"
-        self.token = keychain.get("token") ?? ""
+        self.token = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? ""
         self.enccoursedata = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.data(forKey: "canvascourses")
     }
     
@@ -203,7 +203,7 @@ struct CoursesView: View {
             loadTodos()
             let keychain = KeychainSwift()
             keychain.accessGroup = "group.com.example.CampusCommotion"
-            token = keychain.get("token") ?? ""
+            token = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? ""
         }
         .navigationBarTitle("Homework")
         .listStyle(GroupedListStyle())

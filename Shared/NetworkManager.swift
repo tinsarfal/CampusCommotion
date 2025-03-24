@@ -24,9 +24,8 @@ class NetworkManager {
         let configuration = URLSessionConfiguration.af.default
         configuration.timeoutIntervalForRequest = 5
         
-        let keychain = KeychainSwift()
-        keychain.accessGroup = "group.com.example.CampusCommotion"
-        let token = keychain.get("token") ?? ""
+
+        let token = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? ""
         print("Token Used: " + token)
         
         let interceptor = AuthTokenInterceptor(token: token)

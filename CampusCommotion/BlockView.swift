@@ -118,7 +118,7 @@ struct BlockView: View {
                 }
             }.padding([.trailing, .top, .bottom, .leading])
             Spacer()
-            if hascanvas && (keychain.get("token") ?? "") != "" {
+            if hascanvas && (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? "") != "" {
                 NavigationLink(destination: NavigationLazyView(CoursesView(selectedclass: classname, isclass: true))) {
                     Text("Info")
                         .fontWeight(.semibold)

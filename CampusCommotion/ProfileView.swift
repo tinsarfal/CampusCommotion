@@ -17,17 +17,18 @@ class ProfileViewModel: ObservableObject {
     
     init() {
         keychain.accessGroup = "group.com.example.CampusCommotion"
-        self.email = keychain.get("email") ?? ""
-        self.calurl = keychain.get("calurl") ?? ""
-        self.cluburl = keychain.get("cluburl") ?? ""
-        self.token = keychain.get("token") ?? ""
+        self.email = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "email") ?? ""
+        self.calurl = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "calurl") ?? ""
+        self.cluburl = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "cluburl") ?? ""
+        self.token = UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? ""
     }
     
     func saveInformation() {
-        keychain.set(email, forKey: "email")
-        keychain.set(calurl, forKey: "calurl")
-        keychain.set(cluburl, forKey: "cluburl")
-        keychain.set(token, forKey: "token")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(email, forKey: "email")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(email, forKey: "email")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(calurl, forKey: "calurl")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(cluburl, forKey: "cluburl")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(token, forKey: "token")
     }
 }
 
@@ -53,10 +54,10 @@ struct ProfileView: View {
     
     init (some_context: ContentView) {
         context_ContentView = some_context
-        email = (keychain.get("email") ?? "")
-        calurl = (keychain.get("calurl") ?? "")
-        cluburl = (keychain.get("cluburl") ?? "")
-        token = (keychain.get("token") ?? "")
+        email = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "email") ?? "")
+        calurl = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "calurl") ?? "")
+        cluburl = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "cluburl") ?? "")
+        token = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? "")
     }
     
     var body: some View {
@@ -120,19 +121,25 @@ struct ProfileView: View {
         }
         }
     private func saveInformation() {
-            keychain.set(email.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "email")
-            keychain.set(calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "calurl")
-            keychain.set(cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "cluburl")
-            keychain.set(token.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "token")
-            
-            context_ContentView.email = self.email
-            context_ContentView.calurl = self.calurl
-            context_ContentView.cluburl = self.cluburl
-            context_ContentView.setToLoading()
+        
+        email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        calurl = calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://")
+        cluburl = cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://")
+        token = token.trimmingCharacters(in: .whitespacesAndNewlines)
+    
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(email, forKey: "email")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(calurl, forKey: "calurl")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(cluburl, forKey: "cluburl")
+        (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).set(token, forKey: "token")
+        
+        context_ContentView.email = self.email
+        context_ContentView.calurl = self.calurl
+        context_ContentView.cluburl = self.cluburl
+        context_ContentView.setToLoading()
 
-            let simpleCompletionHandler: () -> Void = {
-                context_ContentView.updateScheduleView()
-            }
+        let simpleCompletionHandler: () -> Void = {
+            context_ContentView.updateScheduleView()
+        }
 
         ConnectorClass().makeRequest(calurl: calurl, cluburl: cluburl, token: token, completionHandler: simpleCompletionHandler)
             showingAlert = true

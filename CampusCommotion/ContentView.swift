@@ -28,6 +28,8 @@ struct Information {
     private static var _currentnum: (Int, Int)? = nil
     private static var lastUpdateDate: String? = nil
     
+    static var startweek = 0
+    
     public static var currentnum: (Int, Int) {
         let today = todaydate
         
@@ -42,6 +44,8 @@ struct Information {
             return (0, 0)
         }
         
+        }
+                
         let calendar = Calendar.current
         let currentYear = calendar.component(.year, from: Date())
         let currentMonth = calendar.component(.month, from: Date())
@@ -124,12 +128,10 @@ struct ContentView: View {
     @State private var textFieldIdPasscode: String = UUID().uuidString
 
     init() {
-        let keychain = KeychainSwift()
-        keychain.accessGroup = "group.com.example.CampusCommotion"
-        email = (keychain.get("email") ?? "")
-        calurl = (keychain.get("calurl") ?? "")
-        cluburl = (keychain.get("cluburl") ?? "")
-        token = (keychain.get("token") ?? "")
+        email = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "email") ?? "")
+        calurl = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "calurl") ?? "")
+        cluburl = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "cluburl") ?? "")
+        token = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? "")
         if !email.isEmpty {
             parsedData = JSON.init(parseJSON: (UserDefaults(suiteName: "group.com.example.CampusCommotion")!).string(forKey: "request_data") ?? "")
         }
@@ -142,13 +144,6 @@ struct ContentView: View {
                     self.request_data = requestData
                     self.parsedData = JSON(parseJSON: requestData)
                     // Use try with error handling for the throwing call
-                    do {
-                        try WatchSessionManager.sharedManager.updateApplicationContext(applicationContext: [
-                            "request_data": requestData as AnyObject
-                        ])
-                    } catch {
-                        print("Error updating watch context: \(error)")
-                    }
                     self.updateUI()
                 }
             } else {
@@ -180,9 +175,8 @@ struct ContentView: View {
         }
         if let index = date_selected, all_keys.indices.contains(index) {
             day_selected = all_keys[index].name
-        } else {
-            day_selected = "n/a"
         }
+        
         var calendar = Calendar(identifier: .gregorian)
         let nyTimeZone = TimeZone(identifier: "America/New_York")
         calendar.timeZone = nyTimeZone!
@@ -243,7 +237,9 @@ struct ContentView: View {
                                     }
                                 } else {
                                     date_selected = currentIndex - 1
-                                    day_selected = all_keys[date_selected!].name
+                                    if let index = date_selected, all_keys.indices.contains(index) {
+                                        day_selected = all_keys[index].name
+                                    }
                                     warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
                                 }
                             }) {
@@ -298,7 +294,9 @@ struct ContentView: View {
                                     }
                                 } else {
                                     date_selected = currentIndex + 1
-                                    day_selected = all_keys[date_selected!].name
+                                    if let index = date_selected, all_keys.indices.contains(index) {
+                                        day_selected = all_keys[index].name
+                                    }
                                     warning_opacity = (day_selected.contains(Information.todaydate) && Information.indexnumber == Information.currentnum.0) ? 0.0 : 0.8
                                 }
                             }) {
@@ -313,8 +311,6 @@ struct ContentView: View {
                             Spacer()
                         }
                         .onAppear {
-                            // Start the WC session when view appears
-                            WatchSessionManager.sharedManager.startSession()
                             updateScheduleView()
                         }
                         BlockCollection(text: $request_data, whichDate: Binding(
@@ -325,14 +321,21 @@ struct ContentView: View {
                 }
                 .navigationBarItems(
                     leading: HStack {
-
-                        Text("Week \(Int(Information.indexnumber) + 1)")
-                            .font(.title3)
-                            .padding(5)
-                            .background(Color.white)
-                            .foregroundColor(Color.black)
-                            .cornerRadius(5)
-                            
+                        if (Int(Information.indexnumber) - Int(Information.startweek) + 1) > 0 {
+                            Text("Week \(Int(Information.indexnumber) - Int(Information.startweek) + 1)")
+                                .font(.title3)
+                                .padding(5)
+                                .background(Color.white)
+                                .foregroundColor(Color.black)
+                                .cornerRadius(5)
+                        } else {
+                            Text("Pre-Term")
+                                .font(.title3)
+                                .padding(5)
+                                .background(Color.white)
+                                .foregroundColor(Color.black)
+                                .cornerRadius(5)
+                        }
                         Button(action: {
                             Information.indexnumber = Information.currentnum.0
                             all_keys = []

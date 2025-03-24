@@ -1,6 +1,0 @@
-framework module Pods_CampusComplication {
-  umbrella header "Pods-CampusComplication-umbrella.h"
-
-  export *
-  module * { export * }
-}

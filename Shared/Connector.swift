@@ -107,7 +107,7 @@ struct CourseData: Codable {
 
 
 
-func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any]]]], [String]) {
+func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any]]]], [String], Int) {
     var weekschedules: [[[[String: Any]]]] = []
     var dayschedules: [[[String: Any]]] = []
     var blockschedules: [[String: Any]] = []
@@ -118,6 +118,7 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
     var firstDate: Date?
     var lastDate: Date?
     var onlyDate: Date?
+    var startWeekIndex = -1
     
     // Helper functions (no changes needed)
     func extractDateFromLine(from input: String) -> Date? {
@@ -483,15 +484,24 @@ func parseICalendar(icalString: String, clubsString: String) -> ([[[[String: Any
             
             if !weekBlocks.isEmpty { // Add week to schedules only if it contains events
                 weekschedules.append(weekBlocks)
+                if startWeekIndex == -1 {
+                    let hasNonClubBlock = weekBlocks.joined().contains { 
+                        let blockid = $0["blockid"] as? String ?? ""
+                        return blockid != "CLB" && !blockid.isEmpty
+                    }
+                    if hasNonClubBlock {
+                        startWeekIndex = weekschedules.count - 1
+                    }
+                }
             }
             
             currentWeekDate = calendar.date(byAdding: .weekOfYear, value: 1, to: currentWeekDate)!
         }
         
-        return (weekschedules, uniqueClubs)
+        return (weekschedules, uniqueClubs, startWeekIndex)
     }
     else {
-        return ([], [])
+        return ([], [], -1)
     }
 }
     // Calendar extension
@@ -539,16 +549,21 @@ class ConnectorClass {
                     NetworkManager.shared.request(cluburl, method: .get).responseString { response in
                         switch response.result {
                         case .success(let value2):
-                            (weekschedules, uniqueClubs) = parseICalendar(icalString: value, clubsString: value2)
-                            self.saveRequestData(weekschedules: weekschedules)
+                            let parseResults = parseICalendar(icalString: value, clubsString: value2)
+                            weekschedules = parseResults.0
+                            uniqueClubs = parseResults.1
+                            let startweek = parseResults.2
+                            self.saveRequestData(weekschedules: weekschedules, startweek: startweek)
                         case .failure(let error):
                             print("Request failed with error: \(error)")
                         }
                         group.leave()
                     }
                 } else {
-                    weekschedules = parseICalendar(icalString: value, clubsString: "").0
-                    self.saveRequestData(weekschedules: weekschedules)
+                    let parseResults = parseICalendar(icalString: value, clubsString: "")
+                    weekschedules = parseResults.0
+                    let startweek = parseResults.2
+                    self.saveRequestData(weekschedules: weekschedules, startweek: startweek)
                 }
             case .failure(let error):
                 print(error)
@@ -574,7 +589,7 @@ class ConnectorClass {
         }
     }
 
-    private func saveRequestData(weekschedules: [[[[String: Any]]]]) {
+    private func saveRequestData(weekschedules: [[[[String: Any]]]], startweek: Int) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd, HH:mm:ss.SSS"
         let timestamp = dateFormatter.string(from: Date())
@@ -585,7 +600,8 @@ class ConnectorClass {
             "success": true,
             "all_weeks_blocks": weekschedules,
             "timestamp": timestamp,
-            "day_retrieved": retrievedDay
+            "day_retrieved": retrievedDay,
+            "startweek": startweek
         ]
 
         if let theJSONData = try? JSONSerialization.data(withJSONObject: requestData, options: .prettyPrinted),

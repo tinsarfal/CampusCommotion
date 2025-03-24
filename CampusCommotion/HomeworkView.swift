@@ -9,7 +9,7 @@ struct HomeworkView: View {
     @State private var calendarEventData: CalendarEventData?
     @State private var discussionTopic: DiscussionTopic?
     @State private var discussionEntries: [DiscussionEntry]?
-    var token: String = (KeychainSwift().get("token") ?? "")
+    var token: String = (UserDefaults(suiteName: "group.com.example.CampusCommotion")?.string(forKey: "token") ?? "")
     var selectedcourseid: Int
     var assignmentid: Int
     var type: String
