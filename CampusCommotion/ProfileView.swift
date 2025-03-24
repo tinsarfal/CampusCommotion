@@ -121,8 +121,8 @@ struct ProfileView: View {
         }
     private func saveInformation() {
             keychain.set(email.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "email")
-            keychain.set(calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "calurl")
-            keychain.set(cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https"), forKey: "cluburl")
+            keychain.set(calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://"), forKey: "calurl")
+            keychain.set(cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://"), forKey: "cluburl")
             keychain.set(token.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "token")
             
             context_ContentView.email = self.email

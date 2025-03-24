@@ -28,6 +28,8 @@ struct Information {
     private static var _currentnum: (Int, Int)? = nil
     private static var lastUpdateDate: String? = nil
     
+    static var startweek = 0
+    
     public static var currentnum: (Int, Int) {
         let today = todaydate
         
@@ -40,6 +42,10 @@ struct Information {
               let requestDataJSON = try? JSON(parseJSON: request_data) else {
             print("JSON decode failed")
             return (0, 0)
+        }
+        
+        if let startingWeek = requestDataJSON["startweek"].int, startingWeek != -1 {
+            startweek = startingWeek
         }
         
         let calendar = Calendar.current
@@ -330,12 +336,21 @@ struct ContentView: View {
                 .navigationBarItems(
                     leading: HStack {
 
-                        Text("Week \(Int(Information.indexnumber) + 1)")
-                            .font(.title3)
-                            .padding(5)
-                            .background(Color.white)
-                            .foregroundColor(Color.black)
-                            .cornerRadius(5)
+                        if (Int(Information.indexnumber) - Int(Information.startweek) + 1) > 0 {
+                            Text("Week \(Int(Information.indexnumber) - Int(Information.startweek) + 1)")
+                                .font(.title3)
+                                .padding(5)
+                                .background(Color.white)
+                                .foregroundColor(Color.black)
+                                .cornerRadius(5)
+                        } else {
+                            Text("Pre-Term")
+                                .font(.title3)
+                                .padding(5)
+                                .background(Color.white)
+                                .foregroundColor(Color.black)
+                                .cornerRadius(5)
+                        }
                             
                         Button(action: {
                             Information.indexnumber = Information.currentnum.0
