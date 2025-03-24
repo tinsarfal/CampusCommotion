@@ -34,7 +34,7 @@ struct Information {
         let today = todaydate
         
         if let cachedCurrentnum: (Int, Int) = _currentnum, lastUpdateDate == today {
-            print(cachedCurrentnum)
+            print("Cached Day: ", cachedCurrentnum)
             return cachedCurrentnum
         }
         

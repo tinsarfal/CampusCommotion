@@ -603,6 +603,7 @@ class ConnectorClass {
             "day_retrieved": retrievedDay,
             "startweek": startweek
         ]
+        
 
         if let theJSONData = try? JSONSerialization.data(withJSONObject: requestData, options: .prettyPrinted),
            let jsontext = String(data: theJSONData, encoding: .utf8) {

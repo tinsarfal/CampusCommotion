@@ -120,19 +120,25 @@ struct ProfileView: View {
         }
         }
     private func saveInformation() {
-            keychain.set(email.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "email")
-            keychain.set(calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://"), forKey: "calurl")
-            keychain.set(cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://"), forKey: "cluburl")
-            keychain.set(token.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "token")
-            
-            context_ContentView.email = self.email
-            context_ContentView.calurl = self.calurl
-            context_ContentView.cluburl = self.cluburl
-            context_ContentView.setToLoading()
+    
+        email = email.trimmingCharacters(in: .whitespacesAndNewlines)
+        calurl = calurl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://")
+        cluburl = cluburl.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "webcal", with: "https").replacingOccurrences(of: "http://", with: "https://")
+        token = token.trimmingCharacters(in: .whitespacesAndNewlines)
+    
+        keychain.set(email, forKey: "email")
+        keychain.set(calurl, forKey: "calurl")
+        keychain.set(cluburl, forKey: "cluburl")
+        keychain.set(token, forKey: "token")
+        
+        context_ContentView.email = self.email
+        context_ContentView.calurl = self.calurl
+        context_ContentView.cluburl = self.cluburl
+        context_ContentView.setToLoading()
 
-            let simpleCompletionHandler: () -> Void = {
-                context_ContentView.updateScheduleView()
-            }
+        let simpleCompletionHandler: () -> Void = {
+            context_ContentView.updateScheduleView()
+        }
 
         ConnectorClass().makeRequest(calurl: calurl, cluburl: cluburl, token: token, completionHandler: simpleCompletionHandler)
             showingAlert = true
