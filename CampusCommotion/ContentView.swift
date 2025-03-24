@@ -44,6 +44,10 @@ struct Information {
             return (0, 0)
         }
         
+        print("WeekStart: " + String(requestDataJSON["startweek"].int ?? 100))
+        
+        if let startingWeek = requestDataJSON["startweek"].int, startingWeek != -1 {
+            startweek = startingWeek
         }
                 
         let calendar = Calendar.current
