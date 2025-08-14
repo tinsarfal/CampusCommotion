@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Campus Commotion</string>
+    <string name="schedule">Schedule</string>
+    <string name="menu">Menu</string>
+    <string name="todo">Todo</string>
+    <string name="settings">Settings</string>
+    <string name="configure">Configure</string>
+    <string name="preferences">Preferences</string>
+    <string name="email">Email</string>
+    <string name="calendar_url">Calendar URL</string>
+    <string name="club_url">Club URL</string>
+    <string name="token">Token</string>
+    <string name="save">Save</string>
+    <string name="todays_menu">Today\'s Menu</string>
+    <string name="refresh">Refresh</string>
+</resources>
